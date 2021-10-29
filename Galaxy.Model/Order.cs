@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Galaxy.Core.Entity;
 
-namespace Entities
+namespace Galaxy.Model
 {
-    public class Order
+    public sealed class Order: BaseEntity
     {
         public Order()
         {

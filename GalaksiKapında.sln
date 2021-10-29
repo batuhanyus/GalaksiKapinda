@@ -3,27 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{AB496E82-5556-448E-9C82-AF4F8480E8AE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{36A491E7-2A6B-4AAF-81DF-CB271054403B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{39864E04-DB95-4EC7-9874-25753F6816DB}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL.CoreMVC", "PL.CoreMVC\PL.CoreMVC.csproj", "{390C41D3-AEDD-4E77-8701-85ED2870CA56}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genesis", "Genesis\Genesis.csproj", "{D46F252B-2228-46CE-8CC9-A24BA6FAD96B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Identity", "Identity\Identity.csproj", "{BFE08B2D-5A2F-4FAC-87AB-2BB94570B4AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.DataAccess", "Galaxy.DataAccess\Galaxy.DataAccess.csproj", "{E05FA292-E504-4322-A9D0-7C16A33AEE86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galaxy.DataAccess", "Galaxy.DataAccess\Galaxy.DataAccess.csproj", "{E05FA292-E504-4322-A9D0-7C16A33AEE86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.BusinessLogic", "Galaxy.BusinessLogic\Galaxy.BusinessLogic.csproj", "{870B4B76-78BC-4A2E-A92B-51D138066AA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galaxy.BusinessLogic", "Galaxy.BusinessLogic\Galaxy.BusinessLogic.csproj", "{870B4B76-78BC-4A2E-A92B-51D138066AA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Model", "Galaxy.Model\Galaxy.Model.csproj", "{0F4B00C7-1FFD-4897-A923-0511DDFEA137}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galaxy.Model", "Galaxy.Model\Galaxy.Model.csproj", "{0F4B00C7-1FFD-4897-A923-0511DDFEA137}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Core", "Galaxy.Core\Galaxy.Core.csproj", "{67776F6B-5186-4CA1-A8BF-66DFB44B4CF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galaxy.Core", "Galaxy.Core\Galaxy.Core.csproj", "{67776F6B-5186-4CA1-A8BF-66DFB44B4CF4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galaxy.PL.CoreMVC", "Galaxy.PL.CoreMVC\Galaxy.PL.CoreMVC.csproj", "{776875A7-7A54-4475-8406-B0E119D57010}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.PL.CoreMVC", "Galaxy.PL.CoreMVC\Galaxy.PL.CoreMVC.csproj", "{776875A7-7A54-4475-8406-B0E119D57010}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,18 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AB496E82-5556-448E-9C82-AF4F8480E8AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB496E82-5556-448E-9C82-AF4F8480E8AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB496E82-5556-448E-9C82-AF4F8480E8AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB496E82-5556-448E-9C82-AF4F8480E8AE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{36A491E7-2A6B-4AAF-81DF-CB271054403B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{36A491E7-2A6B-4AAF-81DF-CB271054403B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36A491E7-2A6B-4AAF-81DF-CB271054403B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{36A491E7-2A6B-4AAF-81DF-CB271054403B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39864E04-DB95-4EC7-9874-25753F6816DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39864E04-DB95-4EC7-9874-25753F6816DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39864E04-DB95-4EC7-9874-25753F6816DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39864E04-DB95-4EC7-9874-25753F6816DB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{390C41D3-AEDD-4E77-8701-85ED2870CA56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{390C41D3-AEDD-4E77-8701-85ED2870CA56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{390C41D3-AEDD-4E77-8701-85ED2870CA56}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -51,10 +31,6 @@ Global
 		{D46F252B-2228-46CE-8CC9-A24BA6FAD96B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D46F252B-2228-46CE-8CC9-A24BA6FAD96B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D46F252B-2228-46CE-8CC9-A24BA6FAD96B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFE08B2D-5A2F-4FAC-87AB-2BB94570B4AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFE08B2D-5A2F-4FAC-87AB-2BB94570B4AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFE08B2D-5A2F-4FAC-87AB-2BB94570B4AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFE08B2D-5A2F-4FAC-87AB-2BB94570B4AB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E05FA292-E504-4322-A9D0-7C16A33AEE86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E05FA292-E504-4322-A9D0-7C16A33AEE86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E05FA292-E504-4322-A9D0-7C16A33AEE86}.Release|Any CPU.ActiveCfg = Release|Any CPU

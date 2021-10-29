@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Galaxy.Model
 {
-    public class Category : BaseEntity
+    public sealed class Category : BaseEntity
     {
-        public int CategoryID { get; set; }
         public string Name { get; set; }
     }
 }

@@ -1,7 +1,7 @@
-﻿using Hypatia.BusinessLogic.Abstract;
-using Hypatia.BusinessLogic.Concrete;
-using Hypatia.DataAccess.Abstract;
-using Hypatia.DataAccess.Concrete;
+﻿using Galaxy.BusinessLogic.Abstract;
+using Galaxy.BusinessLogic.Concrete;
+using Galaxy.DataAccess.Abstract;
+using Galaxy.DataAccess.Concrete;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hypatia.BusinessLogic
+namespace Galaxy.BusinessLogic
 {
     public static class DIHelper
     {

@@ -1,12 +1,12 @@
-﻿using Hypatia.Core.DataAccess;
-using Hypatia.Model;
+﻿using Galaxy.Core.DataAccess;
+using Galaxy.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hypatia.DataAccess.Abstract
+namespace Galaxy.DataAccess.Abstract
 {
     public interface ICategoryRepository : IRepository<Category>
     {

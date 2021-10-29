@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hypatia.Core.Entity
+namespace Galaxy.Core.Entity
 {
-    public abstract class BaseEntity /*BaseEntity<T>*/
+    public abstract class BaseEntity
     {
         public int ID { get; set; }
-        public DateTime CreatedDate { get; set; }
     }
 }

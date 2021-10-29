@@ -1,4 +1,4 @@
-﻿using Hypatia.Core.Entity;
+﻿using Galaxy.Core.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Galaxy.Model
 {
-    public class Product : BaseEntity
+    public sealed class Product : BaseEntity
     {
         public int ProductID { get; set; }
         public int CategoryID { get; set; }

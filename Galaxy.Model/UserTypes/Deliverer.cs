@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Users
+namespace Galaxy.Model.UserTypes
 {
-    public sealed class Deliverer : Employee
+    public sealed class Deliverer : BaseEmployee
     {
 
     }

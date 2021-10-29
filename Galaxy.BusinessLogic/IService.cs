@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hypatia.BusinessLogic
+namespace Galaxy.BusinessLogic
 {
     public interface IService<T>
     {

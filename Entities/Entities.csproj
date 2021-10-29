@@ -4,12 +4,4 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="CreditCard.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="CreditCard.cs" />
-  </ItemGroup>
-
 </Project>

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities
+namespace Galaxy.Model.UserTypes
 {
-    public class Category
+    public sealed class Member : BaseUser
     {
-        public int CategoryID { get; set; }
-        public string Name { get; set; }
+        public bool IsMailVerified { get; set; }
     }
 }

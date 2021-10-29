@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Users
+namespace Galaxy.Model.UserTypes
 {
-    public sealed class Admin : User
+    public sealed class Admin : BaseEmployee
     {
+
     }
 }

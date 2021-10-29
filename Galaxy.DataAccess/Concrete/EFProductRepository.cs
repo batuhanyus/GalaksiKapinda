@@ -1,15 +1,17 @@
-﻿using Hypatia.Core.DataAccess;
-using Hypatia.DataAccess.Abstract;
-using Hypatia.Model;
+﻿using Galaxy.Core.DataAccess;
+using Galaxy.Core.DataAccess;
+using Galaxy.DataAccess.Abstract;
+using Galaxy.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hypatia.DataAccess.Concrete
+namespace Galaxy.DataAccess.Concrete
 {
-    public class EFProductRepository : EFRepositoryBase<Product,HypatiaDbContext>, IProductRepository
+    public class EFProductRepository : EFRepositoryBase<Product, GalaxyDbContext>, IProductRepository
     {
+
     }
 }

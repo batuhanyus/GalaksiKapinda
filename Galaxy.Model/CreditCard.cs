@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Galaxy.Core.Entity;
 
-namespace Entities
+namespace Galaxy.Model
 {
-    public class CreditCard
+    public sealed class CreditCard : BaseEntity
     {
         public int CreditCardID { get; set; }
         public int UserID { get; set; }

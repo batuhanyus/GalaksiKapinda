@@ -1,4 +1,4 @@
-﻿using Hypatia.Core.Entity;
+﻿using Galaxy.Core.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hypatia.Core.DataAccess
+namespace Galaxy.Core.DataAccess
 {
     public class EFRepositoryBase<TEntity, TContext> : IRepository<TEntity>
         where TEntity : BaseEntity, new()

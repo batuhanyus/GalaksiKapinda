@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Users
+namespace Galaxy.Model.UserTypes
 {
-    public class Employee : User
+    public class BaseEmployee : BaseUser
     {
         public DateTime BirthDate { get; set; }
         public long Phone { get; set; }

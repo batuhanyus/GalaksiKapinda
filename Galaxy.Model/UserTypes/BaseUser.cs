@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Galaxy.Core.Entity;
 
-namespace Entities.Users
+namespace Galaxy.Model.UserTypes
 {
-    public class User
+    public class BaseUser : BaseEntity
     {
-        public int UserID { get; set; }
         public string Mail { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }

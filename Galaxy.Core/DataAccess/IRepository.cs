@@ -1,15 +1,12 @@
-﻿using Hypatia.Core.Entity;
+﻿using Galaxy.Core.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hypatia.Core.DataAccess
+namespace Galaxy.Core.DataAccess
 {
-    //DDD => Domain Driven Design
-    // Hexagonal Arch - Onion Arch
-
     public interface IRepository<T>
         where T : BaseEntity , new()
     {

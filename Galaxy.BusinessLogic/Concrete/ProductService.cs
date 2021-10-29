@@ -1,13 +1,13 @@
-﻿using Hypatia.BusinessLogic.Abstract;
-using Hypatia.DataAccess.Abstract;
-using Hypatia.Model;
+﻿using Galaxy.BusinessLogic.Abstract;
+using Galaxy.DataAccess.Abstract;
+using Galaxy.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hypatia.BusinessLogic.Concrete
+namespace Galaxy.BusinessLogic.Concrete
 {
     class ProductService : IProductService
     {
