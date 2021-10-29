@@ -1,0 +1,10 @@
+﻿@model StoreCategoriesViewModel
+
+<ul>
+    @foreach (CategoryViewModel cat in Model.Categories)
+    {
+        <li>
+            @cat.Name
+        </li>
+    }
+</ul>

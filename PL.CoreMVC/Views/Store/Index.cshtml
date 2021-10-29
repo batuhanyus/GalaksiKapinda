@@ -1,0 +1,11 @@
+﻿@model StoreMainViewModel
+
+@await Html.PartialAsync("StoreMenuPartial")
+
+<hr />
+
+@await Html.PartialAsync("StoreCategoriesPartial", Model.StoreCategoriesViewModel)
+
+<hr />
+
+@await Html.PartialAsync("StoreItemsPartial", Model.StoreItemsViewModel)

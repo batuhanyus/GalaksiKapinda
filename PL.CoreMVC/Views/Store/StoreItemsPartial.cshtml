@@ -1,0 +1,10 @@
+﻿@model StoreItemsViewModel
+
+<ul>
+    @foreach (ProductViewModel prod in Model.Products)
+    {
+        <li>
+            @prod.Name
+        </li>
+    }
+</ul>

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLogicLayer;
+using Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +25,11 @@ namespace PL.CoreMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddSingleton<IService<Category>, CategoryBLL>();
+            services.AddSingleton<IService<Product>, ProductBLL>();
+
+            services.AddDAL();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

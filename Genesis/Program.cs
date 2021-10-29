@@ -6,7 +6,13 @@ namespace Genesis
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Galaxy DB Genesis started...");
+            GalaxyDBContext context = new();
+
+            Console.WriteLine("Creating categories and products...");
+            ProductWorks pw = new();
+            pw.Run(context);
+
 
             Console.ReadKey();
         }
