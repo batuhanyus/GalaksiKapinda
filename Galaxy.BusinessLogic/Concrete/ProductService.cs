@@ -1,6 +1,6 @@
 ﻿using Galaxy.BusinessLogic.Abstract;
 using Galaxy.DataAccess.Abstract;
-using Galaxy.Model;
+using Galaxy.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,7 +33,7 @@ namespace Galaxy.BusinessLogic.Concrete
             return productRepository.GetByID(entityID);
         }
 
-        public List<Product> GetProductsByCategory(int categoryID)
+        public IEnumerable<Product> GetProductsByCategory(int categoryID)
         {
             return productRepository.GetAll().Where(a => a.CategoryID == categoryID).ToList();
         }

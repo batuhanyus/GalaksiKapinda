@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Galaxy.BusinessLogic;
-using Galaxy.Model;
+using Galaxy.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Galaxy.PL.CoreMVC.Models.ViewModels.Store;
+using Galaxy.BusinessLogic.Abstract;
 
 namespace Galaxy.PL.CoreMVC.Controllers
 {
     public class StoreController : Controller
     {
-        IService<Category> categoryService;
-        IService<Product> productService;
+        ICategoryService categoryService;
+        IProductService productService;
 
-        public StoreController(IService<Category> catService, IService<Product> prodService)
+        public StoreController(ICategoryService catService, IProductService prodService)
         {
             categoryService = catService;
             productService = prodService;

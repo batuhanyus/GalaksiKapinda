@@ -1,4 +1,4 @@
-﻿using Galaxy.Model;
+﻿using Galaxy.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Galaxy.DataAccess\Galaxy.DataAccess.csproj" />
-    <ProjectReference Include="..\Galaxy.Model\Galaxy.Model.csproj" />
+    <ProjectReference Include="..\Galaxy.Model\Galaxy.Entities.csproj" />
   </ItemGroup>
 
 </Project>

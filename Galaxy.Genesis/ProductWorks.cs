@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Galaxy.DataAccess;
-using Galaxy.Model;
+using Galaxy.Entities;
 
 namespace Galaxy.Genesis
 {

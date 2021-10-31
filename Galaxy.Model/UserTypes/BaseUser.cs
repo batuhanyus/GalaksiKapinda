@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Galaxy.Core.Entity;
 
-namespace Galaxy.Model.UserTypes
+namespace Galaxy.Entities.UserTypes
 {
     public class BaseUser : BaseEntity
     {

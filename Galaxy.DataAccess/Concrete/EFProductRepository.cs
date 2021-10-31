@@ -1,7 +1,7 @@
 ﻿using Galaxy.Core.DataAccess;
-using Galaxy.Core.DataAccess;
+using Galaxy.Core.DataAccess.EF;
 using Galaxy.DataAccess.Abstract;
-using Galaxy.Model;
+using Galaxy.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

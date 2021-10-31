@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Galaxy.Model
+namespace Galaxy.Entities
 {
     public sealed class Product : BaseEntity
     {

@@ -1,5 +1,5 @@
 ﻿using Galaxy.Core.DataAccess;
-using Galaxy.Model;
+using Galaxy.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

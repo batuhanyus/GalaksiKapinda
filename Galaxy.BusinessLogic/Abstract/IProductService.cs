@@ -1,4 +1,4 @@
-﻿using Galaxy.Model;
+﻿using Galaxy.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Galaxy.BusinessLogic.Abstract
 {
-    interface IProductService : IService<Product>
+    public interface IProductService : IService<Product>
     {
-        List<Product> GetProductsByCategory(int categoryID);
+        IEnumerable<Product> GetProductsByCategory(int categoryID);
     }
 }

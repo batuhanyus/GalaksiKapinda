@@ -12,7 +12,6 @@ namespace Galaxy.BusinessLogic
         bool Update(T entity);
         bool Delete(T entity);
         T GetByID(int entityID);
-
         ICollection<T> GetAll();
     }
 }

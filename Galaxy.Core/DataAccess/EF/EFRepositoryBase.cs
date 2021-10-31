@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Galaxy.Core.DataAccess
+namespace Galaxy.Core.DataAccess.EF
 {
     public class EFRepositoryBase<TEntity, TContext> : IRepository<TEntity>
         where TEntity : BaseEntity, new()

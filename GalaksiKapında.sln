@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.DataAccess", "Galaxy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.BusinessLogic", "Galaxy.BusinessLogic\Galaxy.BusinessLogic.csproj", "{870B4B76-78BC-4A2E-A92B-51D138066AA2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Model", "Galaxy.Model\Galaxy.Model.csproj", "{0F4B00C7-1FFD-4897-A923-0511DDFEA137}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Entities", "Galaxy.Model\Galaxy.Entities.csproj", "{0F4B00C7-1FFD-4897-A923-0511DDFEA137}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Core", "Galaxy.Core\Galaxy.Core.csproj", "{67776F6B-5186-4CA1-A8BF-66DFB44B4CF4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.PL.CoreMVC", "Galaxy.PL.CoreMVC\Galaxy.PL.CoreMVC.csproj", "{776875A7-7A54-4475-8406-B0E119D57010}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galaxy.Genesis", "Galaxy.Genesis\Galaxy.Genesis.csproj", "{8144E444-BE85-47B4-A5B4-1A16B7BB08DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Genesis", "Galaxy.Genesis\Galaxy.Genesis.csproj", "{8144E444-BE85-47B4-A5B4-1A16B7BB08DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

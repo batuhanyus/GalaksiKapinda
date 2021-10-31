@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Galaxy.Core.Entity;
 
-namespace Galaxy.Model
+namespace Galaxy.Entities
 {
     public sealed class Address : BaseEntity
     {

@@ -13,7 +13,7 @@ namespace Galaxy.BusinessLogic
 {
     public static class DIHelper
     {
-        public static IServiceCollection AddDALDependencies(this IServiceCollection services)
+        public static IServiceCollection DoDependencyInjection(this IServiceCollection services)
         {
             services.AddScoped<ICategoryRepository, EFCategoryRepository>();
             services.AddScoped<IProductRepository, EFProductRepository>();
