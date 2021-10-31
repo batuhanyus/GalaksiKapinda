@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Galaxy.DataAccess;
 
-namespace Galaxy.Genesis
+namespace Galaxy.Root.Genesis
 {
     public class Genesis
     {

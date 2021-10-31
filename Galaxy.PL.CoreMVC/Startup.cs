@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Galaxy.BusinessLogic;
+using Galaxy.Root;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,8 +24,14 @@ namespace Galaxy.PL.CoreMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.DoDependencyInjections();
+
             services.AddControllersWithViews();
-            services.DoDependencyInjection();
+            
+
+            //Genesis
+            Galaxy.Root.Genesis.Genesis g = new();
+            g.SeedTheGalaxy();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

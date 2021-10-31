@@ -14,20 +14,20 @@ namespace Galaxy.Core.DataAccess.EF
         where TContext : DbContext
     {
         TContext _context;
+        IServiceCollection _services;
 
-        //public EFRepositoryBase(TContext context)
-        //{
-        //    _context = context;
-        //}
-
-        public EFRepositoryBase()
+        public EFRepositoryBase(TContext context)
         {
-            IServiceCollection services = new ServiceCollection();
-            services.AddDbContext<TContext>(ServiceLifetime.Singleton);
-            ServiceProvider provider = services.BuildServiceProvider();
-            _context = provider.GetService<TContext>();
-            //HypatiaDbContext context = new HypatiaDbContext();
+            _context = context;
         }
+
+        //public EFRepositoryBase(IServiceCollection services)
+        //{
+        //    _services = services;
+
+        //    ServiceProvider provider = _services.BuildServiceProvider();
+        //    _context = provider.GetService<TContext>();
+        //}
 
         public bool Delete(TEntity entity)
         {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Galaxy.BusinessLogic.Concrete
 {
-    class CategoryService : ICategoryService
+    public class CategoryService : ICategoryService
     {
         ICategoryRepository categoryRepository;
 

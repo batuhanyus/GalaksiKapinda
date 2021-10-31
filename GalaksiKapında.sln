@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Core", "Galaxy.Core\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.PL.CoreMVC", "Galaxy.PL.CoreMVC\Galaxy.PL.CoreMVC.csproj", "{776875A7-7A54-4475-8406-B0E119D57010}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Genesis", "Galaxy.Genesis\Galaxy.Genesis.csproj", "{8144E444-BE85-47B4-A5B4-1A16B7BB08DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galaxy.Root", "Galaxy.Root\Galaxy.Root.csproj", "{83F38BC1-1140-4DB4-A019-EB42CCE1DCBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{776875A7-7A54-4475-8406-B0E119D57010}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{776875A7-7A54-4475-8406-B0E119D57010}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{776875A7-7A54-4475-8406-B0E119D57010}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8144E444-BE85-47B4-A5B4-1A16B7BB08DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8144E444-BE85-47B4-A5B4-1A16B7BB08DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8144E444-BE85-47B4-A5B4-1A16B7BB08DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8144E444-BE85-47B4-A5B4-1A16B7BB08DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83F38BC1-1140-4DB4-A019-EB42CCE1DCBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83F38BC1-1140-4DB4-A019-EB42CCE1DCBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83F38BC1-1140-4DB4-A019-EB42CCE1DCBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83F38BC1-1140-4DB4-A019-EB42CCE1DCBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
