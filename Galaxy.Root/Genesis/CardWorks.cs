@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Galaxy.DataAccess;
 using Galaxy.Entities;
@@ -17,7 +18,7 @@ namespace Galaxy.Root.Genesis
             cc.CardNumber = 1111222233334444;
             cc.CVC = 123;
             cc.ExpireDate = DateTime.Now;
-            cc.MemberID = 0;
+            cc.MemberID = 1;
 
             context.CreditCards.Add(cc);
 

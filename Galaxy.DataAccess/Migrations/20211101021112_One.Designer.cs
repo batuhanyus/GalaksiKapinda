@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Galaxy.DataAccess.Migrations
 {
     [DbContext(typeof(GalaxyDbContext))]
-    [Migration("20211101013605_Three")]
-    partial class Three
+    [Migration("20211101021112_One")]
+    partial class One
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

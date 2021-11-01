@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Galaxy.DataAccess;
 using Galaxy.Entities;
@@ -56,12 +57,15 @@ namespace Galaxy.Root.Genesis
             };
 
             context.Categories.Add(c1);
+            context.SaveChanges();
             context.Categories.Add(c2);
+            context.SaveChanges();
 
             context.Products.Add(p1);
+            context.SaveChanges();
             context.Products.Add(p2);
+            context.SaveChanges();
             context.Products.Add(p3);
-
             context.SaveChanges();
         }
     }
