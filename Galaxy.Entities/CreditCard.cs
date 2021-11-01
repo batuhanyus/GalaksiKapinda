@@ -9,9 +9,8 @@ namespace Galaxy.Entities
 {
     public sealed class CreditCard : BaseEntity
     {
-        public int CreditCardID { get; set; }
-        public int UserID { get; set; }
-        public int CardNumber { get; set; }
+        public int MemberID { get; set; }
+        public long CardNumber { get; set; }
         public DateTime ExpireDate { get; set; } //TODO: Maybe a better solution for AA/YY
         public short CVC { get; set; }
         public string CardHolderName { get; set; }

@@ -1,4 +1,6 @@
 ﻿using Galaxy.Entities;
+using Galaxy.Entities.Location;
+using Galaxy.Entities.UserTypes;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,8 +12,20 @@ namespace Galaxy.DataAccess
 {
     public class GalaxyDbContext : DbContext
     {
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Member> Members { get; set; }
+
+        public DbSet<City> Cities { get; set; }
+        public DbSet<County> Counties { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+
+        public DbSet<CreditCard> CreditCards { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -20,7 +34,9 @@ namespace Galaxy.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Category>().Property(a => a.Name).HasMaxLength(50);
+            //A helping class to implement data-associated ruled.
+            new DbRules().ImplementDataRules(ref modelBuilder);
+
             base.OnModelCreating(modelBuilder);
         }
     }

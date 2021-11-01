@@ -9,13 +9,13 @@ namespace Galaxy.Entities
 {
     public sealed class Product : BaseEntity
     {
-        public int ProductID { get; set; }
         public int CategoryID { get; set; }
+        public Category Category { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public decimal DiscountedPrice { get; set; }
         public string Description { get; set; }
-        public string Image { get; set; } //TODO: Which type??
+        public string ImagePath { get; set; }
         public bool IsActive { get; set; }
     }
 }

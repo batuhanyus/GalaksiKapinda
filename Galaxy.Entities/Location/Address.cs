@@ -5,14 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Galaxy.Core.Entity;
 
-namespace Galaxy.Entities
+namespace Galaxy.Entities.Location
 {
     public sealed class Address : BaseEntity
     {
-        public int AdressID { get; set; }
-        public int UserID { get; set; }
-        public int CityID { get; set; }
-        public int CountyID { get; set; }
+        public int MemberID { get; set; }
+        public City City { get; set; }
+        public County County { get; set; }        
         public string AdressDetails { get; set; }
         public string AdressNotes { get; set; }
     }

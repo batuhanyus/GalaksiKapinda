@@ -15,8 +15,20 @@ namespace Galaxy.Root.Genesis
         {
             context = new();
 
-            ProductWorks pw = new ProductWorks();
+            ProductWorks pw = new();
             pw.Run(context);
+
+            UserWorks uw = new();
+            uw.Run(context);
+
+            LocationWorks lw = new();
+            lw.Run(context);
+
+            OrderWorks ow = new();
+            ow.Run(context);
+
+            CardWorks cw = new();
+            cw.Run(context);
         }
     }
 }

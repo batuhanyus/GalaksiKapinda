@@ -3,8 +3,19 @@
 <ul>
     @foreach (ProductViewModel prod in Model.Products)
     {
+        { var imagePath = "";
+            //if (Request["photoChoice"] != null)
+            //{
+            //    imagePath = @"images\" + Request["photoChoice"];
+            //}
+        }
+
         <li>
             @prod.Name
+            ++
+            @prod.FinalPrice
+            ++
+            @prod.Description
         </li>
     }
 </ul>

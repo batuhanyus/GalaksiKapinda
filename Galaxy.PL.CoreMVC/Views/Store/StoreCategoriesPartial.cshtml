@@ -4,7 +4,7 @@
     @foreach (CategoryViewModel cat in Model.Categories)
     {
         <li>
-            @cat.Name
+            <a asp-controller="Store" asp-action="Index" asp-route-categoryID="@cat.ID">@cat.Name</a>
         </li>
     }
 </ul>

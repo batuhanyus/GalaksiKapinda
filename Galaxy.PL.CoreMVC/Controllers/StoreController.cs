@@ -21,7 +21,16 @@ namespace Galaxy.PL.CoreMVC.Controllers
             productService = prodService;
         }
 
-        public IActionResult Index()
+
+        public IActionResult Index(int? categoryID)
+        {
+            StoreMainViewModel model = PreparePage(categoryID);
+
+            return View(model);
+        }
+
+
+        StoreMainViewModel PreparePage(int? categoryID = null)
         {
             StoreMainViewModel model = new()
             {
@@ -38,33 +47,25 @@ namespace Galaxy.PL.CoreMVC.Controllers
                 });
             }
 
-            foreach (Product prod in productService.GetAll())
+            ICollection<Product> pulledProducts;
+            if (categoryID == null)
+                pulledProducts = productService.GetAll().Where(a => a.IsActive).ToList();
+            else
+                pulledProducts = productService.GetAll().Where(a => a.CategoryID == categoryID && a.IsActive).ToList();
+
+            foreach (Product prod in pulledProducts)
             {
                 model.StoreItemsViewModel.Products.Add(new ProductViewModel()
                 {
-                    ID = prod.ProductID,
+                    ID = prod.ID,
                     Name = prod.Name,
-                    Description=prod.Description,
-                    Image =prod.Image,
-                    FinalPrice =prod.Price //TODO: Fix this!
+                    Description = prod.Description,
+                    ImagePath = prod.ImagePath,
+                    FinalPrice = prod.Price //TODO: Fix this!
                 });
             }
 
-            return View(model);
-        }
-
-        [HttpPost]
-        public IActionResult Index(int categoryID)
-        {
-
-
-            return View();
-        }
-
-
-        void PrepareProducts()
-        {
-
+            return model;
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Galaxy.PL.CoreMVC
             services.DoDependencyInjections();
 
             services.AddControllersWithViews();
-            
+
 
             //Genesis
             Galaxy.Root.Genesis.Genesis g = new();
@@ -57,6 +57,17 @@ namespace Galaxy.PL.CoreMVC
                     name: "default",
                     pattern: "{controller=Store}/{action=Index}");
             });
+
+            /*
+            DELETE TOP (1000)
+            FROM Categories
+
+            DELETE TOP (1000)
+            FROM Products
+
+            TRUNCATE TABLE Categories
+            TRUNCATE TABLE Products
+            */
         }
     }
 }
