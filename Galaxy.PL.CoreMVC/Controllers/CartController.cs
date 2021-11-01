@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Galaxy.DataAccess;
+using Galaxy.BusinessLogic.Abstract;
 using Galaxy.Entities;
 using Galaxy.PL.CoreMVC.Helpers;
 using Galaxy.PL.CoreMVC.Models.ViewModels.Cart;
@@ -12,11 +12,13 @@ namespace Galaxy.PL.CoreMVC.Controllers
 {
     public class CartController : Controller
     {
-        GalaxyDbContext context;
+        IProductService productService;
+        ICreditCardService creditCardService;
 
-        public CartController(GalaxyDbContext context)
+        public CartController(IProductService prodService, ICreditCardService credService)
         {
-            this.context = context;
+            productService = prodService;
+            creditCardService = credService;
         }
 
         public IActionResult Index()
@@ -30,7 +32,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult AddToCart(int categoryID, int productID)
         {
-            Product p = context.Products.SingleOrDefault(a => a.ID == productID);
+            Product p = productService.GetByID(productID);
 
             if (p != null)
             {
@@ -97,6 +99,12 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult Pay()
         {
+            int memberID = HttpContext.Session.Get<int>("MemberID");
+            CreditCard card = creditCardService.GetCardByOwner(memberID);
+
+            if (card == null)
+                return RedirectToAction();
+
             return RedirectToAction(); //TODO: Redirect to payment page.
         }
 
