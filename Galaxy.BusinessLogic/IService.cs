@@ -8,9 +8,9 @@ namespace Galaxy.BusinessLogic
 {
     public interface IService<T>
     {
-        bool Insert(T entity);
-        bool Update(T entity);
-        bool Delete(T entity);
+        int Insert(T entity);
+        int Update(T entity);
+        int Delete(T entity);
         T GetByID(int entityID);
         ICollection<T> GetAll();
     }

@@ -31,7 +31,7 @@ namespace Galaxy.PL.CoreMVC
 
             //Genesis
             Galaxy.Root.Genesis.Genesis g = new();
-            g.SeedTheGalaxy();
+            //g.SeedTheGalaxy();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.DataAccess", "Galaxy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.BusinessLogic", "Galaxy.BusinessLogic\Galaxy.BusinessLogic.csproj", "{870B4B76-78BC-4A2E-A92B-51D138066AA2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Entities", "Galaxy.Model\Galaxy.Entities.csproj", "{0F4B00C7-1FFD-4897-A923-0511DDFEA137}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Core", "Galaxy.Core\Galaxy.Core.csproj", "{67776F6B-5186-4CA1-A8BF-66DFB44B4CF4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.PL.CoreMVC", "Galaxy.PL.CoreMVC\Galaxy.PL.CoreMVC.csproj", "{776875A7-7A54-4475-8406-B0E119D57010}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galaxy.Root", "Galaxy.Root\Galaxy.Root.csproj", "{83F38BC1-1140-4DB4-A019-EB42CCE1DCBB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Entities", "Galaxy.Entities\Galaxy.Entities.csproj", "{27D66A58-EDB0-4854-94D8-CB2807E8C762}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,6 @@ Global
 		{870B4B76-78BC-4A2E-A92B-51D138066AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{870B4B76-78BC-4A2E-A92B-51D138066AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{870B4B76-78BC-4A2E-A92B-51D138066AA2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F4B00C7-1FFD-4897-A923-0511DDFEA137}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F4B00C7-1FFD-4897-A923-0511DDFEA137}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F4B00C7-1FFD-4897-A923-0511DDFEA137}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F4B00C7-1FFD-4897-A923-0511DDFEA137}.Release|Any CPU.Build.0 = Release|Any CPU
 		{67776F6B-5186-4CA1-A8BF-66DFB44B4CF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{67776F6B-5186-4CA1-A8BF-66DFB44B4CF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67776F6B-5186-4CA1-A8BF-66DFB44B4CF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +41,10 @@ Global
 		{83F38BC1-1140-4DB4-A019-EB42CCE1DCBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83F38BC1-1140-4DB4-A019-EB42CCE1DCBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83F38BC1-1140-4DB4-A019-EB42CCE1DCBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27D66A58-EDB0-4854-94D8-CB2807E8C762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27D66A58-EDB0-4854-94D8-CB2807E8C762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27D66A58-EDB0-4854-94D8-CB2807E8C762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27D66A58-EDB0-4854-94D8-CB2807E8C762}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

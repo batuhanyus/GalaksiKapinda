@@ -52,5 +52,19 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public IActionResult Index(int categoryID)
+        {
+
+
+            return View();
+        }
+
+
+        void PrepareProducts()
+        {
+
+        }
     }
 }

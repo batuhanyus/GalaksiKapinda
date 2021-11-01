@@ -18,7 +18,7 @@ namespace Galaxy.BusinessLogic.Concrete
             productRepository = repository;
         }
 
-        public bool Delete(Product entity)
+        public int Delete(Product entity)
         {
             return productRepository.Delete(entity);
         }
@@ -38,12 +38,12 @@ namespace Galaxy.BusinessLogic.Concrete
             return productRepository.GetAll().Where(a => a.CategoryID == categoryID).ToList();
         }
 
-        public bool Insert(Product entity)
+        public int Insert(Product entity)
         {
             return productRepository.Insert(entity);
         }
 
-        public bool Update(Product entity)
+        public int Update(Product entity)
         {
             return productRepository.Update(entity);
         }

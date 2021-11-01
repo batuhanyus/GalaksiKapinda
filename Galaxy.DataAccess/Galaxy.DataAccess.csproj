@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Galaxy.Core\Galaxy.Core.csproj" />
-    <ProjectReference Include="..\Galaxy.Model\Galaxy.Entities.csproj" />
+    <ProjectReference Include="..\Galaxy.Entities\Galaxy.Entities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

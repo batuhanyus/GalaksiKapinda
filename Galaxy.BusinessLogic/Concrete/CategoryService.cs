@@ -18,7 +18,7 @@ namespace Galaxy.BusinessLogic.Concrete
             categoryRepository = repository;
         }
 
-        public bool Delete(Category entity)
+        public int Delete(Category entity)
         {
             return categoryRepository.Delete(entity);
         }
@@ -33,7 +33,7 @@ namespace Galaxy.BusinessLogic.Concrete
             return categoryRepository.GetByID(entityID);
         }
 
-        public bool Insert(Category entity)
+        public int Insert(Category entity)
         {
             //try
             //{
@@ -51,7 +51,7 @@ namespace Galaxy.BusinessLogic.Concrete
             return categoryRepository.Insert(entity);
         }
 
-        public bool Update(Category entity)
+        public int Update(Category entity)
         {
             return categoryRepository.Update(entity);
         }

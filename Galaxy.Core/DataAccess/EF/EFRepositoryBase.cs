@@ -14,49 +14,38 @@ namespace Galaxy.Core.DataAccess.EF
         where TContext : DbContext
     {
         TContext _context;
-        IServiceCollection _services;
 
         public EFRepositoryBase(TContext context)
         {
             _context = context;
         }
 
-        //public EFRepositoryBase(IServiceCollection services)
-        //{
-        //    _services = services;
-
-        //    ServiceProvider provider = _services.BuildServiceProvider();
-        //    _context = provider.GetService<TContext>();
-        //}
-
-        public bool Delete(TEntity entity)
+        public int Delete(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Deleted;
-            return _context.SaveChanges() > 0;
+            return _context.SaveChanges();
         }
 
         public ICollection<TEntity> GetAll()
         {
-            //context.Categories
-            //context.Products
             return _context.Set<TEntity>().ToList();
         }
-
+        
         public TEntity GetByID(int entityID)
         {
             return _context.Set<TEntity>().Where(a => a.ID == entityID).SingleOrDefault();
         }
 
-        public bool Insert(TEntity entity)
+        public int Insert(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Added;
-            return _context.SaveChanges() > 0;
+            return _context.SaveChanges();
         }
 
-        public bool Update(TEntity entity)
+        public int Update(TEntity entity)
         {
             _context.Entry(entity).State = EntityState.Modified;
-            return _context.SaveChanges() > 0;
+            return _context.SaveChanges();
         }
     }
 }
