@@ -20,7 +20,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Store");
         }
 
         public IActionResult Privacy()

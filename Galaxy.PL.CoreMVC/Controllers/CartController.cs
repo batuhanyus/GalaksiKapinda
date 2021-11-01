@@ -99,8 +99,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult Pay()
         {
-            int memberID = HttpContext.Session.Get<int>("MemberID");
-            CreditCard card = creditCardService.GetCardByOwner(memberID);
+            int userID = HttpContext.Session.Get<int>("UserID");
+            CreditCard card = creditCardService.GetCardByOwner(userID);
 
             if (card == null)
                 return RedirectToAction();

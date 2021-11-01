@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Galaxy.DataAccess.Migrations
 {
     [DbContext(typeof(GalaxyDbContext))]
-    [Migration("20211101021112_One")]
+    [Migration("20211101163139_One")]
     partial class One
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -130,6 +130,24 @@ namespace Galaxy.DataAccess.Migrations
                     b.ToTable("Counties");
                 });
 
+            modelBuilder.Entity("Galaxy.Entities.MailVerification", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MemberID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VerificatinCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("MailVerifications");
+                });
+
             modelBuilder.Entity("Galaxy.Entities.Order", b =>
                 {
                     b.Property<int>("ID")
@@ -238,6 +256,9 @@ namespace Galaxy.DataAccess.Migrations
 
                     b.Property<int>("EmployeeType")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsPasswordValid")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Mail")
                         .HasColumnType("nvarchar(max)");

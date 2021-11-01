@@ -12,5 +12,10 @@ namespace Galaxy.PL.CoreMVC.Controllers
         {
             return View();
         }
+
+        public IActionResult ShowInfo()
+        {
+            return View();
+        }
     }
 }

@@ -128,6 +128,24 @@ namespace Galaxy.DataAccess.Migrations
                     b.ToTable("Counties");
                 });
 
+            modelBuilder.Entity("Galaxy.Entities.MailVerification", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("MemberID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VerificatinCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("MailVerifications");
+                });
+
             modelBuilder.Entity("Galaxy.Entities.Order", b =>
                 {
                     b.Property<int>("ID")
@@ -236,6 +254,9 @@ namespace Galaxy.DataAccess.Migrations
 
                     b.Property<int>("EmployeeType")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsPasswordValid")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Mail")
                         .HasColumnType("nvarchar(max)");

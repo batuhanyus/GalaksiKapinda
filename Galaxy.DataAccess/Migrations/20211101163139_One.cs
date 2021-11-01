@@ -59,6 +59,7 @@ namespace Galaxy.DataAccess.Migrations
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Phone = table.Column<long>(type: "bigint", nullable: false),
                     EmployeeType = table.Column<int>(type: "int", nullable: false),
+                    IsPasswordValid = table.Column<bool>(type: "bit", nullable: false),
                     Mail = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -67,6 +68,20 @@ namespace Galaxy.DataAccess.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MailVerifications",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MemberID = table.Column<int>(type: "int", nullable: false),
+                    VerificatinCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MailVerifications", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -248,6 +263,9 @@ namespace Galaxy.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "MailVerifications");
 
             migrationBuilder.DropTable(
                 name: "Members");

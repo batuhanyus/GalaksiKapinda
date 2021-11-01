@@ -1,1 +1,26 @@
-﻿
+﻿@model ProfileMainViewModel
+
+@await Html.PartialAsync("ProfileMenuPartial", Model)
+
+<hr />
+
+@if (Model.ContentType == "MyInfo")
+    @await Html.PartialAsync("MyInfoPartial", Model.MyInfoViewModel)
+
+    else if (Model.ContentType == "OrderList")
+        @await Html.PartialAsync("OrderListPartial", Model.OrderViewModels)
+
+        else if (Model.ContentType == "OrderDetails")
+            @await Html.PartialAsync("OrderDetailsPartial", Model.OrderViewModels)
+
+            else if (Model.ContentType == "AddressList")
+                @await Html.PartialAsync("AddressListPartial", Model.AddressViewModels)
+
+                else if (Model.ContentType == "AddressAdd")
+                    @await Html.PartialAsync("AddressAddPartial", Model.AddressViewModels)
+
+                    else if (Model.ContentType == "CreditCardList")
+                        @await Html.PartialAsync("CreditCardAddPartial", Model.CreditCardViewModels)
+
+                        else if (Model.ContentType == "CreditCardList")
+                            @await Html.PartialAsync("CreditCardAddPartial", Model.CreditCardViewModels)

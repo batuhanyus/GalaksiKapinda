@@ -20,8 +20,15 @@ namespace Galaxy.Root
 
             services.AddScoped<ICategoryRepository, EFCategoryRepository>();
             services.AddScoped<IProductRepository, EFProductRepository>();
+            services.AddScoped<ICreditCardRepository, EFCreditCardRepository>();
+            services.AddScoped<IMemberRepository, EFMemberRepository>();
+            services.AddScoped<IEmployeeRepository, EFEmployeeRepository>();
+
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<ICreditCardService, CreditCardService>();
+            services.AddScoped<IMemberService, MemberService>();
+            services.AddScoped<IEmployeeService, EmployeeService>();
 
 
 

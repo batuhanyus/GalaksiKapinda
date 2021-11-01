@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Galaxy.Core.DataAccess.EF;
 using Galaxy.DataAccess.Abstract;
-using Galaxy.Entities;
+using Galaxy.Entities.UserTypes;
 
 namespace Galaxy.DataAccess.Concrete
 {
-    public class EFCreditCardRepository : EFRepositoryBase<CreditCard, GalaxyDbContext>, ICreditCardRepository
+    public class EFEmployeeRepository : EFRepositoryBase<Employee, GalaxyDbContext>, IEmployeeRepository
     {
-        public EFCreditCardRepository(GalaxyDbContext context) : base(context)
+        public EFEmployeeRepository(GalaxyDbContext context) : base(context)
         {
         }
     }

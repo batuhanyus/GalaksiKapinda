@@ -1,8 +1,9 @@
-﻿<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title></title>
-</head>
-<body>
-    LOGIN - REGISTER
-</body>
-</html>
+﻿Welcome to Galaksi Kapında!
+
+@ViewBag.Message
+
+@await Html.PartialAsync("LoginPartial")
+
+<hr />
+
+<a asp-action="Register" asp-controller="Account">Register New Account</a>

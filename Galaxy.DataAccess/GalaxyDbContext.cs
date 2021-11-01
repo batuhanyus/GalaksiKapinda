@@ -27,6 +27,8 @@ namespace Galaxy.DataAccess
 
         public DbSet<CreditCard> CreditCards { get; set; }
 
+        public DbSet<MailVerification> MailVerifications { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=.;Database=GalaxyDB;Trusted_Connection=True");

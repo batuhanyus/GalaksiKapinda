@@ -14,7 +14,7 @@ namespace Galaxy.Root.Genesis
         internal void Run(GalaxyDbContext context)
         {
             Employee admin = new();
-            admin.EmployeeType = 2;
+            admin.UserType = 3;
             admin.BirthDate = DateTime.Now;
             admin.Mail = "admin@gk.com";
             admin.Name = "Mr.";
@@ -23,7 +23,7 @@ namespace Galaxy.Root.Genesis
             admin.Phone = 5399522131;
 
             Employee packager1 = new();
-            packager1.EmployeeType = 1;
+            packager1.UserType = 2;
             packager1.BirthDate = DateTime.Now;
             packager1.Mail = "packager1@gk.com";
             packager1.Name = "Packager";
@@ -32,7 +32,7 @@ namespace Galaxy.Root.Genesis
             packager1.Phone = 5399522131;
 
             Employee deliverer1 = new();
-            deliverer1.EmployeeType = 0;
+            deliverer1.UserType = 1;
             deliverer1.BirthDate = DateTime.Now;
             deliverer1.Mail = "deliverer1@gk.com";
             deliverer1.Name = "Deliverer";
@@ -41,7 +41,7 @@ namespace Galaxy.Root.Genesis
             deliverer1.Phone = 5399522131;
 
             Employee deliverer2 = new();
-            deliverer2.EmployeeType = 0;
+            deliverer2.UserType = 1;
             deliverer2.BirthDate = DateTime.Now;
             deliverer2.Mail = "deliverer2@gk.com";
             deliverer2.Name = "Deliverer";
@@ -60,6 +60,7 @@ namespace Galaxy.Root.Genesis
 
             Member member1 = new();
             member1.IsMailVerified = true;
+            member1.UserType = 0;
             member1.Mail = "member1@gk.com";
             member1.Name = "Member";
             member1.Surname = "1";

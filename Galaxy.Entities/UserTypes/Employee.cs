@@ -10,9 +10,6 @@ namespace Galaxy.Entities.UserTypes
     {
         public DateTime BirthDate { get; set; }
         public long Phone { get; set; }
-        /// <summary>
-        /// 0=Deliverer, 1=Packager, 2=Admin
-        /// </summary>
-        public int EmployeeType { get; set; } 
+        public bool IsPasswordValid { get; set; }
     }
 }

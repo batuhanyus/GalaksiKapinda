@@ -22,9 +22,13 @@ namespace Galaxy.PL.CoreMVC.Controllers
             productService = prodService;
         }
 
-
+        [LoggedIn()]
         public IActionResult Index(int? categoryID)
         {
+            //Check if logged in.
+            if (HttpContext.Session.Get<int>("UserID") == 0)
+                return RedirectToAction("Index", "Account");
+
             StoreMainViewModel model = PreparePage(categoryID);
 
             return View(model);
