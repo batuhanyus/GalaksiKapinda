@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Cart\" />
     <Folder Include="Views\Deliverer\" />
     <Folder Include="Views\Packager\" />
     <Folder Include="Views\Profile\" />

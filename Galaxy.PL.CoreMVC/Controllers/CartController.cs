@@ -2,15 +2,108 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Galaxy.DataAccess;
+using Galaxy.Entities;
+using Galaxy.PL.CoreMVC.Helpers;
+using Galaxy.PL.CoreMVC.Models.ViewModels.Cart;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Galaxy.PL.CoreMVC.Controllers
 {
     public class CartController : Controller
     {
+        GalaxyDbContext context;
+
+        public CartController(GalaxyDbContext context)
+        {
+            this.context = context;
+        }
+
         public IActionResult Index()
         {
-            return View();
+            List<CartItem> cartContents = cartContents = HttpContext.Session.Get<List<CartItem>>("Cart");
+            if (cartContents == null)
+                cartContents = new();
+
+            return View(cartContents);
+        }
+
+        public IActionResult AddToCart(int categoryID, int productID)
+        {
+            Product p = context.Products.SingleOrDefault(a => a.ID == productID);
+
+            if (p != null)
+            {
+                List<CartItem> cart = HttpContext.Session.Get<List<CartItem>>("Cart");
+                if (cart != null)
+                {
+                    CartItem cartItem = cart.SingleOrDefault(a => a.ProductID == p.ID);
+                    if (cartItem != null)
+                    {
+                        cartItem.Quantity++;
+                    }
+                    else
+                    {
+                        cartItem = new CartItem()
+                        {
+                            ProductID = p.ID,
+                            Name = p.Name,
+                            Price = p.Price,
+                            Quantity = 1
+                        };
+                        cart.Add(cartItem);
+                    }
+                }
+                else
+                {
+                    cart = new List<CartItem>();
+                    CartItem cartItem = new CartItem()
+                    {
+                        ProductID = p.ID,
+                        Name = p.Name,
+                        Price = p.Price,
+                        Quantity = 1
+                    };
+                    cart.Add(cartItem);
+                }
+
+                HttpContext.Session.Set<List<CartItem>>("Cart", cart);
+
+                decimal cartTotal = 0m;
+                foreach (CartItem item in cart)
+                {
+                    cartTotal += item.Price * item.Quantity;
+                }
+
+                HttpContext.Session.Set<decimal>("CartTotal", cartTotal);
+            }
+            else
+            {
+                //return NotFound("Ürün bulunamadı");
+                //return Json("Ürün bulunamadı");
+
+                //TODO: Yeah do sth...
+            }
+
+            return RedirectToAction("Index", "Store", new { categoryID = categoryID });
+        }
+
+        public IActionResult RemoveFromCart(int productID)
+        {
+            //TODO: İstenmemiş ama eklenebilir.
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Pay()
+        {
+            return RedirectToAction(); //TODO: Redirect to payment page.
+        }
+
+        public IActionResult ListCartContents()
+        {
+            List<CartItem> cart = HttpContext.Session.Get<List<CartItem>>("Cart");
+            return View("Index", cart);
         }
     }
 }

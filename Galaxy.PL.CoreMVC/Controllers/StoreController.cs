@@ -7,6 +7,7 @@ using Galaxy.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Galaxy.PL.CoreMVC.Models.ViewModels.Store;
 using Galaxy.BusinessLogic.Abstract;
+using Galaxy.PL.CoreMVC.Helpers;
 
 namespace Galaxy.PL.CoreMVC.Controllers
 {
@@ -29,13 +30,16 @@ namespace Galaxy.PL.CoreMVC.Controllers
             return View(model);
         }
 
+        //[Route("/Store/{categoryID:int}/{productID:int}")]
+
 
         StoreMainViewModel PreparePage(int? categoryID = null)
         {
             StoreMainViewModel model = new()
             {
                 StoreCategoriesViewModel = new(),
-                StoreItemsViewModel = new()
+                StoreItemsViewModel = new(),
+                CartTotal = HttpContext.Session.Get<decimal>("CartTotal")
             };
 
             foreach (Category cat in categoryService.GetAll())
@@ -58,6 +62,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
                 model.StoreItemsViewModel.Products.Add(new ProductViewModel()
                 {
                     ID = prod.ID,
+                    CategoryID = prod.CategoryID,
                     Name = prod.Name,
                     Description = prod.Description,
                     ImagePath = prod.ImagePath,

@@ -1,1 +1,15 @@
-﻿Store - Cart[SUM] - Profile - Logout ----- Deliverer - Packager - Admin
+﻿@model StoreMainViewModel
+
+<a asp-action="Index" asp-controller="Store">Store</a>
+ - 
+<a asp-action="Index" asp-controller="Cart">Cart[$@Model.CartTotal]</a> 
+- 
+<a asp-action="Index" asp-controller="Profile">Profile</a>
+ - 
+Logout
+ ----- 
+Deliverer
+ - 
+Packager
+ - 
+Admin

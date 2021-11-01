@@ -8,6 +8,7 @@ namespace Galaxy.PL.CoreMVC.Models.ViewModels.Store
     public class ProductViewModel
     {
         public int ID { get; set; }
+        public int CategoryID { get; set; }
         public string Name { get; set; }
         public decimal FinalPrice { get; set; } //Shows discounted price if applicable.
         public string Description { get; set; }

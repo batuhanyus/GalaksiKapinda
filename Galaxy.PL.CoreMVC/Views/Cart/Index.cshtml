@@ -1,0 +1,32 @@
+﻿@model List<CartItem>
+
+<ul>
+    @foreach (CartItem item in Model)
+    {
+        <li>
+            @item.Name
+            ++
+            @item.Price
+            ++
+            @item.Quantity
+            ++
+            <form asp-controller="Cart" asp-action="RemoveFromCart" method="post">
+                <input name="productID" type="hidden" value=@item.ProductID>
+                <button class="btn btn-info btn-sm">Remove</button>
+            </form>
+        </li>
+    }
+</ul>
+
+@if (Model.Count > 0)
+{
+    <form asp-controller="Cart" asp-action="Pay" method="post">
+        <button class="btn btn-info btn-sm">Proceed To Payment</button>
+    </form>
+}
+else
+{
+    <form asp-controller="Cart" asp-action="Pay" method="post">
+        <button class="btn btn-info btn-sm" disabled=true>Proceed To Payment</button>
+    </form>
+}

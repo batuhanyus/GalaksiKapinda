@@ -28,6 +28,10 @@ namespace Galaxy.PL.CoreMVC
 
             services.AddControllersWithViews();
 
+            services.AddSession(options => {
+                options.Cookie.Name = "galaxy";
+            });
+
 
             //Genesis
             Galaxy.Root.Genesis.Genesis g = new();
@@ -49,10 +53,18 @@ namespace Galaxy.PL.CoreMVC
 
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "BuyItem",
+                    pattern: "Cart/Add/{categoryID:int}/{productID:int}",
+                    defaults: new { controller = "Cart", action = "AddToCart" });
+                
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Store}/{action=Index}");

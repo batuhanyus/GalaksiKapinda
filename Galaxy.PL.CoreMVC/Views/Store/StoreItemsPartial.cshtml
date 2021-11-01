@@ -3,19 +3,27 @@
 <ul>
     @foreach (ProductViewModel prod in Model.Products)
     {
-        { var imagePath = "";
+        {
+            var imagePath = "";
             //if (Request["photoChoice"] != null)
             //{
             //    imagePath = @"images\" + Request["photoChoice"];
             //}
         }
 
-        <li>
-            @prod.Name
-            ++
-            @prod.FinalPrice
-            ++
-            @prod.Description
-        </li>
+    <li>
+        @prod.Name
+        ++
+        @prod.FinalPrice
+        ++
+        @prod.Description
+        ++
+        <form asp-controller="Cart" asp-action="AddToCart" method="post">
+            <input name="categoryID" type="hidden" value=@prod.CategoryID>
+            <input name="productID" type="hidden" value=@prod.ID>
+            <button class="btn btn-info btn-sm">Click Me</button>
+        </form>
+
+    </li>
     }
 </ul>
