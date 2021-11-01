@@ -69,6 +69,11 @@ namespace Galaxy.PL.CoreMVC
                     pattern: "Store/Index/{categoryID:int}",
                     defaults: new { controller = "Store", action = "Index" });
 
+                endpoints.MapControllerRoute(
+                    name: "Profile",
+                    pattern: "Profile/{contentType:alpha}",
+                    defaults: new { controller = "Profile", action = "Index" });
+
 
                 endpoints.MapControllerRoute(
                     name: "default",

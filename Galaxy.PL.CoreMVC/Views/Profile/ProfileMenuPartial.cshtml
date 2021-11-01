@@ -1,12 +1,12 @@
 ﻿@model ProfileMainViewModel
 
-<a asp-action="ShowInfo" asp-controller="Profile">My Info</a>
+<a asp-action="Index" asp-controller="Profile" asp-route-contentType="MyInfo">My Info</a>
  -
-<a asp-action="ListOrder" asp-controller="Profile">My Orders</a>
+<a asp-action="Index" asp-controller="Profile" asp-route-contentType="OrderList">My Orders</a>
 -
-<a asp-action="ListAddresses" asp-controller="Profile">My Addresses</a>
+<a asp-action="Index" asp-controller="Profile" asp-route-contentType="AddressList">My Addresses</a>
 -
-<a asp-action="ListCards" asp-controller="Profile">My Credit Cards</a>
+<a asp-action="Index" asp-controller="Profile" asp-route-contentType="CreditCardList">My Credit Cards</a>
  -
 Logoutx
  -----

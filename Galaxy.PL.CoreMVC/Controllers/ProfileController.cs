@@ -22,50 +22,31 @@ namespace Galaxy.PL.CoreMVC.Controllers
             employeeService = empService;
         }
 
-        public IActionResult Index(ProfileMainViewModel model)
+        public IActionResult Index(string contentType = "MyInfo")
         {
-            if (model == null)
-                ShowInfo();
+            ProfileMainViewModel model = new();
+
+            switch (contentType)
+            {
+                case "MyInfo":
+                    model = PrepareMyInfo();
+                    break;
+                case "OrderList":
+                    model = PrepareOrders();
+                    break;
+                case "AddressList":
+
+                    break;
+                case "CreditCardList":
+
+                    break;
+                default:
+                    break;
+            }
 
             return View("Index", model);
         }
 
-        public IActionResult ShowInfo()
-        {
-            ProfileMainViewModel model = PrepareMyInfo();
-
-            return RedirectToAction("Index", model);
-        }
-
-        public IActionResult Orders()
-        {
-            return View();
-        }
-
-        public IActionResult OrderDetails()
-        {
-            return View();
-        }
-
-        public IActionResult Addresses()
-        {
-            return View();
-        }
-
-        public IActionResult AddressDetails()
-        {
-            return View();
-        }
-
-        public IActionResult CreditCards()
-        {
-            return View();
-        }
-
-        public IActionResult CreditCardDetails()
-        {
-            return View();
-        }
 
         ProfileMainViewModel PrepareMyInfo()
         {
@@ -78,26 +59,28 @@ namespace Galaxy.PL.CoreMVC.Controllers
             int userRole = HttpContext.Session.Get<int>("UserRole");
             int userID = HttpContext.Session.Get<int>("UserID");
 
-            Member member;
-            Employee employee;
+            dynamic user;
             if (userRole == 0)
-            {
-                member = memberService.GetByID(userID);
-                model.MyInfoViewModel.EMail = member.Mail;
-                model.MyInfoViewModel.Name = member.Name;
-                model.MyInfoViewModel.Surname = member.Surname;
-            }
+                user = memberService.GetByID(userID);
             else
-            {
-                employee = employeeService.GetByID(userID);
-                model.MyInfoViewModel.EMail = employee.Mail;
-                model.MyInfoViewModel.Name = employee.Name;
-                model.MyInfoViewModel.Surname = employee.Surname;
-            }  
+                user = employeeService.GetByID(userID);
+
+            model.MyInfoViewModel.EMail = user.Mail;
+            model.MyInfoViewModel.Name = user.Name;
+            model.MyInfoViewModel.Surname = user.Surname;
 
             return model;
         }
 
+        ProfileMainViewModel PrepareOrders()
+        {
+            ProfileMainViewModel model = new()
+            {
+                ContentType = "OrderList",
+                MyInfoViewModel = new()
+            };
 
+            return model;
+        }
     }
 }
