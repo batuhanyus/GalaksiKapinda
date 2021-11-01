@@ -33,14 +33,24 @@ namespace Galaxy.BusinessLogic.Concrete
             throw new NotImplementedException();
         }
 
-        public int Insert(Address entity)
+        public Address GetByIDByOwner(int userID, int ID)
         {
-            throw new NotImplementedException();
+            return addressRepository.GetAll().Where(a => a.MemberID == userID && a.ID == ID).SingleOrDefault();
         }
 
-        public int Update(Address entity)
+        public ICollection<Address> GetByOwner(int userID)
         {
-            throw new NotImplementedException();
+            return addressRepository.GetAll().Where(a => a.MemberID == userID).ToList();
+        }
+
+        public int Insert(Address entity)
+        {
+            return addressRepository.Insert(entity);
+        }
+
+        public int Update(Address oldEntity, Address newEntity)
+        {
+            return addressRepository.Update(oldEntity, newEntity);
         }
     }
 }

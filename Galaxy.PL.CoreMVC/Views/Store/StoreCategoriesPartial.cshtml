@@ -1,6 +1,9 @@
 ﻿@model StoreCategoriesViewModel
 
 <ul>
+    <li>
+        <a asp-controller="Store" asp-action="Index" asp-route-categoryID="@null">All Categories</a>
+    </li>
     @foreach (CategoryViewModel cat in Model.Categories)
     {
         <li>

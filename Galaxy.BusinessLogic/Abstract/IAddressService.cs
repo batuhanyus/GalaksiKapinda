@@ -10,5 +10,7 @@ namespace Galaxy.BusinessLogic.Abstract
 {
     public interface IAddressService : IService<Address>
     {
+        ICollection<Address> GetByOwner(int userID);
+        Address GetByIDByOwner(int userID, int ID);
     }
 }

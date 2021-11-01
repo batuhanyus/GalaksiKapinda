@@ -42,8 +42,6 @@ namespace Galaxy.Root
             services.AddScoped<IOrderDetailsService, OrderDetailsService>();
             services.AddScoped<IMailVerificationService, MailVerificationService>();
 
-
-
             return services;
         }
     }

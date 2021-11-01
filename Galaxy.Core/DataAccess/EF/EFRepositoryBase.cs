@@ -42,9 +42,10 @@ namespace Galaxy.Core.DataAccess.EF
             return _context.SaveChanges();
         }
 
-        public int Update(TEntity entity)
+        public int Update(TEntity oldEntity, TEntity newEntity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+            _context.Entry(oldEntity).State = EntityState.Modified;
+            _context.Entry(oldEntity).CurrentValues.SetValues(newEntity);
             return _context.SaveChanges();
         }
     }

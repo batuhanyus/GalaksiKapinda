@@ -75,20 +75,19 @@ namespace Galaxy.DataAccess.Migrations
                     b.Property<string>("AdressNotes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CityID")
+                    b.Property<int>("CityID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CountyID")
+                    b.Property<int>("CountyID")
                         .HasColumnType("int");
 
                     b.Property<int>("MemberID")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ID");
-
-                    b.HasIndex("CityID");
-
-                    b.HasIndex("CountyID");
 
                     b.ToTable("Addresses");
                 });
@@ -115,15 +114,13 @@ namespace Galaxy.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CityID")
+                    b.Property<int>("CityID")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("CityID");
 
                     b.ToTable("Counties");
                 });
@@ -153,10 +150,10 @@ namespace Galaxy.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CityID")
+                    b.Property<int>("CityID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CountyID")
+                    b.Property<int>("CountyID")
                         .HasColumnType("int");
 
                     b.Property<int>("DelivererID")
@@ -172,10 +169,6 @@ namespace Galaxy.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("CityID");
-
-                    b.HasIndex("CountyID");
 
                     b.ToTable("Orders");
                 });
@@ -236,8 +229,6 @@ namespace Galaxy.DataAccess.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("CategoryID");
 
                     b.ToTable("Products");
                 });
@@ -306,56 +297,6 @@ namespace Galaxy.DataAccess.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Members");
-                });
-
-            modelBuilder.Entity("Galaxy.Entities.Location.Address", b =>
-                {
-                    b.HasOne("Galaxy.Entities.Location.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityID");
-
-                    b.HasOne("Galaxy.Entities.Location.County", "County")
-                        .WithMany()
-                        .HasForeignKey("CountyID");
-
-                    b.Navigation("City");
-
-                    b.Navigation("County");
-                });
-
-            modelBuilder.Entity("Galaxy.Entities.Location.County", b =>
-                {
-                    b.HasOne("Galaxy.Entities.Location.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityID");
-
-                    b.Navigation("City");
-                });
-
-            modelBuilder.Entity("Galaxy.Entities.Order", b =>
-                {
-                    b.HasOne("Galaxy.Entities.Location.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityID");
-
-                    b.HasOne("Galaxy.Entities.Location.County", "County")
-                        .WithMany()
-                        .HasForeignKey("CountyID");
-
-                    b.Navigation("City");
-
-                    b.Navigation("County");
-                });
-
-            modelBuilder.Entity("Galaxy.Entities.Product", b =>
-                {
-                    b.HasOne("Galaxy.Entities.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }

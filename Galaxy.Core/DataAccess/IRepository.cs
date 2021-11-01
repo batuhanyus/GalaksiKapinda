@@ -11,7 +11,7 @@ namespace Galaxy.Core.DataAccess
         where T : BaseEntity, new()
     {
         int Insert(T entity);
-        int Update(T entity);
+        int Update(T oldEntity, T newEntity);
         int Delete(T entity);
         T GetByID(int entityID);
         //T GetBy(Func<T, int> expression); TODO: Make it happen.

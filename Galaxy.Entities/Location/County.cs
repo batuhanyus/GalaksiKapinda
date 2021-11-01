@@ -10,6 +10,6 @@ namespace Galaxy.Entities.Location
     public sealed class County : BaseEntity
     {
         public string Name { get; set; }
-        public City City { get; set; }
+        public int CityID { get; set; }
     }
 }

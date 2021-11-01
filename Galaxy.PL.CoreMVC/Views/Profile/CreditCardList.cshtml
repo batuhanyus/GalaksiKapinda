@@ -1,0 +1,19 @@
+﻿@model ProfileCreditCardViewModel
+
+@await Html.PartialAsync("ProfileMenuPartial")
+
+<hr />
+
+@Model.CardHolderName
+++
+@Model.CardNumber
+++
+@Model.ExpireDate.ToShortDateString()
+
+<form asp-controller="Profile" asp-action="EditCreditCard" method="post">
+    Card Holder Name:  <input asp-for="@Model.CardHolderName" /> <br />
+    Card Number: <input asp-for="@Model.CardNumber" /><br />
+    CVC: <input asp-for="@Model.CVC" /><br />
+    Expiration Date: <input asp-for="@Model.ExpireDate" /><br />
+    <button type="submit">Update</button>
+</form>

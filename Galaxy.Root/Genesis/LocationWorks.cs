@@ -21,15 +21,15 @@ namespace Galaxy.Root.Genesis
 
             County c1 = new();
             c1.Name = "Kızılay";
-            c1.City = city1;
+            c1.CityID = 1;
 
             County c2 = new();
             c2.Name = "Ulus";
-            c2.City = city1;
+            c2.CityID = 1;
 
             County c3 = new();
             c3.Name = "Taksim";
-            c3.City = city2;
+            c3.CityID = 2;
 
             context.Cities.Add(city1);
             context.SaveChanges();
@@ -45,17 +45,19 @@ namespace Galaxy.Root.Genesis
 
             Address address1 = new();
             address1.MemberID = 1;
-            address1.City = city1;
-            address1.County = c1;
+            address1.CityID = 1;
+            address1.CountyID = 1;
             address1.AdressDetails = "Ankara-Kızılay adress.";
             address1.AdressNotes = "Some notes regarding Adress 1";
+            address1.Name = "Mekan1";
 
             Address address2 = new();
             address2.MemberID = 1;
-            address2.City = city2;
-            address2.County = c3;
+            address2.CityID = 2;
+            address2.CountyID = 3;
             address2.AdressDetails = "İstanbul-Taksim adress.";
             address2.AdressNotes = "Some notes regarding Adress 2";
+            address2.Name = "Mekan2";
 
             context.Addresses.Add(address1);
             context.SaveChanges();

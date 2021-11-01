@@ -15,8 +15,8 @@ namespace Galaxy.Root.Genesis
         {
             Order o1 = new();
             o1.MemberID = 1;
-            o1.City = context.Cities.First();
-            o1.County = context.Counties.First();
+            o1.CityID = 1;
+            o1.CountyID = 1;
             o1.DelivererID = 3;
             o1.PackagerID = 2;
             o1.OrderStatus = "Preparing";

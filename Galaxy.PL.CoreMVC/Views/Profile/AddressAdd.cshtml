@@ -1,0 +1,15 @@
+﻿@model ProfileAddressViewModel
+
+@await Html.PartialAsync("ProfileMenuPartial")
+
+<hr />
+
+<form asp-controller="Profile" asp-action="AddAddress" method="post">
+    <input name="ID" type="hidden" value=@Model.ID>
+    Name: <input asp-for=@Model.Name> <br />
+    City: <input name="CityID" asp-for=@Model.CityID>
+    County: <input name="CountyID" asp-for=@Model.CountyID>
+    Address Details: <input asp-for=@Model.AdressDetails> <br />
+    Address Notes: <input asp-for=@Model.AdressNotes> <br />
+    <button class="btn btn-info btn-sm">Add</button>
+</form>

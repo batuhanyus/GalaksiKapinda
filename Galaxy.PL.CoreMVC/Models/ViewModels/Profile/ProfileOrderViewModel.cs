@@ -7,5 +7,6 @@ namespace Galaxy.PL.CoreMVC.Models.ViewModels.Profile
 {
     public class ProfileOrderViewModel
     {
+        public int MyProperty { get; set; }
     }
 }

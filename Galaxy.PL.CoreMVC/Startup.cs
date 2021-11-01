@@ -32,6 +32,7 @@ namespace Galaxy.PL.CoreMVC
                 options.Cookie.Name = "galaxy";
             });
 
+            
 
             //Genesis
             Galaxy.Root.Genesis.Genesis g = new();

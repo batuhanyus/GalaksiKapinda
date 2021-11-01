@@ -26,7 +26,6 @@ namespace Galaxy.Root.Genesis
             Product p1 = new Product()
             {
                 CategoryID = 1,
-                Category = c1,
                 Name = "Product 1",
                 Description = "Product 1 Description",
                 Price = 5m,
@@ -37,7 +36,6 @@ namespace Galaxy.Root.Genesis
             Product p2 = new Product()
             {
                 CategoryID = 1,
-                Category = c1,
                 Name = "Product 2",
                 Description = "Product 2 Description",
                 Price = 15m,
@@ -48,7 +46,6 @@ namespace Galaxy.Root.Genesis
             Product p3 = new Product()
             {
                 CategoryID = 2,
-                Category = c2,
                 Name = "Product 3",
                 Description = "Product 3 Description",
                 Price = 100m,
