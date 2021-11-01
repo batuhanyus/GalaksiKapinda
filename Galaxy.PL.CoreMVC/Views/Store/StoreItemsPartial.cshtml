@@ -18,12 +18,11 @@
         ++
         @prod.Description
         ++
-        <form asp-controller="Cart" asp-action="AddToCart" method="post">
+        <form asp-controller="Cart" asp-action="AddToCart" method="get">
             <input name="categoryID" type="hidden" value=@prod.CategoryID>
             <input name="productID" type="hidden" value=@prod.ID>
-            <button class="btn btn-info btn-sm">Click Me</button>
+            <button class="btn btn-info btn-sm">Add To Cart</button>
         </form>
-
     </li>
     }
 </ul>

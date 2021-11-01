@@ -63,7 +63,12 @@ namespace Galaxy.PL.CoreMVC
                     name: "BuyItem",
                     pattern: "Cart/Add/{categoryID:int}/{productID:int}",
                     defaults: new { controller = "Cart", action = "AddToCart" });
-                
+
+                endpoints.MapControllerRoute(
+                    name: "ListItems",
+                    pattern: "Store/Index/{categoryID:int}",
+                    defaults: new { controller = "Store", action = "Index" });
+
 
                 endpoints.MapControllerRoute(
                     name: "default",

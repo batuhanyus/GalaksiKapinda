@@ -252,9 +252,6 @@ namespace Galaxy.DataAccess.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EmployeeType")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsPasswordValid")
                         .HasColumnType("bit");
 
@@ -272,6 +269,9 @@ namespace Galaxy.DataAccess.Migrations
 
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserType")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -299,6 +299,9 @@ namespace Galaxy.DataAccess.Migrations
 
                     b.Property<string>("Surname")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserType")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 

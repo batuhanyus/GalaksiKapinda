@@ -37,7 +37,7 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public Employee GetByID(int entityID)
         {
-            throw new NotImplementedException();
+            return employeerepository.GetByID(entityID);
         }
 
         public int Insert(Employee entity)

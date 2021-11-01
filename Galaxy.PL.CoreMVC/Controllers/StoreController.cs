@@ -22,7 +22,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             productService = prodService;
         }
 
-        [LoggedIn()]
+        //[LoggedIn()]
         public IActionResult Index(int? categoryID)
         {
             //Check if logged in.
@@ -33,9 +33,6 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
             return View(model);
         }
-
-        //[Route("/Store/{categoryID:int}/{productID:int}")]
-
 
         StoreMainViewModel PreparePage(int? categoryID = null)
         {
@@ -72,6 +69,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
                     ImagePath = prod.ImagePath,
                     FinalPrice = prod.Price //TODO: Fix this!
                 });
+
+                //model.StoreItemsViewModel.SelectedCategoryID = categoryID;
             }
 
             return model;

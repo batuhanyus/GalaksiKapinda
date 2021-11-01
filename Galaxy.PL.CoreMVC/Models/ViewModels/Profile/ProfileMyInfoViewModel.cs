@@ -7,5 +7,11 @@ namespace Galaxy.PL.CoreMVC.Models.ViewModels.Profile
 {
     public class ProfileMyInfoViewModel
     {
+        public string EMail { get; set; }
+        public string OldPassword { get; set; }
+        public string NewPassword { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+
     }
 }

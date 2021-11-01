@@ -13,5 +13,6 @@ namespace Galaxy.PL.CoreMVC.Models.ViewModels.Store
         }
 
         public List<ProductViewModel> Products { get; set; }
+        //public int? SelectedCategoryID { get; set; }
     }
 }

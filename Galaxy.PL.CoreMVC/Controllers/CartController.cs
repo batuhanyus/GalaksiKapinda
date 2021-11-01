@@ -30,6 +30,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             return View(cartContents);
         }
 
+        [HttpGet]
         public IActionResult AddToCart(int categoryID, int productID)
         {
             Product p = productService.GetByID(productID);
