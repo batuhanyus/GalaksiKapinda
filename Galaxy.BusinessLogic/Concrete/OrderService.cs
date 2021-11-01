@@ -43,7 +43,7 @@ namespace Galaxy.BusinessLogic.Concrete
             throw new NotImplementedException();
         }
 
-        public int Update(Order entity)
+        public int Update(Order oldEntity, Order newEntity)
         {
             throw new NotImplementedException();
         }

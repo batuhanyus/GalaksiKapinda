@@ -51,9 +51,9 @@ namespace Galaxy.BusinessLogic.Concrete
             return categoryRepository.Insert(entity);
         }
 
-        public int Update(Category entity)
+        public int Update(Category oldEntity, Category newEntity)
         {
-            return categoryRepository.Update(entity);
+            throw new NotImplementedException();
         }
     }
 }

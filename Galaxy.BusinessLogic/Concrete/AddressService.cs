@@ -30,7 +30,7 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public Address GetByID(int entityID)
         {
-            throw new NotImplementedException();
+            return addressRepository.GetAll().Where(a => a.ID == entityID).SingleOrDefault();
         }
 
         public Address GetByIDByOwner(int userID, int ID)

@@ -42,5 +42,10 @@ namespace Galaxy.BusinessLogic.Concrete
         {
             throw new NotImplementedException();
         }
+
+        public int Update(County oldEntity, County newEntity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

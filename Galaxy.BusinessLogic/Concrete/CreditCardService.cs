@@ -48,5 +48,10 @@ namespace Galaxy.BusinessLogic.Concrete
         {
             throw new NotImplementedException();
         }
+
+        public int Update(CreditCard oldEntity, CreditCard newEntity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

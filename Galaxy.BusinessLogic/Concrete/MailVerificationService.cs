@@ -38,7 +38,7 @@ namespace Galaxy.BusinessLogic.Concrete
             throw new NotImplementedException();
         }
 
-        public int Update(MailVerification entity)
+        public int Update(MailVerification oldEntity, MailVerification newEntity)
         {
             throw new NotImplementedException();
         }
