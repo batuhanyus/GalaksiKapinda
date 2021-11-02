@@ -9,5 +9,16 @@
         @Model.OrderID
         @Model.OrderStatus
         @Model.PackagerID
+
+        <form asp-controller="Packager" asp-action="AssignDeliverer" method="post">
+            <input name="OrderID" type="hidden" value=@Model.OrderID>
+            <input name="MemberID" type="hidden" value=@Model.MemberID>
+            <input name="PackagerID" type="hidden" value=@Model.PackagerID>
+            <input name="CityID" type="hidden" value=@Model.CityID>
+            <input name="CountyID" type="hidden" value=@Model.CountyID>
+            Deliverer: <select id="deliverer-selector" asp-for="DelivererID" asp-items="Model.Deliverers"></select>
+            Status:<select id="status-selector" asp-for="OrderStatus" asp-items="Model.OrderStatuses"></select>
+            <button class="btn btn-info btn-sm">Assign</button>
+        </form>
     </li>
 </ul>

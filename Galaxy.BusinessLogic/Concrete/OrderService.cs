@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Galaxy.BusinessLogic.Abstract;
 using Galaxy.DataAccess.Abstract;
+using Galaxy.DataAccess.Concrete;
 using Galaxy.Entities;
 
 namespace Galaxy.BusinessLogic.Concrete
@@ -25,7 +26,7 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public ICollection<Order> GetAll()
         {
-            throw new NotImplementedException();
+            return orderRepository.GetAll().ToList();
         }
 
         public Order GetByID(int entityID)
@@ -44,8 +45,8 @@ namespace Galaxy.BusinessLogic.Concrete
         }
 
         public int Update(Order oldEntity, Order newEntity)
-        {
-            throw new NotImplementedException();
+{
+            return orderRepository.Update(oldEntity, newEntity);
         }
     }
 }

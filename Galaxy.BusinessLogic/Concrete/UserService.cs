@@ -39,6 +39,11 @@ namespace Galaxy.BusinessLogic.Concrete
             throw new NotImplementedException();
         }
 
+        public ICollection<User> GetAllDeliverers()
+        {
+            return userrepository.GetAll().Where(a => a.UserType == 1).ToList();
+        }
+
         public User GetByID(int entityID)
         {
             return userrepository.GetAll().Where(a => a.ID == entityID).SingleOrDefault();

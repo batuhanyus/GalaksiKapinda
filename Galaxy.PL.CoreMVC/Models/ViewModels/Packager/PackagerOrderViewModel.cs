@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Galaxy.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Galaxy.PL.CoreMVC.Models.ViewModels.Packager
 {
@@ -23,5 +24,7 @@ namespace Galaxy.PL.CoreMVC.Models.ViewModels.Packager
         public string OrderStatus { get; set; }
 
         public List<OrderDetails> Details { get; set; }
+        public List<SelectListItem> Deliverers { get; set; }
+        public List<SelectListItem> OrderStatuses { get; set; }
     }
 }

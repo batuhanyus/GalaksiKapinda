@@ -4,15 +4,34 @@
 
 <hr />
 
-<ul>
-    <li>
+<table class="table table-sm table-hover table-bordered table-dark">
+    <thead>
+        <tr>
+            <th>
+                Order ID
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Details
+            </th>
+        </tr>
+    </thead>
+    <tbody>
         @foreach (PackagerOrderViewModel order in Model)
         {
-            @order.OrderID
-            <br />
-            @order.OrderStatus
-            <br />
-            <a asp-controller="Order" asp-action="GetDetails" asp-route-orderID=@order.OrderID>Details</a>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => order.OrderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => order.OrderStatus)
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-controller="Packager" asp-action="GetDetails" asp-route-orderID="@order.OrderID">Details</a>
+                </td>
+            </tr>
         }
-    </li>
-</ul>
+    </tbody>
+</table>
