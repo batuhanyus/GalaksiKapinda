@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Galaxy.Core.DataAccess;
+using Galaxy.Entities;
 
 namespace Galaxy.DataAccess.Abstract
 {
-    //public interface IEmployeeRepository : IRepository<Employee>
-    //{
-    //}
+    public interface IUserRepository : IRepository<User>
+    {
+    }
 }

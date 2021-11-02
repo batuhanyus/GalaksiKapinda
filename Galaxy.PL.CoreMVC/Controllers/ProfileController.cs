@@ -7,7 +7,6 @@ using Galaxy.BusinessLogic.Abstract;
 using Galaxy.BusinessLogic.Concrete;
 using Galaxy.Entities;
 using Galaxy.Entities.Location;
-using Galaxy.Entities.UserTypes;
 using Galaxy.PL.CoreMVC.Helpers;
 using Galaxy.PL.CoreMVC.Models.ViewModels.Profile;
 using Microsoft.AspNetCore.Mvc;
@@ -16,17 +15,15 @@ namespace Galaxy.PL.CoreMVC.Controllers
 {
     public class ProfileController : Controller
     {
-        IMemberService memberService;
-        IEmployeeService employeeService;
+        IUserService userService;
         IOrderService orderService;
         ICreditCardService creditCardService;
         IAddressService addressService;
 
-        public ProfileController(IMemberService memService, IEmployeeService empService, IOrderService orService,
+        public ProfileController(IUserService usService, IOrderService orService,
             ICreditCardService cardService, IAddressService addService)
         {
-            memberService = memService;
-            employeeService = empService;
+            userService = usService;
             orderService = orService;
             creditCardService = cardService;
             addressService = addService;
@@ -45,7 +42,9 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Profile/Info")]
         public IActionResult GetInfo()
         {
-            ProfileMyInfoViewModel model = CreateModelFromBaseUser(CreateBaseUser());
+            int userID = HttpContext.Session.Get<int>("UserID");
+            User user = userService.GetByID(userID);
+            ProfileMyInfoViewModel model = CreateModelFromUser(user);
             return View("MyInfo", model);
         }
 
@@ -53,13 +52,9 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Profile/Info")]
         public IActionResult EditInfo(ProfileMyInfoViewModel model)
         {
-            BaseUser baseUser = CreateBaseUserFromModel(model);
-            BaseUser oldEntity = CreateBaseUser();
-
-            if (HttpContext.Session.Get<int>("UserRole") == 0)
-                memberService.Update(oldEntity, baseUser);
-            else
-                employeeService.Update(oldEntity, baseUser);
+            User user = CreateUserFromModel(model);
+            User oldEntity = userService.GetByID(user.ID);
+            userService.Update(oldEntity, user);
 
             return RedirectToAction("GetInfo");
         }
@@ -213,56 +208,37 @@ namespace Galaxy.PL.CoreMVC.Controllers
             };
         }
 
-        BaseUser CreateBaseUserFromModel(ProfileMyInfoViewModel model)
+        User CreateUserFromModel(ProfileMyInfoViewModel model)
         {
-            int userRole = HttpContext.Session.Get<int>("UserRole");
             int userID = HttpContext.Session.Get<int>("UserID");
 
-            dynamic user;
-            if (userRole == 0)
-                user = memberService.GetByID(userID);
-            else
-                user = employeeService.GetByID(userID);
+            User realUser = userService.GetByID(userID);
 
-            BaseUser baseUser = new BaseUser()
+            User user = new User()
             {
                 ID = userID,
-                Mail = user.Mail,
-                UserType = user.UserType,
+                Mail = realUser.Mail,
+                UserType = realUser.UserType,
                 Name = model.Name,
                 Surname = model.Surname
             };
 
-            if (user.Password == model.OldPassword)
-                baseUser.Password = model.NewPassword;
+            if (realUser.Password == model.OldPassword)
+                user.Password = model.NewPassword;
             else
-                baseUser.Password = user.Password;
+                user.Password = realUser.Password;
 
-            return baseUser;
+            return user;
         }
 
-        ProfileMyInfoViewModel CreateModelFromBaseUser(BaseUser baseUser)
+        ProfileMyInfoViewModel CreateModelFromUser(User user)
         {
             return new ProfileMyInfoViewModel()
             {
-                EMail = baseUser.Mail,
-                Name = baseUser.Name,
-                Surname = baseUser.Surname
+                EMail = user.Mail,
+                Name = user.Name,
+                Surname = user.Surname
             };
-        }
-
-        BaseUser CreateBaseUser()
-        {
-            int userID = HttpContext.Session.Get<int>("UserID");
-            int userRole = HttpContext.Session.Get<int>("UserRole");
-
-            BaseUser baseUser;
-            if (userRole == 0)
-                baseUser = memberService.GetBaseUser(userID);
-            else
-                baseUser = employeeService.GetBaseUser(userID);
-
-            return baseUser;
         }
     }
 }

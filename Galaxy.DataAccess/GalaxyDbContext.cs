@@ -1,6 +1,5 @@
 ﻿using Galaxy.Entities;
 using Galaxy.Entities.Location;
-using Galaxy.Entities.UserTypes;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,8 +11,7 @@ namespace Galaxy.DataAccess
 {
     public class GalaxyDbContext : DbContext
     {
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Member> Members { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public DbSet<City> Cities { get; set; }
         public DbSet<County> Counties { get; set; }

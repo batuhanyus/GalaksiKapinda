@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Galaxy.DataAccess.Migrations
 {
     [DbContext(typeof(GalaxyDbContext))]
-    [Migration("20211101214639_One")]
+    [Migration("20211102035404_One")]
     partial class One
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -235,7 +235,7 @@ namespace Galaxy.DataAccess.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Galaxy.Entities.UserTypes.Employee", b =>
+            modelBuilder.Entity("Galaxy.Entities.User", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
@@ -244,6 +244,9 @@ namespace Galaxy.DataAccess.Migrations
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsMailVerified")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsPasswordValid")
                         .HasColumnType("bit");
@@ -268,37 +271,7 @@ namespace Galaxy.DataAccess.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("Galaxy.Entities.UserTypes.Member", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("IsMailVerified")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Mail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserType")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Members");
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

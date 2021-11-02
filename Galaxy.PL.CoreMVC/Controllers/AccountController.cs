@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Galaxy.BusinessLogic.Abstract;
-using Galaxy.Entities.UserTypes;
 using Microsoft.AspNetCore.Mvc;
 using Galaxy.PL.CoreMVC.Helpers;
+using Galaxy.Entities;
 
 namespace Galaxy.PL.CoreMVC.Controllers
 {
     public class AccountController : Controller
     {
-        IMemberService memberService;
-        IEmployeeService employeeService;
+        IUserService userService;
 
-        public AccountController(IMemberService memService, IEmployeeService empService)
+        public AccountController(IUserService usService)
         {
-            memberService = memService;
-            employeeService = empService;
+            userService = usService;
         }
 
         public IActionResult Index()
@@ -27,13 +25,13 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult Login(string email, string password)
         {
-            Member member = memberService.DoLogin(email, password);
-            if (member != null)
+            User user = userService.DoLogin(email, password);
+            if (user != null)
             {
-                HttpContext.Session.Set<int>("UserID", member.ID);
-                HttpContext.Session.Set<int>("UserRole", member.UserType);                
+                HttpContext.Session.Set<int>("UserID", user.ID);
+                HttpContext.Session.Set<int>("UserRole", user.UserType);                
 
-                if (!member.IsMailVerified)
+                if (!user.IsMailVerified)
                 {
                     ViewBag.Message = "EMail verification required.";
                     return View("Index");
@@ -43,20 +41,23 @@ namespace Galaxy.PL.CoreMVC.Controllers
             }
             else
             {
-                Employee employee = employeeService.DoLogin(email, password);
+                ViewBag.Message = "No such user exist.";
+                return RedirectToAction("Index");
 
-                if (employee != null)
-                {
-                    HttpContext.Session.Set<int>("UserID", employee.ID);
-                    HttpContext.Session.Set<int>("UserRole", employee.UserType);
+                //user employee = user.DoLogin(email, password);
 
-                    return RedirectToAction("Index", "Store");
-                }
-                else
-                {
-                    ViewBag.Message = "No such user exist.";
-                    return RedirectToAction("Index");
-                }
+                //if (employee != null)
+                //{
+                //    HttpContext.Session.Set<int>("UserID", employee.ID);
+                //    HttpContext.Session.Set<int>("UserRole", employee.UserType);
+
+                //    return RedirectToAction("Index", "Store");
+                //}
+                //else
+                //{
+                //    ViewBag.Message = "No such user exist.";
+                //    return RedirectToAction("Index");
+                //}
             }
         }
     }

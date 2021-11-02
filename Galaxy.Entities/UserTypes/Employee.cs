@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Galaxy.Entities.UserTypes
 {
-    public sealed class Employee : BaseUser
-    {
-        public DateTime BirthDate { get; set; }
-        public long Phone { get; set; }
-        public bool IsPasswordValid { get; set; }
-    }
+    //public sealed class Employee : BaseUser
+    //{
+    //    public DateTime BirthDate { get; set; }
+    //    public long Phone { get; set; }
+    //    public bool IsPasswordValid { get; set; }
+    //}
 }

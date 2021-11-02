@@ -21,8 +21,7 @@ namespace Galaxy.Root
             services.AddScoped<ICategoryRepository, EFCategoryRepository>();
             services.AddScoped<IProductRepository, EFProductRepository>();
             services.AddScoped<ICreditCardRepository, EFCreditCardRepository>();
-            services.AddScoped<IMemberRepository, EFMemberRepository>();
-            services.AddScoped<IEmployeeRepository, EFEmployeeRepository>();
+            services.AddScoped<IUserRepository, EFUserRepository>();
             services.AddScoped<IAddressRepository, EFAddressRepository>();
             services.AddScoped<ICityRepository, EFCityRepository>();
             services.AddScoped<ICountyRepository, EFCountyRepository>();
@@ -33,8 +32,7 @@ namespace Galaxy.Root
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICreditCardService, CreditCardService>();
-            services.AddScoped<IMemberService, MemberService>();
-            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<ICountyService, CountyService>();

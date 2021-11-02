@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Galaxy.Entities.UserTypes
 {
-    public sealed class Member : BaseUser
-    {
-        public bool IsMailVerified { get; set; }
-    }
+    //public sealed class Member : BaseUser
+    //{
+    //    public bool IsMailVerified { get; set; }
+    //}
 }
