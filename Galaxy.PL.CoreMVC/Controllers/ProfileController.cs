@@ -34,7 +34,34 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult Index()
         {
+
+
+            //return model;
+
             return View("Index");
+        }
+
+        [HttpGet]
+        [Route("Profile/Info")]
+        public IActionResult GetInfo()
+        {
+            ProfileMyInfoViewModel model = CreateModelFromBaseUser(CreateBaseUser());
+            return View("MyInfo", model);
+        }
+
+        [HttpPost]
+        [Route("Profile/Info")]
+        public IActionResult EditInfo(ProfileMyInfoViewModel model)
+        {
+            BaseUser baseUser = CreateBaseUserFromModel(model);
+            BaseUser oldEntity = CreateBaseUser();
+
+            if (HttpContext.Session.Get<int>("UserRole") == 0)
+                memberService.Update(oldEntity, baseUser);
+            else
+                employeeService.Update(oldEntity, baseUser);
+
+            return RedirectToAction("GetInfo");
         }
 
         [Route("Profile/GetCreditCard")]
@@ -138,7 +165,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         {
             return new CreditCard()
             {
-                ID = model.ID,                
+                ID = model.ID,
                 CardHolderName = model.CardHolderName,
                 CardNumber = model.CardNumber,
                 CVC = model.CVC,
@@ -186,13 +213,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
             };
         }
 
-        ProfileMainViewModel PrepareMyInfo()
+        BaseUser CreateBaseUserFromModel(ProfileMyInfoViewModel model)
         {
-            ProfileMainViewModel model = new()
-            {
-                MyInfoViewModel = new()
-            };
-
             int userRole = HttpContext.Session.Get<int>("UserRole");
             int userID = HttpContext.Session.Get<int>("UserID");
 
@@ -202,70 +224,45 @@ namespace Galaxy.PL.CoreMVC.Controllers
             else
                 user = employeeService.GetByID(userID);
 
-            model.MyInfoViewModel.EMail = user.Mail;
-            model.MyInfoViewModel.Name = user.Name;
-            model.MyInfoViewModel.Surname = user.Surname;
-
-            return model;
-        }
-
-        ProfileMainViewModel PrepareOrders()
-        {
-            ProfileMainViewModel model = new()
+            BaseUser baseUser = new BaseUser()
             {
-                OrderViewModels = new()
+                ID = userID,
+                Mail = user.Mail,
+                UserType = user.UserType,
+                Name = model.Name,
+                Surname = model.Surname
             };
 
-            int userID = HttpContext.Session.Get<int>("UserID");
+            if (user.Password == model.OldPassword)
+                baseUser.Password = model.NewPassword;
+            else
+                baseUser.Password = user.Password;
 
-            ICollection<Order> orders = orderService.GetOrdersByUser(userID);
-
-            model.OrderViewModels.Add(new ProfileOrderViewModel()
-            {
-
-            });
-
-            return model;
+            return baseUser;
         }
 
-        ProfileMainViewModel PrepareCreditCards()
+        ProfileMyInfoViewModel CreateModelFromBaseUser(BaseUser baseUser)
         {
-            ProfileMainViewModel model = new()
+            return new ProfileMyInfoViewModel()
             {
-                CreditCardViewModel = new()
+                EMail = baseUser.Mail,
+                Name = baseUser.Name,
+                Surname = baseUser.Surname
             };
-
-            int userID = HttpContext.Session.Get<int>("UserID");
-
-            CreditCard card = creditCardService.GetCardByOwner(userID);
-
-            model.CreditCardViewModel.CardHolderName = card.CardHolderName;
-            model.CreditCardViewModel.CardNumber = card.CardNumber;
-            model.CreditCardViewModel.ExpireDate = card.ExpireDate;
-
-            return model;
         }
 
-        ProfileMainViewModel PrepareAddresses()
+        BaseUser CreateBaseUser()
         {
-            ProfileMainViewModel model = new()
-            {
-                AddressViewModels = new()
-            };
-
             int userID = HttpContext.Session.Get<int>("UserID");
+            int userRole = HttpContext.Session.Get<int>("UserRole");
 
-            ICollection<Address> addresses = addressService.GetByOwner(userID);
+            BaseUser baseUser;
+            if (userRole == 0)
+                baseUser = memberService.GetBaseUser(userID);
+            else
+                baseUser = employeeService.GetBaseUser(userID);
 
-            foreach (Address item in addresses)
-            {
-                model.AddressViewModels.Add(new ProfileAddressViewModel()
-                {
-
-                });
-            }
-
-            return model;
+            return baseUser;
         }
     }
 }

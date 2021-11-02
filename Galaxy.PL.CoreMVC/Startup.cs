@@ -6,6 +6,7 @@ using Galaxy.BusinessLogic;
 using Galaxy.Root;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,11 +29,15 @@ namespace Galaxy.PL.CoreMVC
 
             services.AddControllersWithViews();
 
-            services.AddSession(options => {
+            services.AddSession(options =>
+            {
                 options.Cookie.Name = "galaxy";
+                options.Cookie.IsEssential = true;
+                options.Cookie.SameSite = SameSiteMode.Strict;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             });
 
-            
+
 
             //Genesis
             Galaxy.Root.Genesis.Genesis g = new();

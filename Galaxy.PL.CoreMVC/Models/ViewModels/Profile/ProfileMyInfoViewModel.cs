@@ -12,6 +12,5 @@ namespace Galaxy.PL.CoreMVC.Models.ViewModels.Profile
         public string NewPassword { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-
     }
 }

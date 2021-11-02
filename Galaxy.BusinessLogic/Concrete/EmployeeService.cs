@@ -19,6 +19,11 @@ namespace Galaxy.BusinessLogic.Concrete
             employeerepository = repository;
         }
 
+        public bool CheckPassword(string password)
+        {
+            throw new NotImplementedException();
+        }
+
         public int Delete(Employee entity)
         {
             throw new NotImplementedException();
@@ -27,10 +32,15 @@ namespace Galaxy.BusinessLogic.Concrete
         public Employee DoLogin(string email, string password)
         {
             //TODO: Encrypt password.
-            return employeerepository.GetAll().Where(a => a.Mail == email && a.Password==password).SingleOrDefault();
+            return employeerepository.GetAll().Where(a => a.Mail == email && a.Password == password).SingleOrDefault();
         }
 
         public ICollection<Employee> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public BaseUser GetBaseUser(int userID)
         {
             throw new NotImplementedException();
         }
@@ -43,6 +53,19 @@ namespace Galaxy.BusinessLogic.Concrete
         public int Insert(Employee entity)
         {
             throw new NotImplementedException();
+        }
+
+        public int Update(BaseUser oldEntity, BaseUser newEntity)
+        {
+            Employee old = GetByID(oldEntity.ID);
+            Employee young = GetByID(oldEntity.ID);
+
+            young.IsPasswordValid = true;
+            young.Password = newEntity.Password;
+            young.Name = newEntity.Name;
+            young.Surname = newEntity.Surname;
+
+            return employeerepository.Update(old, young);
         }
 
         public int Update(Employee oldEntity, Employee newEntity)
