@@ -1,1 +1,84 @@
-﻿
+﻿@model List<AdminEmployeeViewModel>
+
+@await Html.PartialAsync("AdminMenuPartial")
+
+<hr />
+@TempData["Message"]
+<form asp-controller="Admin" asp-action="UpdateEmployees" method="post">
+    <table class="table table-sm table-hover table-bordered table-dark">
+        <thead>
+            <tr>
+                <th>
+                    Employee ID
+                </th>
+                <th>
+                    Mail
+                </th>
+                <th>
+                    Password
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Surname
+                </th>
+                <th>
+                    User Type
+                </th>
+                <th>
+                    Is Mail Verified
+                </th>
+                <th>
+                    BirthDate
+                </th>
+                <th>
+                    Phone
+                </th>
+                <th>
+                    Is Password Verified
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+            <tr>
+                <td>
+                    @Model[i].EmployeeID
+                    <input asp-for=@Model[i].EmployeeID hidden="true">
+                </td>
+                <td>
+                    <input asp-for=@Model[i].Mail>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].Password>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].Name>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].Surname>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].UserType>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].IsMailVerified>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].BirthDate>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].Phone>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].IsPasswordValid>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+    <button class="btn btn-info btn-sm">Update</button>
+</form>

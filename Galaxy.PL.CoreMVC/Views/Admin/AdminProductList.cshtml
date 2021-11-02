@@ -1,1 +1,72 @@
-﻿
+﻿@model List<AdminProductViewModel>
+
+@await Html.PartialAsync("AdminMenuPartial")
+
+<hr />
+@TempData["Message"]
+<form asp-controller="Admin" asp-action="UpdateProducts" method="post">
+    <table class="table table-sm table-hover table-bordered table-dark">
+        <thead>
+            <tr>
+                <th>
+                    Product ID
+                </th>
+                <th>
+                    Category ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Discounted Price
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Image Path
+                </th>
+                <th>
+                    Is Active?
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+            <tr>
+                <td>
+                    @Model[i].ProductID
+                    <input asp-for=@Model[i].ProductID hidden="true">
+                </td>
+                <td>
+                    <input asp-for=@Model[i].CategoryID>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].Name>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].Price>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].DiscountedPrice>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].Description>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].ImagePath>
+                </td>
+                <td>
+                    <input asp-for=@Model[i].IsActive>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <hr />
+    <button class="btn btn-info btn-sm">Update</button>
+</form>

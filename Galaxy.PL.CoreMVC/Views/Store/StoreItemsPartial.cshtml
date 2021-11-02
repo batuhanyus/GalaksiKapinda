@@ -21,27 +21,36 @@
     <tbody>
         @foreach (ProductViewModel prod in Model.Products)
         {
-        <tr>
-            <td>
-                <img src="~/Media/Products/underconstruction.png" asp-append-version="true">
-            </td>
-            <td>
-                @prod.Name
-            </td>
-            <td>
-                @prod.FinalPrice
-            </td>
-            <td>
-                @prod.Description
-            </td>
-            <td>
-                <form asp-controller="Cart" asp-action="AddToCart" method="get">
-                    <input name="categoryID" type="hidden" value=@prod.CategoryID>
-                    <input name="productID" type="hidden" value=@prod.ID>
-                    <button class="btn btn-info btn-sm">Add To Cart</button>
-                </form>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @if (prod.ImagePath == string.Empty || prod.ImagePath == null)
+                    {
+                        <img src="~/Media/Products/underconstruction.png" asp-append-version="true">
+                    }
+                    else
+                    {
+                        <img src=prod.ImagePath asp-append-version="true">
+                    }
+
+
+                </td>
+                <td>
+                    @prod.Name
+                </td>
+                <td>
+                    @prod.FinalPrice
+                </td>
+                <td>
+                    @prod.Description
+                </td>
+                <td>
+                    <form asp-controller="Cart" asp-action="AddToCart" method="get">
+                        <input name="categoryID" type="hidden" value=@prod.CategoryID>
+                        <input name="productID" type="hidden" value=@prod.ID>
+                        <button class="btn btn-info btn-sm">Add To Cart</button>
+                    </form>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

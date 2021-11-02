@@ -24,15 +24,11 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult Index()
         {
-
-
-            //return model;
-
             return View("Index");
         }
 
         [HttpGet]
-        [Route("Profile/Info")]
+        [Route("Profile/GetInfo")]
         public IActionResult GetInfo()
         {
             int userID = HttpContext.Session.Get<int>("UserID");
@@ -42,19 +38,16 @@ namespace Galaxy.PL.CoreMVC.Controllers
         }
 
         [HttpPost]
-        [Route("Profile/Info")]
+        [Route("Profile/EditInfo")]
         public IActionResult EditInfo(ProfileMyInfoViewModel model)
         {
             User user = CreateUserFromModel(model);
             User oldEntity = userService.GetByID(user.ID);
-            userService.Update(oldEntity, user);
+            if (userService.Update(oldEntity, user) > 0)
+                TempData["Message"] = "Success!";
 
             return RedirectToAction("GetInfo");
         }
-
-       
-
-       
 
         User CreateUserFromModel(ProfileMyInfoViewModel model)
         {
@@ -67,6 +60,10 @@ namespace Galaxy.PL.CoreMVC.Controllers
                 ID = userID,
                 Mail = realUser.Mail,
                 UserType = realUser.UserType,
+                IsPasswordValid = realUser.IsPasswordValid,
+                IsMailVerified = realUser.IsMailVerified,
+                Phone = realUser.Phone,
+                BirthDate = realUser.BirthDate,
                 Name = model.Name,
                 Surname = model.Surname
             };
@@ -85,7 +82,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
             {
                 EMail = user.Mail,
                 Name = user.Name,
-                Surname = user.Surname
+                Surname = user.Surname,
+                UserID = user.ID
             };
         }
     }

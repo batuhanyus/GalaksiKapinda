@@ -7,6 +7,7 @@ namespace Galaxy.PL.CoreMVC.Models.ViewModels.Admin
 {
     public class AdminProductViewModel
     {
+        public int ProductID { get; set; }
         public int CategoryID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }

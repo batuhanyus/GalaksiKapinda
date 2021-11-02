@@ -3,11 +3,4 @@
 @await Html.PartialAsync("ProfileMenuPartial")
 
 <hr />
-
-<ul>
-    <li>
-        @Model.Name
-        ++
-        @Model.Surname
-    </li>
-</ul>
+@TempData["Message"]

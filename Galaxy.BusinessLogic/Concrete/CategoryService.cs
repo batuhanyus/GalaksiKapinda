@@ -35,25 +35,14 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public int Insert(Category entity)
         {
-            //try
-            //{
-            //    if (entity.Name == null)
-            //    {
-            //        throw new NotNullNameException("Ad boş geçilemez");
-            //    }
-            //}
-            //catch (Exception)
-            //{
 
-            //    throw;
-            //}
 
             return categoryRepository.Insert(entity);
         }
 
         public int Update(Category oldEntity, Category newEntity)
         {
-            throw new NotImplementedException();
+            return categoryRepository.Update(oldEntity, newEntity);
         }
     }
 }

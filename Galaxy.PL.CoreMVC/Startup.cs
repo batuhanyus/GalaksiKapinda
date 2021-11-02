@@ -65,20 +65,20 @@ namespace Galaxy.PL.CoreMVC
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "BuyItem",
-                    pattern: "Cart/Add/{categoryID:int}/{productID:int}",
-                    defaults: new { controller = "Cart", action = "AddToCart" });
+                //endpoints.MapControllerRoute(
+                //    name: "BuyItem",
+                //    pattern: "Cart/Add/{categoryID:int}/{productID:int}",
+                //    defaults: new { controller = "Cart", action = "AddToCart" });
 
-                endpoints.MapControllerRoute(
-                    name: "ListItems",
-                    pattern: "Store/Index/{categoryID:int}",
-                    defaults: new { controller = "Store", action = "Index" });
+                //endpoints.MapControllerRoute(
+                //    name: "ListItems",
+                //    pattern: "Store/Index/{categoryID:int}",
+                //    defaults: new { controller = "Store", action = "Index" });
 
-                endpoints.MapControllerRoute(
-                    name: "Profile",
-                    pattern: "Profile/{contentType:alpha}",
-                    defaults: new { controller = "Profile", action = "Index" });
+                //endpoints.MapControllerRoute(
+                //    name: "Profile",
+                //    pattern: "Profile/{contentType:alpha}",
+                //    defaults: new { controller = "Profile", action = "Index" });
 
 
                 endpoints.MapControllerRoute(

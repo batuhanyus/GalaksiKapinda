@@ -1,5 +1,17 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model AdminProductViewModel
+
+@await Html.PartialAsync("AdminMenuPartial")
+
+<hr />
+@TempData["Message"]
+<form asp-controller="Admin" asp-action="AddProduct" method="post">
+    <input name="ProductID" type="hidden" value=@Model.ProductID>
+    CategoryID: <input asp-for="@Model.CategoryID"><br />
+    Name: <input asp-for=@Model.Name><br />
+    Price: <input asp-for=@Model.Price><br />
+    DiscountedPrice: <input asp-for=@Model.DiscountedPrice><br />
+    Description: <input asp-for=@Model.Description><br />
+    ImagePath: <input asp-for=@Model.ImagePath><br />
+    IsActive: <input asp-for=@Model.IsActive><br />
+    <button class="btn btn-info btn-sm">Edit</button>
+</form>

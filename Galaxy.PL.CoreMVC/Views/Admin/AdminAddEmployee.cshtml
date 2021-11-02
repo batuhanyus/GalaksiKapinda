@@ -1,5 +1,19 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model AdminEmployeeViewModel
+
+@await Html.PartialAsync("AdminMenuPartial")
+
+<hr />
+@TempData["Message"]
+<form asp-controller="Admin" asp-action="AddEmployee" method="post">
+    <input name="EmployeeID" type="hidden" value=@Model.EmployeeID>
+    Mail: <input asp-for="@Model.Mail"><br />
+    Password: <input asp-for=@Model.Password><br />
+    Name: <input asp-for=@Model.Name><br />
+    Surname: <input asp-for=@Model.Surname><br />
+    UserType: <input asp-for=@Model.UserType><br />
+    IsMailVerified: <input asp-for=@Model.IsMailVerified><br />
+    BirthDate: <input asp-for=@Model.BirthDate><br />
+    Phone: <input asp-for=@Model.Phone><br />
+    IsPasswordValid: <input asp-for=@Model.IsPasswordValid><br />
+    <button class="btn btn-info btn-sm">Edit</button>
+</form>
