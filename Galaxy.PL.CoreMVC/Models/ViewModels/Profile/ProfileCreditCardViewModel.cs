@@ -8,6 +8,7 @@ namespace Galaxy.PL.CoreMVC.Models.ViewModels.Profile
 {
     public class ProfileCreditCardViewModel
     {
+        public int ID { get; set; }
         public long CardNumber { get; set; }
         public DateTime ExpireDate { get; set; } //TODO: Maybe a better solution for AA/YY
         public short CVC { get; set; }

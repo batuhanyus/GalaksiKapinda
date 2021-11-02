@@ -26,12 +26,17 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public ICollection<CreditCard> GetAll()
         {
-            throw new NotImplementedException();
+            return creditCardRepository.GetAll().ToList();
         }
 
         public CreditCard GetByID(int entityID)
         {
-            throw new NotImplementedException();
+            return creditCardRepository.GetAll().Where(a => a.ID == entityID).SingleOrDefault();
+        }
+
+        public CreditCard GetByIDByOwner(int userID, int iD)
+        {
+            return creditCardRepository.GetAll().Where(a => a.MemberID == userID && a.ID == iD).SingleOrDefault();
         }
 
         public CreditCard GetCardByOwner(int ownerID)
@@ -51,7 +56,7 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public int Update(CreditCard oldEntity, CreditCard newEntity)
         {
-            throw new NotImplementedException();
+            return creditCardRepository.Update(oldEntity, newEntity);
         }
     }
 }

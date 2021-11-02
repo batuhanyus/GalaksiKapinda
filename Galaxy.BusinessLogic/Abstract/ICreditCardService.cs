@@ -10,5 +10,6 @@ namespace Galaxy.BusinessLogic.Abstract
     public interface ICreditCardService : IService<CreditCard>
     {
         CreditCard GetCardByOwner(int ownerID);
+        CreditCard GetByIDByOwner(int userID, int iD);
     }
 }

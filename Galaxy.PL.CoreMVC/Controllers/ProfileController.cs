@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Galaxy.BusinessLogic.Abstract;
 using Galaxy.BusinessLogic.Concrete;
@@ -36,37 +37,62 @@ namespace Galaxy.PL.CoreMVC.Controllers
             return View("Index");
         }
 
+        [Route("Profile/GetCreditCard")]
+        public IActionResult GetCreditCard()
+        {
+            int userID = HttpContext.Session.Get<int>("UserID");
+            CreditCard card = creditCardService.GetCardByOwner(userID);
+            ProfileCreditCardViewModel model = CreateModelFromCard(card);
+            return View("CreditCardList", model);
+        }
+
+        [HttpGet]
+        [Route("Profile/AddCreditCard")]
+        public IActionResult AddCreditCard()
+        {
+            ProfileCreditCardViewModel model = new();
+            return View("CreditCardAdd", model);
+        }
+
+        [HttpPost]
+        [Route("Profile/AddCreditCard")]
+        public IActionResult AddCreditCard(ProfileCreditCardViewModel model)
+        {
+            CreditCard card = CreateCardFromModel(model);
+            creditCardService.Insert(card);
+            return RedirectToAction("GetCreditCard");
+        }
+
+        [HttpGet]
+        [Route("Profile/EditCreditCard")]
+        public IActionResult EditCreditCard(int ID)
+        {
+            int userID = HttpContext.Session.Get<int>("UserID");
+            CreditCard card = creditCardService.GetByIDByOwner(userID, ID);
+            ProfileCreditCardViewModel model = CreateModelFromCard(card);
+            return View("CreditCardEdit", model);
+        }
+
         [HttpPost]
         [Route("Profile/EditCreditCard")]
         public IActionResult EditCreditCard(ProfileCreditCardViewModel model)
         {
-
-            return PartialView("CreditCardListPartial", model);
-            //return RedirectToAction("Index", "Profile", new { contentType = "CreditCardList" });
+            CreditCard card = CreateCardFromModel(model);
+            CreditCard oldEntity = creditCardService.GetByID(card.ID);
+            creditCardService.Update(oldEntity, card);
+            return RedirectToAction("GetCreditCard");
         }
 
         [Route("Profile/GetAddresses")]
         public IActionResult GetAddresses()
         {
             List<ProfileAddressViewModel> model = new();
-
             int userID = HttpContext.Session.Get<int>("UserID");
-
             ICollection<Address> addresses = addressService.GetByOwner(userID);
-
             foreach (Address item in addresses)
             {
-                model.Add(new ProfileAddressViewModel()
-                {
-                    ID = item.ID,
-                    CityID = item.CityID,
-                    CountyID = item.CountyID,
-                    AdressDetails = item.AdressDetails,
-                    AdressNotes = item.AdressNotes,
-                    Name = item.Name
-                });
+                model.Add(CreateModelFromAddress(item));
             }
-
             return View("AddressList", model);
         }
 
@@ -75,19 +101,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         public IActionResult EditAddress(int ID)
         {
             int userID = HttpContext.Session.Get<int>("UserID");
-
             Address address = addressService.GetByIDByOwner(userID, ID);
-
-            ProfileAddressViewModel model = new()
-            {
-                ID = address.ID,
-                CityID = address.CityID,
-                CountyID = address.CountyID,
-                AdressDetails = address.AdressDetails,
-                AdressNotes = address.AdressNotes,
-                Name = address.Name
-            };
-
+            ProfileAddressViewModel model = CreateModelFromAddress(address);
             return View("AddressEdit", model);
         }
 
@@ -95,20 +110,9 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Profile/EditAddress")]
         public IActionResult EditAddress(ProfileAddressViewModel model)
         {
-            Address address = new()
-            {
-                ID = model.ID,
-                Name = model.Name,
-                AdressDetails = model.AdressDetails,
-                AdressNotes = model.AdressNotes,
-                CityID = model.CityID,
-                CountyID = model.CountyID,
-                MemberID = HttpContext.Session.Get<int>("UserID")
-            };
-
+            Address address = CreateAddressFromModel(model);
             Address oldEntity = addressService.GetByID(address.ID);
             addressService.Update(oldEntity, address);
-
             return RedirectToAction("GetAddresses");
         }
 
@@ -118,7 +122,6 @@ namespace Galaxy.PL.CoreMVC.Controllers
         public IActionResult AddAddress()
         {
             ProfileAddressViewModel model = new();
-
             return View("AddressAdd", model);
         }
 
@@ -126,7 +129,39 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Profile/AddAddress")]
         public IActionResult AddAddress(ProfileAddressViewModel model)
         {
-            Address address = new()
+            Address address = CreateAddressFromModel(model);
+            addressService.Insert(address);
+            return RedirectToAction("GetAddresses");
+        }
+
+        CreditCard CreateCardFromModel(ProfileCreditCardViewModel model)
+        {
+            return new CreditCard()
+            {
+                ID = model.ID,                
+                CardHolderName = model.CardHolderName,
+                CardNumber = model.CardNumber,
+                CVC = model.CVC,
+                ExpireDate = model.ExpireDate,
+                MemberID = HttpContext.Session.Get<int>("UserID")
+            };
+        }
+
+        ProfileCreditCardViewModel CreateModelFromCard(CreditCard card)
+        {
+            return new ProfileCreditCardViewModel()
+            {
+                ID = card.ID,
+                CardHolderName = card.CardHolderName,
+                CardNumber = card.CardNumber,
+                CVC = card.CVC,
+                ExpireDate = card.ExpireDate
+            };
+        }
+
+        Address CreateAddressFromModel(ProfileAddressViewModel model)
+        {
+            return new Address()
             {
                 ID = model.ID,
                 Name = model.Name,
@@ -136,10 +171,19 @@ namespace Galaxy.PL.CoreMVC.Controllers
                 CountyID = model.CountyID,
                 MemberID = HttpContext.Session.Get<int>("UserID")
             };
+        }
 
-            addressService.Insert(address);
-
-            return RedirectToAction("GetAddresses");
+        ProfileAddressViewModel CreateModelFromAddress(Address address)
+        {
+            return new ProfileAddressViewModel()
+            {
+                ID = address.ID,
+                CityID = address.CityID,
+                CountyID = address.CountyID,
+                AdressDetails = address.AdressDetails,
+                AdressNotes = address.AdressNotes,
+                Name = address.Name
+            };
         }
 
         ProfileMainViewModel PrepareMyInfo()

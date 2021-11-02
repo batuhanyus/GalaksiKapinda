@@ -10,10 +10,13 @@
 ++
 @Model.ExpireDate.ToShortDateString()
 
-<form asp-controller="Profile" asp-action="EditCreditCard" method="post">
-    Card Holder Name:  <input asp-for="@Model.CardHolderName" /> <br />
-    Card Number: <input asp-for="@Model.CardNumber" /><br />
-    CVC: <input asp-for="@Model.CVC" /><br />
-    Expiration Date: <input asp-for="@Model.ExpireDate" /><br />
-    <button type="submit">Update</button>
-</form>
+<br />
+
+@if (Model.ID == 0)
+{
+    <a asp-controller="Profile" asp-action="AddCreditCard">Add Credit Card</a>
+}
+else
+{
+    <a asp-controller="Profile" asp-action="EditCreditCard" asp-route-ID=@Model.ID>Edit Credit Card</a>
+}
