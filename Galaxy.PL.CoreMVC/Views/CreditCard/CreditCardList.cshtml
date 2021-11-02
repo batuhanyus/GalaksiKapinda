@@ -14,9 +14,9 @@
 
 @if (Model.ID == 0)
 {
-    <a asp-controller="Profile" asp-action="AddCreditCard">Add Credit Card</a>
+    <a asp-controller="CreditCard" asp-action="AddCreditCard">Add Credit Card</a>
 }
 else
 {
-    <a asp-controller="Profile" asp-action="EditCreditCard" asp-route-ID=@Model.ID>Edit Credit Card</a>
+    <a asp-controller="CreditCard" asp-action="EditCreditCard" asp-route-ID=@Model.ID>Edit Credit Card</a>
 }

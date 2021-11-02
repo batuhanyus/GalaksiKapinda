@@ -12,8 +12,8 @@
             <br />
             @item.AdressNotes
             <br />
-            <a asp-controller="Profile" asp-action="EditAddress" asp-route-ID=@item.ID>Edit</a>
+            <a asp-controller="Address" asp-action="EditAddress" asp-route-ID=@item.ID>Edit</a>
         }
     </li>
 </ul>
-<a asp-controller="Profile" asp-action="AddAddress">Add New Address</a>
+<a asp-controller="Address" asp-action="AddAddress">Add New Address</a>

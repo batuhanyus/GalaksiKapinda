@@ -4,7 +4,7 @@
 
 <hr />
 
-<form asp-controller="Profile" asp-action="AddAddress" method="post">
+<form asp-controller="Address" asp-action="AddAddress" method="post">
     <input name="ID" type="hidden" value=@Model.ID>
     Name: <input asp-for=@Model.Name> <br />
     City: <input name="CityID" asp-for=@Model.CityID>
