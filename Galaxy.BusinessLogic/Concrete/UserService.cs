@@ -41,7 +41,7 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public User GetByID(int entityID)
         {
-            throw new NotImplementedException();
+            return userrepository.GetAll().Where(a => a.ID == entityID).SingleOrDefault();
         }
 
         public int Insert(User entity)
