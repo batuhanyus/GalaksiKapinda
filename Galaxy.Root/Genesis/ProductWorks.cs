@@ -32,7 +32,8 @@ namespace Galaxy.Root.Genesis
                 Description = "Product 1 Description",
                 Price = 5m,
                 DiscountedPrice = 4.99m,
-                IsActive = true
+                IsActive = true,
+                ImagePath = "~/Media/Products/underconstruction.png"
             };
 
             Product p2 = new Product()
@@ -42,7 +43,8 @@ namespace Galaxy.Root.Genesis
                 Description = "Product 2 Description",
                 Price = 15m,
                 DiscountedPrice = 14.99m,
-                IsActive = true
+                IsActive = true,
+                ImagePath = "~/Media/Products/underconstruction.png"
             };
 
             Product p3 = new Product()
@@ -52,7 +54,8 @@ namespace Galaxy.Root.Genesis
                 Description = "Product 3 Description",
                 Price = 100m,
                 DiscountedPrice = 99.99m,
-                IsActive = true
+                IsActive = true,
+                ImagePath = "~/Media/Products/underconstruction.png"
             };
 
             context.Categories.Add(c1);

@@ -40,7 +40,7 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public int Insert(OrderDetails entity)
         {
-            throw new NotImplementedException();
+            return orderDetailsRepository.Insert(entity);
         }
 
         public int Update(OrderDetails oldEntity, OrderDetails newEntity)

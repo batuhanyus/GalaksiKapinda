@@ -18,7 +18,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             return View();
         }
 
-        public IActionResult RemoveCategory()
+        public IActionResult UpdateCategory()
         {
             return View();
         }
@@ -28,7 +28,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             return View();
         }
 
-        public IActionResult RemoveProduct()
+        public IActionResult UpdateProduct()
         {
             return View();
         }
@@ -38,7 +38,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             return View();
         }
 
-        public IActionResult RemoveEmployee()
+        public IActionResult UpdateEmployee()
         {
             return View();
         }

@@ -1,0 +1,7 @@
+﻿@model CardAddressViewModel
+
+<form asp-controller="Cart" asp-action="Pay" method="post">
+    <input name="MemberID" type="hidden" value=@Model.MemberID>
+    Address: <select id="address-selector" asp-for="AddressID" asp-items="Model.Addresses"></select><br />
+    <button class="btn btn-info btn-sm">Select Address</button>
+</form>

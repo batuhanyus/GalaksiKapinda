@@ -6,10 +6,10 @@
 
 <form asp-controller="Address" asp-action="EditAddress" method="post">
     <input name="ID" type="hidden" value=@Model.ID>
-    <input asp-for=@Model.Name>
+    Name: <input asp-for=@Model.Name><br />
     <input name="CityID" type="hidden" value=@Model.CityID>
     <input name="CountyID" type="hidden" value=@Model.CountyID>
-    <input name="AdressDetails" type="hidden" value=@Model.AdressDetails>
-    <input name="AdressNotes" type="hidden" value=@Model.AdressNotes>
+    Address Details: <input asp-for=@Model.AdressDetails><br />
+    Address Notes: <input asp-for=@Model.AdressNotes><br />
     <button class="btn btn-info btn-sm">Edit</button>
 </form>

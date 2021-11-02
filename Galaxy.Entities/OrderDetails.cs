@@ -11,7 +11,7 @@ namespace Galaxy.Entities
     {
         public int OrderID { get; set; }
         public int ProductID { get; set; }
-        public short Quantity { get; set; }
+        public int Quantity { get; set; }
         public decimal Price { get; set; }
         public decimal DiscountAmount { get; set; }
     }

@@ -3,17 +3,36 @@
 @await Html.PartialAsync("ProfileMenuPartial")
 
 <hr />
-
-<ul>
-    <li>
+<table class="table table-sm table-hover table-bordered table-dark">
+    <thead>
+        <tr>
+            <th>
+                Address Name
+            </th>            
+            <th>
+                Details
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
         @foreach (ProfileAddressViewModel address in Model)
         {
-            @address.AdressDetails
-            <br />
-            @address.AdressNotes
-            <br />
-            <a asp-controller="Address" asp-action="SelectCity" asp-route-ID=@address.ID>Edit</a>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => address.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => address.AdressDetails)
+                </td>
+                <td>
+                    <a asp-controller="Address" asp-action="SelectCity" asp-route-ID=@address.ID>Edit</a>
+                </td>
+            </tr>
         }
-    </li>
-</ul>
+    </tbody>
+</table>
+
+<hr />
+
 <a asp-controller="Address" asp-action="SelectCity">Add New Address</a>

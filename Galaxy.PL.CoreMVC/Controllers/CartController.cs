@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Galaxy.BusinessLogic.Abstract;
 using Galaxy.Entities;
+using Galaxy.Entities.Location;
 using Galaxy.PL.CoreMVC.Helpers;
 using Galaxy.PL.CoreMVC.Models.ViewModels.Cart;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Galaxy.PL.CoreMVC.Controllers
 {
@@ -14,11 +16,18 @@ namespace Galaxy.PL.CoreMVC.Controllers
     {
         IProductService productService;
         ICreditCardService creditCardService;
+        IOrderService orderService;
+        IOrderDetailsService orderDetailsService;
+        IAddressService addressService;
 
-        public CartController(IProductService prodService, ICreditCardService credService)
+        public CartController(IProductService prodService, ICreditCardService credService, IOrderService ordService, 
+            IAddressService addService,IOrderDetailsService odService)
         {
             productService = prodService;
             creditCardService = credService;
+            orderService = ordService;
+            addressService = addService;
+            orderDetailsService = odService;
         }
 
         public IActionResult Index()
@@ -80,13 +89,6 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
                 HttpContext.Session.Set<decimal>("CartTotal", cartTotal);
             }
-            else
-            {
-                //return NotFound("Ürün bulunamadı");
-                //return Json("Ürün bulunamadı");
-
-                //TODO: Yeah do sth...
-            }
 
             return RedirectToAction("Index", "Store", new { categoryID = categoryID });
         }
@@ -98,21 +100,87 @@ namespace Galaxy.PL.CoreMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Pay()
+        [HttpGet]
+        [Route("Cart/SelectAddress")]
+        public IActionResult SelectAddress()
         {
             int userID = HttpContext.Session.Get<int>("UserID");
+
             CreditCard card = creditCardService.GetCardByOwner(userID);
-
             if (card == null)
-                return RedirectToAction();
+                return View("ErrorPage", "You need to add a credit card first.");
 
-            return RedirectToAction(); //TODO: Redirect to payment page.
+            List<Address> addresses = addressService.GetByOwner(userID).ToList();
+            if (addresses == null || addresses.Count == 0)
+                return View("ErrorPage", "You need to add a address first.");
+
+            CardAddressViewModel model = new();
+            model.Addresses = CreateAddressList(userID);
+            model.MemberID = userID;
+
+            return View("SelectAddress", model);
+        }
+
+        [HttpPost]
+        [Route("Cart/Pay")]
+        public IActionResult Pay(CardAddressViewModel model)
+        {
+            int userID = HttpContext.Session.Get<int>("UserID");
+
+            CreditCard card = creditCardService.GetCardByOwner(userID);
+            if (card == null)
+                return View("ErrorPage", "You need to add a credit card first.");
+
+            List<Address> addresses = addressService.GetByOwner(userID).ToList();
+            if (addresses == null || addresses.Count == 0)
+                return View("ErrorPage", "You need to add a address first.");
+
+            Address address = addressService.GetByIDByOwner(userID, model.AddressID);
+
+            Order order = new();
+            order.MemberID = userID;
+            order.CityID = address.CityID;
+            order.CountyID = address.CountyID;
+
+            orderService.Insert(order);
+
+            Order lastOrder = orderService.GetOrdersByUser(userID).OrderByDescending(a => a.ID).FirstOrDefault();
+
+            List<CartItem> cartContents = cartContents = HttpContext.Session.Get<List<CartItem>>("Cart");
+
+            foreach (CartItem item in cartContents)
+            {
+                OrderDetails od = new();
+                od.OrderID = lastOrder.ID;
+                od.Price = item.Price;
+                od.ProductID = item.ProductID;
+                od.Quantity = item.Quantity;
+
+                orderDetailsService.Insert(od);
+            }
+
+            HttpContext.Session.Remove("Cart");
+
+            return RedirectToAction("GetOrders", "Order");
         }
 
         public IActionResult ListCartContents()
         {
             List<CartItem> cart = HttpContext.Session.Get<List<CartItem>>("Cart");
             return View("Index", cart);
+        }
+
+        List<SelectListItem> CreateAddressList(int userID)
+        {
+            List<Address> dbAddresses = addressService.GetByOwner(userID).ToList();
+            List<SelectListItem> addresses = new();
+
+            foreach (var address in dbAddresses)
+            {
+                addresses.Add(new SelectListItem() { Value = address.ID.ToString(), Text = address.Name });
+            }
+
+            return addresses;
         }
     }
 }
