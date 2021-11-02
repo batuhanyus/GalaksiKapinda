@@ -10,5 +10,6 @@ namespace Galaxy.Entities
     public sealed class Category : BaseEntity
     {
         public string Name { get; set; }
+        public bool IsActive { get; set; }
     }
 }

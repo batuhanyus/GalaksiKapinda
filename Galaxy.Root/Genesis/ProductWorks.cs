@@ -15,12 +15,14 @@ namespace Galaxy.Root.Genesis
         {
             Category c1 = new Category()
             {
-                Name = "Category 1"
+                Name = "Category 1",
+                IsActive = true,
             };
 
             Category c2 = new Category()
             {
-                Name = "Category 2"
+                Name = "Category 2",
+                IsActive = true
             };
 
             Product p1 = new Product()

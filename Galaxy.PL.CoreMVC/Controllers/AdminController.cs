@@ -12,5 +12,35 @@ namespace Galaxy.PL.CoreMVC.Controllers
         {
             return View();
         }
+
+        public IActionResult AddCategory()
+        {
+            return View();
+        }
+
+        public IActionResult RemoveCategory()
+        {
+            return View();
+        }
+
+        public IActionResult AddProduct()
+        {
+            return View();
+        }
+
+        public IActionResult RemoveProduct()
+        {
+            return View();
+        }
+
+        public IActionResult AddEmployee()
+        {
+            return View();
+        }
+
+        public IActionResult RemoveEmployee()
+        {
+            return View();
+        }
     }
 }
