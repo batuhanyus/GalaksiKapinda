@@ -14,7 +14,7 @@ namespace Galaxy.PL.CoreMVC.Helpers
         static String FROMNAME = "Galaksi Kapında";
         static String SMTP_USERNAME = "AKIAVJVA3DZCV6FK3XL2";
         static String SMTP_PASSWORD = "BLc71ij8COgxC2ODY//+qr86i+s/RZDWc5ucpHYUDBzN";
-        static String HOST = "email-smtp.us-west-2.amazonaws.com";
+        static String HOST = "email-smtp.eu-west-1.amazonaws.com";
         static int PORT = 587;
 
 
@@ -45,8 +45,5 @@ namespace Galaxy.PL.CoreMVC.Helpers
             }
 
         }
-
-
-
     }
 }

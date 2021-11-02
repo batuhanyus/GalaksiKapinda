@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Core", "Galaxy.Core\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.PL.CoreMVC", "Galaxy.PL.CoreMVC\Galaxy.PL.CoreMVC.csproj", "{776875A7-7A54-4475-8406-B0E119D57010}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galaxy.Root", "Galaxy.Root\Galaxy.Root.csproj", "{83F38BC1-1140-4DB4-A019-EB42CCE1DCBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Root", "Galaxy.Root\Galaxy.Root.csproj", "{83F38BC1-1140-4DB4-A019-EB42CCE1DCBB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Galaxy.Entities", "Galaxy.Entities\Galaxy.Entities.csproj", "{27D66A58-EDB0-4854-94D8-CB2807E8C762}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailTest", "MailTest\MailTest.csproj", "{59296584-F256-4752-9A0B-7FA292E0D7EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{27D66A58-EDB0-4854-94D8-CB2807E8C762}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27D66A58-EDB0-4854-94D8-CB2807E8C762}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27D66A58-EDB0-4854-94D8-CB2807E8C762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59296584-F256-4752-9A0B-7FA292E0D7EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59296584-F256-4752-9A0B-7FA292E0D7EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59296584-F256-4752-9A0B-7FA292E0D7EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59296584-F256-4752-9A0B-7FA292E0D7EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
