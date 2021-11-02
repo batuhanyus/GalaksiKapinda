@@ -4,9 +4,9 @@
 
 <ul>
     <li>
-        @Model.OrderID
-        @Model.OrderStatus
-        @Model.PackagerID
+        @Model.OrderID<br />
+        @Model.OrderStatus<br />
+        @Model.PackagerID<br />
 
         <form asp-controller="Deliverer" asp-action="UpdateDelivery" method="post">
             <input name="OrderID" type="hidden" value=@Model.OrderID>
@@ -15,7 +15,7 @@
             <input name="CityID" type="hidden" value=@Model.CityID>
             <input name="CountyID" type="hidden" value=@Model.CountyID>
             <input name="DelivererID" type="hidden" value=@Model.DelivererID>
-            Status:<select id="status-selector" asp-for="OrderStatus" asp-items="Model.OrderStatuses"></select>
+            Status:<select id="status-selector" asp-for="OrderStatus" asp-items="Model.OrderStatuses"></select><br />
             <button class="btn btn-info btn-sm">Assign</button>
         </form>
     </li>

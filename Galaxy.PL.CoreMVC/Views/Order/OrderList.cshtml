@@ -1,16 +1,31 @@
 ﻿@model List<OrderViewModel>
 
-<hr />
-
-<ul>
-    <li>
+<table class="table table-sm table-hover table-bordered table-dark">
+    <thead>
+        <tr>
+            <th>
+                Order ID
+            </th>
+            <th>
+                Order Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
         @foreach (OrderViewModel order in Model)
         {
-            @order.OrderID
-            <br />
-            @order.OrderStatus
-            <br />
-            <a asp-controller="Order" asp-action="GetDetails" asp-route-orderID=@order.OrderID>Details</a>
+        <tr>
+            <td>
+                @order.OrderID
+            </td>
+            <td>
+               @order.OrderStatus
+            </td>
+            <td>
+                <a asp-controller="Order" asp-action="GetDetails" asp-route-orderID=@order.OrderID>Details</a>
+            </td>
+        </tr>
         }
-    </li>
-</ul>
+    </tbody>
+</table>

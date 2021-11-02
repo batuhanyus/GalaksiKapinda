@@ -141,6 +141,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             order.MemberID = userID;
             order.CityID = address.CityID;
             order.CountyID = address.CountyID;
+            order.OrderStatus = "Preparing";
 
             orderService.Insert(order);
 

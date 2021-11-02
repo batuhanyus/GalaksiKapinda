@@ -4,8 +4,13 @@
 
 <hr />
 
-@await Html.PartialAsync("StoreCategoriesPartial", Model.StoreCategoriesViewModel)
-
-<hr />
-
-@await Html.PartialAsync("StoreItemsPartial", Model.StoreItemsViewModel)
+<div class="container-fluid">
+    <div class="row" style="color:white">
+        <div class="col-sm justify-content-center flex-nowrap">
+            @await Html.PartialAsync("StoreCategoriesPartial", Model.StoreCategoriesViewModel)
+        </div>
+        <div class="col-sm d-flex justify-content-center flex-nowrap">
+            @await Html.PartialAsync("StoreItemsPartial", Model.StoreItemsViewModel)
+        </div>
+    </div>
+</div>

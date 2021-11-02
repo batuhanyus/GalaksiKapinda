@@ -1,13 +1,27 @@
 ﻿@model StoreCategoriesViewModel
 
-<ul>
-    <li>
-        <a asp-controller="Store" asp-action="Index" asp-route-categoryID="@null">All Categories</a>
-    </li>
-    @foreach (CategoryViewModel cat in Model.Categories)
-    {
-        <li>
-            <a asp-controller="Store" asp-action="Index" asp-route-categoryID="@cat.ID">@cat.Name</a>
-        </li>
-    }
-</ul>
+<table class="table table-sm table-hover table-bordered table-dark">
+    <thead>
+        <tr>
+            <th>
+                Category
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <a asp-controller="Store" asp-action="Index" asp-route-categoryID="@null">All Categories</a>
+            </td>
+        </tr>
+
+        @foreach (CategoryViewModel cat in Model.Categories)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Store" asp-action="Index" asp-route-categoryID="@cat.ID">@cat.Name</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

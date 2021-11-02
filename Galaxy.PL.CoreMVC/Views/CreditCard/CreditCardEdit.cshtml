@@ -1,7 +1,5 @@
 ﻿@model ProfileCreditCardViewModel
 
-<hr />
-
 <form asp-controller="CreditCard" asp-action="EditCreditCard" method="post">
     <input name="ID" type="hidden" value=@Model.ID>   
     Card Number: <input asp-for=@Model.CardNumber> <br />

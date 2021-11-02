@@ -1,21 +1,47 @@
 ﻿@model StoreItemsViewModel
 
-<ul>
-    @foreach (ProductViewModel prod in Model.Products)
-    {
-        <img src="~/Media/Products/underconstruction.png" asp-append-version="true">
-        <li>
-            @prod.Name
-            ++
-            @prod.FinalPrice
-            ++
-            @prod.Description
-            ++
-            <form asp-controller="Cart" asp-action="AddToCart" method="get">
-                <input name="categoryID" type="hidden" value=@prod.CategoryID>
-                <input name="productID" type="hidden" value=@prod.ID>
-                <button class="btn btn-info btn-sm">Add To Cart</button>
-            </form>
-        </li>
-    }
-</ul>
+<table class="table table-sm table-hover table-bordered table-dark">
+    <thead>
+        <tr>
+            <th>
+                Picture
+            </th>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Product Description
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ProductViewModel prod in Model.Products)
+        {
+        <tr>
+            <td>
+                <img src="~/Media/Products/underconstruction.png" asp-append-version="true">
+            </td>
+            <td>
+                @prod.Name
+            </td>
+            <td>
+                @prod.FinalPrice
+            </td>
+            <td>
+                @prod.Description
+            </td>
+            <td>
+                <form asp-controller="Cart" asp-action="AddToCart" method="get">
+                    <input name="categoryID" type="hidden" value=@prod.CategoryID>
+                    <input name="productID" type="hidden" value=@prod.ID>
+                    <button class="btn btn-info btn-sm">Add To Cart</button>
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

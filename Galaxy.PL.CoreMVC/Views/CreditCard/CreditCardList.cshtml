@@ -2,13 +2,17 @@
 
 <hr />
 
-@Model.CardHolderName
-++
-@Model.CardNumber
-++
-@Model.ExpireDate.ToShortDateString()
+<ul>
+    <li>
+        Cardholder Name: @Model.CardHolderName<br />
+        
+        Card Number: @Model.CardNumber<br />
+        
+        Expiration Date: @Model.ExpireDate.ToShortDateString()<br />
+    </li>
+</ul>
 
-<br />
+<hr />
 
 @if (Model.ID == 0)
 {

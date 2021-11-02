@@ -7,6 +7,6 @@
 <form asp-controller="Address" asp-action="SelectCity" method="post">
     <input name="opType" type="hidden" value=@Model.OpType>
     <input name="ID" type="hidden" value=@Model.ID>
-    City: <select id="city-selector" asp-for="SelectedCityID" asp-items="Model.Cities"></select>
+    City: <select id="city-selector" asp-for="SelectedCityID" asp-items="Model.Cities"></select><br />
     <button class="btn btn-info btn-sm">Select City</button>
 </form>
