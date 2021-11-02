@@ -9,5 +9,6 @@ namespace Galaxy.BusinessLogic.Abstract
 {
     public interface IOrderDetailsService : IService<OrderDetails> 
     {
+        ICollection<OrderDetails> GetOrderDetailsByOrderID(int orderID);
     }
 }

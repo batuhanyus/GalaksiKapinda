@@ -1,0 +1,13 @@
+﻿@model OrderViewModel
+
+@await Html.PartialAsync("ProfileMenuPartial")
+
+<hr />
+
+<ul>
+    <li>
+        @Model.OrderID
+        @Model.OrderStatus
+        @Model.PackagerID
+    </li>
+</ul>

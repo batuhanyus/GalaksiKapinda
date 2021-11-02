@@ -30,7 +30,7 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public Order GetByID(int entityID)
         {
-            throw new NotImplementedException();
+            return orderRepository.GetAll().Where(a => a.ID == entityID).SingleOrDefault();
         }
 
         public ICollection<Order> GetOrdersByUser(int userID)

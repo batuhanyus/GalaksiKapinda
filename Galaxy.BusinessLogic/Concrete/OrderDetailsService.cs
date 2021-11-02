@@ -33,6 +33,11 @@ namespace Galaxy.BusinessLogic.Concrete
             throw new NotImplementedException();
         }
 
+        public ICollection<OrderDetails> GetOrderDetailsByOrderID(int orderID)
+        {
+            return orderDetailsRepository.GetAll().Where(a => a.OrderID == orderID).ToList();
+        }
+
         public int Insert(OrderDetails entity)
         {
             throw new NotImplementedException();
