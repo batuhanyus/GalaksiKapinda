@@ -7,7 +7,6 @@
   <ItemGroup>
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Deliverer\" />
-    <Folder Include="Views\Packager\" />
   </ItemGroup>
 
   <ItemGroup>

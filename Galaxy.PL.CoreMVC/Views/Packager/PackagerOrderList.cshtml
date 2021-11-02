@@ -1,0 +1,18 @@
+﻿@model List<PackagerOrderViewModel>
+
+@await Html.PartialAsync("ProfileMenuPartial")
+
+<hr />
+
+<ul>
+    <li>
+        @foreach (PackagerOrderViewModel order in Model)
+        {
+            @order.OrderID
+            <br />
+            @order.OrderStatus
+            <br />
+            <a asp-controller="Order" asp-action="GetDetails" asp-route-orderID=@order.OrderID>Details</a>
+        }
+    </li>
+</ul>
