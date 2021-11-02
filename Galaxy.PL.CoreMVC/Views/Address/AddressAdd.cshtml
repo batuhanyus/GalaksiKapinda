@@ -7,9 +7,53 @@
 <form asp-controller="Address" asp-action="AddAddress" method="post">
     <input name="ID" type="hidden" value=@Model.ID>
     Name: <input asp-for=@Model.Name> <br />
-    City: <input name="CityID" asp-for=@Model.CityID>
-    County: <input name="CountyID" asp-for=@Model.CountyID>
+    City: <select id="city-selector" asp-for="CityID" asp-items="Model.Cities" disabled="true"></select>
+    County: <select id="county-selector" asp-for="CountyID" asp-items="Model.Counties"></select>
     Address Details: <input asp-for=@Model.AdressDetails> <br />
     Address Notes: <input asp-for=@Model.AdressNotes> <br />
     <button class="btn btn-info btn-sm">Add</button>
 </form>
+
+@section Scripts
+{
+    <script>
+
+                    //var model = Model;
+
+                    //$.ajax({
+                    //    type: "POST",
+                    //    data: JSON.stringify(model),
+                    //    url: "/Address/GetCountyList?cityName=" + selectedCityName + model,
+                    //    contentType: "application/json"
+                    //}).done(function (res) {
+                    //    $("#SomeDivToShowTheResult").html(res);
+                    //});
+
+
+
+
+
+
+
+                            //$(function () {
+                            //    $("#city-selector").change(function () {
+                            //        var selectedCityName = "";
+                            //        selectedCityName = $("#city-selector option:selected").text()
+                            //        alert("You have selected city: " + selectedCityName);
+
+                            //        $.ajax({
+                            //            type: "GET",
+                            //            url: "/Address/GetCountyList?cityName=" + selectedCityName,
+                            //            success: function (data) {
+
+
+                            //            },
+                            //            error: function (err) {
+                            //                alert("Err");
+                            //            }
+                            //        });
+                            //    });
+                            //});
+
+    </script>
+}

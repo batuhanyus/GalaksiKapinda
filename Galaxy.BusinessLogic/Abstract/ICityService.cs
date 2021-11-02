@@ -9,5 +9,6 @@ namespace Galaxy.BusinessLogic.Abstract
 {
     public interface ICityService : IService<City>
     {
+        City GetCityByName(string name);
     }
 }

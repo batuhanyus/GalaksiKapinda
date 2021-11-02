@@ -8,19 +8,24 @@ using Galaxy.PL.CoreMVC.Models.ViewModels.Profile;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Galaxy.PL.CoreMVC.Helpers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Galaxy.PL.CoreMVC.Controllers
 {
-    public class AddressControler : Controller
+    public class AddressController : Controller
     {
         IAddressService addressService;
+        ICityService cityService;
+        ICountyService countyService;
 
-        public AddressControler(IAddressService addService)
+        public AddressController(IAddressService addService, ICityService cityService, ICountyService countyService)
         {
             addressService = addService;
+            this.cityService = cityService;
+            this.countyService = countyService;
         }
 
-        [Route("Profile/GetAddresses")]
+        [Route("Address/GetAddresses")]
         public IActionResult GetAddresses()
         {
             List<ProfileAddressViewModel> model = new();
@@ -34,7 +39,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         }
 
         [HttpGet]
-        [Route("Profile/EditAddress")]
+        [Route("Address/EditAddress")]
         public IActionResult EditAddress(int ID)
         {
             int userID = HttpContext.Session.Get<int>("UserID");
@@ -44,7 +49,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         }
 
         [HttpPost]
-        [Route("Profile/EditAddress")]
+        [Route("Address/EditAddress")]
         public IActionResult EditAddress(ProfileAddressViewModel model)
         {
             Address address = CreateAddressFromModel(model);
@@ -53,22 +58,57 @@ namespace Galaxy.PL.CoreMVC.Controllers
             return RedirectToAction("GetAddresses");
         }
 
-
         [HttpGet]
-        [Route("Profile/AddAddress")]
-        public IActionResult AddAddress()
+        [Route("Address/AddAddress")]
+        public IActionResult AddAddress(int cityID)
         {
             ProfileAddressViewModel model = new();
+            model.Cities = CreateCityList();
+            model.Counties = CreateCountyList(cityID);
             return View("AddressAdd", model);
         }
 
         [HttpPost]
-        [Route("Profile/AddAddress")]
+        [Route("Address/AddAddress")]
         public IActionResult AddAddress(ProfileAddressViewModel model)
         {
             Address address = CreateAddressFromModel(model);
             addressService.Insert(address);
             return RedirectToAction("GetAddresses");
+        }
+
+        [Route("Address/SelectCity")]
+        [HttpGet]
+        public IActionResult SelectCity(int ID = 0) //Address ID
+        {
+            ProfileAddressViewModel model = new();
+            model.Cities = CreateCityList();
+
+            if (ID == 0)
+                model.OpType = 0;
+            else
+            {
+                model.OpType = 1;
+                model.ID = ID;
+            }
+
+            return View("AddressSelectCity", model);
+        }
+
+        [Route("Address/SelectCity")]
+        [HttpPost]
+        public IActionResult SelectCity(ProfileAddressViewModel model)
+        {
+            City city = cityService.GetByID(model.CityID);
+
+            model.SelectedCityID = model.SelectedCityID;
+            model.Counties = CreateCountyList(model.SelectedCityID);
+            model.CityID = model.SelectedCityID;
+
+            if (model.OpType == 0)
+                return RedirectToAction("AddAddress", new { cityID = model.SelectedCityID});
+            else
+                return RedirectToAction("EditAddress", new { ID = model.ID });
         }
 
         Address CreateAddressFromModel(ProfileAddressViewModel model)
@@ -94,8 +134,36 @@ namespace Galaxy.PL.CoreMVC.Controllers
                 CountyID = address.CountyID,
                 AdressDetails = address.AdressDetails,
                 AdressNotes = address.AdressNotes,
-                Name = address.Name
+                Name = address.Name,
+                Cities = CreateCityList(),
             };
+        }
+
+
+        List<SelectListItem> CreateCityList()
+        {
+            List<SelectListItem> cities = new List<SelectListItem>();
+            List<City> dbCities = cityService.GetAll().ToList();
+
+            foreach (City city in dbCities)
+            {
+                cities.Add(new SelectListItem() { Value = (dbCities.IndexOf(city) + 1).ToString(), Text = city.Name });
+            }
+
+            return cities;
+        }
+
+        List<SelectListItem> CreateCountyList(int cityID)
+        {
+            List<SelectListItem> counties = new List<SelectListItem>();
+            List<County> dbcounties = countyService.GetCountiesByCityID(cityID).ToList();
+
+            foreach (County county in dbcounties)
+            {
+                counties.Add(new SelectListItem() { Value = dbcounties.IndexOf(county).ToString(), Text = county.Name });
+            }
+
+            return counties;
         }
     }
 }

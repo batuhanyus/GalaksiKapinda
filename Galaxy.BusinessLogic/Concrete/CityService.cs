@@ -25,12 +25,17 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public ICollection<City> GetAll()
         {
-            throw new NotImplementedException();
+            return cityRepository.GetAll();
         }
 
         public City GetByID(int entityID)
         {
-            throw new NotImplementedException();
+            return cityRepository.GetByID(entityID);
+        }
+
+        public City GetCityByName(string name)
+        {
+            return cityRepository.GetAll().Where(a => a.Name == name).SingleOrDefault();
         }
 
         public int Insert(City entity)

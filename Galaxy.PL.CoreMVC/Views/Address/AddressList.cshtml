@@ -6,14 +6,14 @@
 
 <ul>
     <li>
-        @foreach (ProfileAddressViewModel item in Model)
+        @foreach (ProfileAddressViewModel address in Model)
         {
-            @item.AdressDetails
+            @address.AdressDetails
             <br />
-            @item.AdressNotes
+            @address.AdressNotes
             <br />
-            <a asp-controller="Address" asp-action="EditAddress" asp-route-ID=@item.ID>Edit</a>
+            <a asp-controller="Address" asp-action="SelectCity" asp-route-ID=@address.ID>Edit</a>
         }
     </li>
 </ul>
-<a asp-controller="Address" asp-action="AddAddress">Add New Address</a>
+<a asp-controller="Address" asp-action="SelectCity">Add New Address</a>

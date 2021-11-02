@@ -9,5 +9,6 @@ namespace Galaxy.BusinessLogic.Abstract
 {
     public interface ICountyService : IService<County>
     {
+        ICollection<County> GetCountiesByCityID(int ID);
     }
 }
