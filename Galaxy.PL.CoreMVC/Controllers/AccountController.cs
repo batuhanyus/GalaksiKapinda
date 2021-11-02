@@ -29,7 +29,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             if (user != null)
             {
                 HttpContext.Session.Set<int>("UserID", user.ID);
-                HttpContext.Session.Set<int>("UserRole", user.UserType);                
+                HttpContext.Session.Set<int>("UserRole", user.UserType);
 
                 if (!user.IsMailVerified)
                 {
@@ -43,22 +43,24 @@ namespace Galaxy.PL.CoreMVC.Controllers
             {
                 ViewBag.Message = "No such user exist.";
                 return RedirectToAction("Index");
-
-                //user employee = user.DoLogin(email, password);
-
-                //if (employee != null)
-                //{
-                //    HttpContext.Session.Set<int>("UserID", employee.ID);
-                //    HttpContext.Session.Set<int>("UserRole", employee.UserType);
-
-                //    return RedirectToAction("Index", "Store");
-                //}
-                //else
-                //{
-                //    ViewBag.Message = "No such user exist.";
-                //    return RedirectToAction("Index");
-                //}
             }
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View("Register");
+        }
+
+        [HttpPost]
+        public IActionResult Register(string name, string surname, string email, string password1, string password2)
+        {
+            if (!userService.Register(name, surname, email, password1, password2))
+                TempData["Message"] = "Register failed.";
+            else
+                TempData["Message"] = "Success.";
+
+            return View("Login", new { email = email, password = password1 });
         }
 
         public IActionResult Logout()

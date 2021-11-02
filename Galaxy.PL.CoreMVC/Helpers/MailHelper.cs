@@ -5,45 +5,30 @@ using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
+using RestSharp;
+using RestSharp.Authenticators;
 
 namespace Galaxy.PL.CoreMVC.Helpers
 {
     public static class MailHelper
     {
-        static String FROM = "noreply@galaksikapinda.com";
-        static String FROMNAME = "Galaksi Kapında";
-        static String SMTP_USERNAME = "AKIAVJVA3DZCV6FK3XL2";
-        static String SMTP_PASSWORD = "BLc71ij8COgxC2ODY//+qr86i+s/RZDWc5ucpHYUDBzN";
-        static String HOST = "email-smtp.eu-west-1.amazonaws.com";
-        static int PORT = 587;
-
-
-        public static void SendMailViaAmazon(string mailto, string content)
+        //Uses MailGun.
+        public static IRestResponse SendMail(string mailto, string content)
         {
-            String SUBJECT = "Welcome to Galaksi Kapında";
-            String BODY = content;
-            String TO = mailto;
-
-            MailMessage message = new MailMessage();
-            message.IsBodyHtml = true;
-            message.From = new MailAddress(FROM, FROMNAME);
-            message.To.Add(new MailAddress(TO));
-            message.Subject = SUBJECT;
-            message.Body = BODY;
-
-            using (var client = new SmtpClient(HOST, PORT))
-            {
-                // Pass SMTP credentials
-                client.Credentials =
-                    new NetworkCredential(SMTP_USERNAME, SMTP_PASSWORD);
-
-                // Enable SSL encryption
-                client.EnableSsl = true;
-
-
-                client.Send(message);
-            }
-
+            RestClient client = new RestClient();
+            client.BaseUrl = new Uri("https://api.mailgun.net/v3/");
+            client.Authenticator =
+                new HttpBasicAuthenticator("api",
+                    "6d4dbc4f56f3962c7ef20a2606718cd3-10eedde5-ee0d7bee");
+            RestRequest request = new RestRequest();
+            request.AddParameter("domain", "sandbox928d5b9c1f524e718348ab6fc7a528dd.mailgun.org", ParameterType.UrlSegment);
+            request.Resource = "{domain}/messages";
+            request.AddParameter("from", "Excited User oylesineyaratilmishesap@gmail.com");
+            request.AddParameter("to", mailto);
+            request.AddParameter("subject", "Galaksi Kapında Mail Service");
+            request.AddParameter("text", content);
+            request.Method = Method.POST;
+            return client.Execute(request);
         }
     }
 }

@@ -12,5 +12,7 @@ namespace Galaxy.BusinessLogic.Abstract
         User DoLogin(string email, string password);
         bool CheckPassword(string password);
         ICollection<User> GetAllDeliverers();
+        bool Register(string name, string surname, string email, string password1, string password2);
+        User GetByEmail(string email);
     }
 }
