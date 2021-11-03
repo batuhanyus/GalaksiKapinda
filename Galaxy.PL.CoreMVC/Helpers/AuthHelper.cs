@@ -7,9 +7,12 @@ namespace Galaxy.PL.CoreMVC.Helpers
 {
     public static class AuthHelper
     {
-        public static bool CanAccess(int userRole)
+        public static bool CanAccess(int userRole,int[] allowedRoles)
         {
-            return true;
+            if (allowedRoles.Contains(userRole))
+                return true;
+            else
+                return false;
         }
     }
 }

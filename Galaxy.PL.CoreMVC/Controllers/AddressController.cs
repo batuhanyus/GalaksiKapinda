@@ -63,6 +63,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         public IActionResult AddAddress(int cityID)
         {
             ProfileAddressViewModel model = new();
+            model.CityID = cityID;
             model.Cities = CreateCityList();
             model.Counties = CreateCountyList(cityID);
             return View("AddressAdd", model);
@@ -106,7 +107,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             model.CityID = model.SelectedCityID;
 
             if (model.OpType == 0)
-                return RedirectToAction("AddAddress", new { cityID = model.SelectedCityID});
+                return RedirectToAction("AddAddress", new { cityID = model.SelectedCityID });
             else
                 return RedirectToAction("EditAddress", new { ID = model.ID });
         }
@@ -160,7 +161,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
             foreach (County county in dbcounties)
             {
-                counties.Add(new SelectListItem() { Value = dbcounties.IndexOf(county).ToString(), Text = county.Name });
+                counties.Add(new SelectListItem() { Value = (dbcounties.IndexOf(county) + 1).ToString(), Text = county.Name });
             }
 
             return counties;

@@ -14,7 +14,6 @@ namespace Galaxy.Core.DataAccess
         int Update(T oldEntity, T newEntity);
         int Delete(T entity);
         T GetByID(int entityID);
-        //T GetBy(Func<T, int> expression); TODO: Make it happen.
         ICollection<T> GetAll();
     }
 }

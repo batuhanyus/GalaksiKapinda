@@ -6,8 +6,9 @@
 
 <form asp-controller="Address" asp-action="AddAddress" method="post">
     <input name="ID" type="hidden" value=@Model.ID>
+    <input name="CityID" type="hidden" value=@Model.CityID>
     Name: <input asp-for=@Model.Name> <br /><br />
-    City: <select id="city-selector" asp-for="CityID" asp-items="Model.Cities" disabled="true"></select><br />
+    City: <select id="city-selector" asp-for="CityID" asp-items="Model.Cities" disabled></select><br />
     County: <select id="county-selector" asp-for="CountyID" asp-items="Model.Counties"></select><br />
     Address Details: <input asp-for=@Model.AdressDetails> <br />
     Address Notes: <input asp-for=@Model.AdressNotes> <br />

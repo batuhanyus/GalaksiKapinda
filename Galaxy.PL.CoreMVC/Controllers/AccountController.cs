@@ -34,15 +34,20 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
                 if (!user.IsMailVerified)
                 {
-                    ViewBag.Message = "EMail verification required.";
+                    TempData["Message"] = "EMail verification required.";
                     return View("Index");
+                }
+
+                if(!user.IsPasswordValid)
+                {
+                    RedirectToAction("EditInfo", "Profile");
                 }
 
                 return RedirectToAction("Index", "Store");
             }
             else
             {
-                ViewBag.Message = "No such user exist.";
+                TempData["Message"] = "No such user exist.";
                 return RedirectToAction("Index");
             }
         }
@@ -63,7 +68,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             else
             {
                 Random random = new();
-                int code = random.Next(10000, 10000000);
+                string code = Guid.NewGuid().ToString();
 
                 mailVerificationService.Insert(new MailVerification()
                 {
@@ -87,7 +92,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [HttpPost]
         public IActionResult VerifyMail(string mail, string code)
         {
-            MailVerification mailVerification = mailVerificationService.GetByMail(mail);
+            MailVerification mailVerification = mailVerificationService.GetByCode(mail);
 
             if (mailVerification.VerificatinCode == code)
             {

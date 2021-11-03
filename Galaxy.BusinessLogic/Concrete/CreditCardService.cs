@@ -63,8 +63,7 @@ namespace Galaxy.BusinessLogic.Concrete
             }
             catch (Exception)
             {
-
-                throw;
+                return null; 
             }
         }
 
@@ -77,8 +76,6 @@ namespace Galaxy.BusinessLogic.Concrete
             if (entity.CardHolderName == null || entity.CardHolderName == string.Empty)
                 return 0;
             if (entity.CVC < 100)
-                return 0;
-            if (entity.ExpireDate.Year < DateTime.Now.Year)
                 return 0;
 
             return creditCardRepository.Insert(entity);

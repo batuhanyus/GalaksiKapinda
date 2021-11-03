@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Galaxy.BusinessLogic.Abstract;
 using Galaxy.Entities;
+using Galaxy.PL.CoreMVC.Helpers;
 using Galaxy.PL.CoreMVC.Models.ViewModels.Deliverer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -32,7 +33,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         public IActionResult GetDeliveries()
         {
             List<DelivererOrderViewModel> model = new();
-            ICollection<Order> orders = orderService.GetAll();
+            int userID = HttpContext.Session.Get<int>("UserID");
+            ICollection<Order> orders = orderService.GetOrdersByDelivererID(userID);
 
             foreach (Order order in orders)
             {

@@ -3,8 +3,7 @@
 <form asp-controller="CreditCard" asp-action="AddCreditCard" method="post">
     <input name="ID" type="hidden" value=@Model.ID>
     Card Number: <input asp-for=@Model.CardNumber> <br />
-    Expiration Month: <input asp-for=@Model.ExpireDate.Month><br />
-    Expiration Year: <input asp-for=@Model.ExpireDate.Year><br />
+    Expiration Date: <input asp-for=@Model.ExpireDate><br />
     CVC: <input asp-for=@Model.CVC><br />
     Cardholder Name: <input asp-for=@Model.CardHolderName><br />
     <button class="btn btn-info btn-sm">Edit</button>

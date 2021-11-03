@@ -25,6 +25,9 @@ namespace Galaxy.PL.CoreMVC.Controllers
         {
             int userID = HttpContext.Session.Get<int>("UserID");
             CreditCard card = creditCardService.GetCardByOwner(userID);
+            if (card == null)
+                return View("CreditCardAdd", new ProfileCreditCardViewModel());
+
             ProfileCreditCardViewModel model = CreateModelFromCard(card);
             return View("CreditCardList", model);
         }

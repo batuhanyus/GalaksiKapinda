@@ -42,6 +42,11 @@ namespace Galaxy.BusinessLogic.Concrete
             }
         }
 
+        public ICollection<Order> GetOrdersByDelivererID(int userID)
+        {
+            return orderRepository.GetAll().Where(a => a.DelivererID == userID).ToList();
+        }
+
         public ICollection<Order> GetOrdersByUser(int userID)
         {
             return orderRepository.GetAll().Where(a => a.MemberID == userID).ToList();

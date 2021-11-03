@@ -67,10 +67,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
                     Name = prod.Name,
                     Description = prod.Description,
                     ImagePath = prod.ImagePath,
-                    FinalPrice = prod.Price //TODO: Fix this!
+                    FinalPrice = prod.Price 
                 });
-
-                //model.StoreItemsViewModel.SelectedCategoryID = categoryID;
             }
 
             return model;

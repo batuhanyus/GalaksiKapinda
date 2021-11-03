@@ -34,8 +34,7 @@ namespace Galaxy.BusinessLogic.Concrete
             }
             catch (Exception)
             {
-
-                throw;
+                return null;
             }
         }
 
