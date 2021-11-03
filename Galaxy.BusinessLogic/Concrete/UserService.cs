@@ -149,6 +149,13 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public int Update(User oldEntity, User newEntity)
         {
+            if (newEntity.Name == null || newEntity.Surname == null)
+                return 0;
+            if (newEntity.Password == null || newEntity.Password == string.Empty)
+                return 0;
+            if (!ValidationHelper.CheckIfPassWordIsOkay(newEntity.Password))
+                return 0;
+
             try
             {
                 return userRepository.Update(oldEntity, newEntity);

@@ -30,6 +30,14 @@ namespace Galaxy.PL.CoreMVC.Controllers
             orderDetailsService = odService;
         }
 
+        bool Auth()
+        {
+            if (!AuthHelper.CanAccess(HttpContext.Session.Get<int>("UserRole"), new int[] { 3, 2, 1, 0 }))
+                return false;
+            else
+                return true;
+        }
+
         public IActionResult Index()
         {
             List<CartItem> cartContents = cartContents = HttpContext.Session.Get<List<CartItem>>("Cart");
@@ -139,8 +147,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
             Order order = new();
             order.MemberID = userID;
-            order.CityID = address.CityID;
-            order.CountyID = address.CountyID;
+            order.AddressID = address.ID;
             order.OrderStatus = "Preparing";
 
             orderService.Insert(order);

@@ -16,6 +16,11 @@
             <input name="CountyID" type="hidden" value=@Model.CountyID>
             <input name="DelivererID" type="hidden" value=@Model.DelivererID>
             Status:<select id="status-selector" asp-for="OrderStatus" asp-items="Model.OrderStatuses"></select><br />
+            Address:
+            <br />
+            @Model.Address.AdressDetails
+            <br />
+            @Model.Address.AdressNotes
             <button class="btn btn-info btn-sm">Assign</button>
         </form>
     </li>

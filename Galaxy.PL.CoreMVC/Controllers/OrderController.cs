@@ -14,11 +14,23 @@ namespace Galaxy.PL.CoreMVC.Controllers
     {
         IOrderService orderService;
         IOrderDetailsService orderDetailsService;
+        IAddressService addressService;
+        IUserService userService;
 
-        public OrderController(IOrderService ordService, IOrderDetailsService ordetService)
+        public OrderController(IOrderService ordService, IOrderDetailsService ordetService, IAddressService addService, IUserService usrService)
         {
             orderService = ordService;
             orderDetailsService = ordetService;
+            addressService = addService;
+            userService = usrService;
+        }
+
+        bool Auth()
+        {
+            if (!AuthHelper.CanAccess(HttpContext.Session.Get<int>("UserRole"), new int[] { 3, 2, 1, 0 }))
+                return false;
+            else
+                return true;
         }
 
         public IActionResult Index()
@@ -37,8 +49,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             {
                 model.Add(new OrderViewModel()
                 {
-                    CityID = order.CityID,
-                    CountyID = order.CountyID,
+                    AddressID = order.AddressID,
                     DelivererID = order.DelivererID,
                     MemberID = order.MemberID,
                     OrderID = order.ID,
@@ -56,11 +67,13 @@ namespace Galaxy.PL.CoreMVC.Controllers
         {
             OrderViewModel model = new();
 
-            Order order =orderService.GetByID(orderID);
+            Order order = orderService.GetByID(orderID);
             ICollection<OrderDetails> ods = orderDetailsService.GetOrderDetailsByOrderID(orderID);
             model.Details = ods.ToList();
             model.OrderID = order.ID;
             model.OrderStatus = order.OrderStatus;
+            User deliverer = userService.GetByID(order.DelivererID);
+            model.DelivererName = $"{deliverer.Name} {deliverer.Surname}";
 
             return View("OrderDetails", model);
         }

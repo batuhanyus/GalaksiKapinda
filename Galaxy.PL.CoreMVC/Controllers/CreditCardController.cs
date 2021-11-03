@@ -19,6 +19,13 @@ namespace Galaxy.PL.CoreMVC.Controllers
         {
             creditCardService = cardService;
         }
+        bool Auth()
+        {
+            if (!AuthHelper.CanAccess(HttpContext.Session.Get<int>("UserRole"), new int[] { 3, 2, 1, 0 }))
+                return false;
+            else
+                return true;
+        }
 
         [Route("Profile/GetCreditCard")]
         public IActionResult GetCreditCard()

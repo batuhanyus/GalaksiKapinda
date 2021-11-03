@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Galaxy.Entities;
+using Galaxy.Entities.Location;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Galaxy.PL.CoreMVC.Models.ViewModels.Deliverer
@@ -20,7 +21,7 @@ namespace Galaxy.PL.CoreMVC.Models.ViewModels.Deliverer
         public int DelivererID { get; set; }
         public int CityID { get; set; }
         public int CountyID { get; set; }
-        
+        public Address Address { get; set; }
 
         public string OrderStatus { get; set; }
 

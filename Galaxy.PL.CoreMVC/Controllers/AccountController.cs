@@ -40,7 +40,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
                 if(!user.IsPasswordValid)
                 {
-                    RedirectToAction("EditInfo", "Profile");
+                    TempData["Message"] = "Change your password!";
+                    return RedirectToAction("GetInfo", "Profile");
                 }
 
                 return RedirectToAction("Index", "Store");

@@ -4,3 +4,13 @@
 
 <hr />
 @TempData["Message"]
+
+<form asp-controller="Profile" asp-action="EditInfo" method="post">
+    <input name="UserID" type="hidden" value=@Model.UserID>
+    EMail: <input asp-for=@Model.EMail disabled> <br />
+    OldPassword: <input asp-for=@Model.OldPassword><br />
+    NewPassword: <input asp-for=@Model.NewPassword><br />
+    Name: <input asp-for=@Model.Name><br />
+    SurnameName: <input asp-for=@Model.Surname><br />
+    <button class="btn btn-info btn-sm">Edit</button>
+</form>

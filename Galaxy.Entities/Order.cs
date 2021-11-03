@@ -13,8 +13,7 @@ namespace Galaxy.Entities
         public int MemberID { get; set; }
         public int PackagerID { get; set; }
         public int DelivererID { get; set; }
-        public int CityID { get; set; }
-        public int CountyID { get; set; }
+        public int AddressID { get; set; }
 
         public string OrderStatus { get; set; }
     }

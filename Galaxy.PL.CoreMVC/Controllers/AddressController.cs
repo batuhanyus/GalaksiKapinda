@@ -25,6 +25,14 @@ namespace Galaxy.PL.CoreMVC.Controllers
             this.countyService = countyService;
         }
 
+        bool Auth()
+        {
+            if (!AuthHelper.CanAccess(HttpContext.Session.Get<int>("UserRole"), new int[] { 3, 2, 1, 0 }))
+                return false;
+            else
+                return true;
+        }
+
         [Route("Address/GetAddresses")]
         public IActionResult GetAddresses()
         {

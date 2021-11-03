@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Galaxy.BusinessLogic.Abstract;
 using Galaxy.Entities;
-using Galaxy.Entities.Location;
+using Galaxy.PL.CoreMVC.Helpers;
 using Galaxy.PL.CoreMVC.Models.ViewModels.Admin;
-using Galaxy.PL.CoreMVC.Models.ViewModels.Profile;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis;
 
 namespace Galaxy.PL.CoreMVC.Controllers
 {
@@ -25,8 +21,18 @@ namespace Galaxy.PL.CoreMVC.Controllers
             userService = usrService;
         }
 
+        bool Auth()
+        {
+            if (!AuthHelper.CanAccess(HttpContext.Session.Get<int>("UserRole"), new int[] { 3 }))
+                return false;
+            else
+                return true;
+        }
+
         public IActionResult Index()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             return View();
         }
 
@@ -34,6 +40,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/AddCategory")]
         public IActionResult AddCategory()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             AdminCategoryViewModel model = new();
 
             return View("AdminAddCategory", model);
@@ -43,6 +51,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/AddCategory")]
         public IActionResult AddCategory(AdminCategoryViewModel model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             Category category = new();
             category.Name = model.Name;
             category.IsActive = model.IsActive;
@@ -57,6 +67,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/UpdateCategories")]
         public IActionResult UpdateCategories(List<AdminCategoryViewModel> model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             foreach (var cat in model)
             {
                 Category young = CreateCategoryFromModel(cat);
@@ -70,7 +82,9 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [HttpGet]
         [Route("Admin/DeleteCategory")]
         public IActionResult DeleteCategory(int categoryID)
-{
+        {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             Category old = categoryService.GetByID(categoryID);
             Category young = categoryService.GetByID(categoryID);
             young.IsActive = false;
@@ -84,6 +98,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/ListCategories")]
         public IActionResult ListCategories()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             List<AdminCategoryViewModel> model = new();
             List<Category> dbCategories = categoryService.GetAll().Where(a => a.IsActive).ToList();
 
@@ -99,6 +115,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/AddProduct")]
         public IActionResult AddProduct()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             AdminProductViewModel model = new();
 
             return View("AdminAddProduct", model);
@@ -108,6 +126,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/AddProduct")]
         public IActionResult AddProduct(AdminProductViewModel model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             Product product = CreateProductFromModel(model);
 
             if (productService.Insert(product) > 0)
@@ -120,6 +140,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/UpdateProducts")]
         public IActionResult UpdateProducts(List<AdminProductViewModel> model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             foreach (var prod in model)
             {
                 Product young = CreateProductFromModel(prod);
@@ -134,6 +156,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/DeleteProduct")]
         public IActionResult DeleteProduct(int productID)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             Product old = productService.GetByID(productID);
             Product young = productService.GetByID(productID);
             young.IsActive = false;
@@ -147,6 +171,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/ListProducts")]
         public IActionResult ListProducts()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             List<AdminProductViewModel> model = new();
             List<Product> dbproducts = productService.GetAll().Where(a => a.IsActive).ToList();
 
@@ -162,6 +188,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/AddEmployee")]
         public IActionResult AddEmployee()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             AdminEmployeeViewModel model = new();
 
             return View("AdminAddEmployee", model);
@@ -171,6 +199,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/AddEmployee")]
         public IActionResult AddEmployee(AdminEmployeeViewModel model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             User user = CreateUserFromModel(model);
 
             if (userService.Insert(user) > 0)
@@ -185,6 +215,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/UpdateEmployees")]
         public IActionResult UpdateEmployees(List<AdminEmployeeViewModel> model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             foreach (var user in model)
             {
                 User young = CreateUserFromModel(user);
@@ -199,6 +231,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/DeleteEmployee")]
         public IActionResult DeleteEmployee(int employeeID)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             User old = userService.GetByID(employeeID);
             User young = userService.GetByID(employeeID);
             young.IsActive = false;
@@ -212,6 +246,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Admin/ListEmployees")]
         public IActionResult ListEmployees()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             List<AdminEmployeeViewModel> model = new();
             List<User> dbUsers = userService.GetAll().Where(a => a.IsActive && a.UserType != 0).ToList();
 

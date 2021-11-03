@@ -16,12 +16,21 @@ namespace Galaxy.PL.CoreMVC.Controllers
         IOrderService orderService;
         IOrderDetailsService orderDetailsService;
         IUserService userService;
-
-        public DelivererController(IOrderService ordService, IOrderDetailsService ordetService, IUserService usrService)
+        IAddressService addressService;
+        public DelivererController(IOrderService ordService, IOrderDetailsService ordetService, IUserService usrService, IAddressService addService)
         {
             orderService = ordService;
             orderDetailsService = ordetService;
             userService = usrService;
+            addressService = addService;
+        }
+
+        bool Auth()
+        {
+            if (!AuthHelper.CanAccess(HttpContext.Session.Get<int>("UserRole"), new int[] { 3, 1 }))
+                return false;
+            else
+                return true;
         }
 
         public IActionResult Index()
@@ -40,8 +49,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             {
                 model.Add(new DelivererOrderViewModel()
                 {
-                    CityID = order.CityID,
-                    CountyID = order.CountyID,
+                    Address = addressService.GetByID(order.AddressID),
                     DelivererID = order.DelivererID,
                     MemberID = order.MemberID,
                     OrderID = order.ID,
@@ -96,8 +104,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             return new Order()
             {
                 ID = model.OrderID,
-                CityID = model.CityID,
-                CountyID = model.CountyID,
+                AddressID = model.Address.ID,
                 DelivererID = model.DelivererID,
                 MemberID = model.MemberID,
                 OrderStatus = model.OrderStatus,
@@ -114,8 +121,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
                 OrderStatus = order.OrderStatus,
                 MemberID = order.MemberID,
                 DelivererID = order.DelivererID,
-                CountyID = order.CountyID,
-                CityID = order.CityID,
+                Address = addressService.GetByID(order.AddressID),
                 Deliverers = CreateDelivererList(),
                 OrderStatuses = CreateOrderStatuses(),
                 Details = orderDetailsService.GetOrderDetailsByOrderID(order.ID).ToList()
