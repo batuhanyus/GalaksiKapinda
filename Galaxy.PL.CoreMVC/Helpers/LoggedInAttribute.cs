@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 
 namespace Galaxy.PL.CoreMVC.Helpers
 {
-    public class LoggedIn : Attribute
+    public static class AuthHelper
     {
-        //TODO: Implement
+        public static bool CanAccess(int userRole)
+        {
+            return true;
+        }
     }
 }

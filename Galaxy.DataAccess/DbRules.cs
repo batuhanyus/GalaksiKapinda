@@ -13,7 +13,7 @@ namespace Galaxy.DataAccess
     {
         public void ImplementDataRules(ref ModelBuilder mb)
         {
-            mb.Entity<Category>().Property(a => a.Name).HasMaxLength(50);
+
         }
     }
 }
