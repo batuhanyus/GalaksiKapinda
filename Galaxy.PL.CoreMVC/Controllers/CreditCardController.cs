@@ -30,6 +30,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Profile/GetCreditCard")]
         public IActionResult GetCreditCard()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             int userID = HttpContext.Session.Get<int>("UserID");
             CreditCard card = creditCardService.GetCardByOwner(userID);
             if (card == null)
@@ -51,6 +52,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Profile/AddCreditCard")]
         public IActionResult AddCreditCard(ProfileCreditCardViewModel model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             CreditCard card = CreateCardFromModel(model);
             creditCardService.Insert(card);
             return RedirectToAction("GetCreditCard");
@@ -60,6 +62,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Profile/EditCreditCard")]
         public IActionResult EditCreditCard(int ID)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             int userID = HttpContext.Session.Get<int>("UserID");
             CreditCard card = creditCardService.GetByIDByOwner(userID, ID);
             ProfileCreditCardViewModel model = CreateModelFromCard(card);
@@ -70,6 +73,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Profile/EditCreditCard")]
         public IActionResult EditCreditCard(ProfileCreditCardViewModel model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             CreditCard card = CreateCardFromModel(model);
             CreditCard oldEntity = creditCardService.GetByID(card.ID);
             creditCardService.Update(oldEntity, card);

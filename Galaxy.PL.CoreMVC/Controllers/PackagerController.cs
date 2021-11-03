@@ -40,12 +40,14 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult Index()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             return RedirectToAction("GetOrders");
         }
 
         [Route("Packager/GetOrders")]
         public IActionResult GetOrders()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             List<PackagerOrderViewModel> model = new();
             ICollection<Order> orders = orderService.GetAll();
 

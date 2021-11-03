@@ -35,12 +35,14 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult Index()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             return RedirectToAction("GetDeliveries");
         }
 
         [Route("Deliverer/GetDeliveries")]
         public IActionResult GetDeliveries()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             List<DelivererOrderViewModel> model = new();
             int userID = HttpContext.Session.Get<int>("UserID");
             ICollection<Order> orders = orderService.GetOrdersByDelivererID(userID);
@@ -65,6 +67,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Deliverer/GetDetails")]
         public IActionResult GetDetails(int orderID)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             Order order = orderService.GetByID(orderID);
             DelivererOrderViewModel model = CreateModelFromOrder(order);
 
@@ -75,6 +78,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Deliverer/UpdateDelivery")]
         public IActionResult UpdateDelivery(DelivererOrderViewModel model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             Order old = orderService.GetByID(model.OrderID);
             Order young = CreateOrderFromModel(model);
             orderService.Update(old, young);

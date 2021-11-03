@@ -32,6 +32,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult Index()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
             return View("Index");
         }
 
@@ -39,6 +41,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Profile/GetInfo")]
         public IActionResult GetInfo()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             int userID = HttpContext.Session.Get<int>("UserID");
             User user = userService.GetByID(userID);
             ProfileMyInfoViewModel model = CreateModelFromUser(user);
@@ -49,6 +52,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Profile/EditInfo")]
         public IActionResult EditInfo(ProfileMyInfoViewModel model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             User user = CreateUserFromModel(model);
             User oldEntity = userService.GetByID(user.ID);
             if (userService.Update(oldEntity, user) > 0)

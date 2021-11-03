@@ -32,6 +32,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult Index(int? categoryID)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             StoreMainViewModel model = PreparePage(categoryID);
 
             return View(model);

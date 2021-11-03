@@ -35,12 +35,14 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult Index()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             return RedirectToAction("GetOrders");
         }
 
         [Route("Order/GetOrders")]
         public IActionResult GetOrders()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             int userID = HttpContext.Session.Get<int>("UserID");
             List<OrderViewModel> model = new();
             ICollection<Order> orders = orderService.GetOrdersByUser(userID);
@@ -65,6 +67,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Order/GetDetails")]
         public IActionResult GetDetails(int orderID)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             OrderViewModel model = new();
 
             Order order = orderService.GetByID(orderID);

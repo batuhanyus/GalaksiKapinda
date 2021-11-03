@@ -36,6 +36,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Address/GetAddresses")]
         public IActionResult GetAddresses()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             List<ProfileAddressViewModel> model = new();
             int userID = HttpContext.Session.Get<int>("UserID");
             ICollection<Address> addresses = addressService.GetByOwner(userID);
@@ -50,6 +51,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Address/EditAddress")]
         public IActionResult EditAddress(int ID)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             int userID = HttpContext.Session.Get<int>("UserID");
             Address address = addressService.GetByIDByOwner(userID, ID);
             ProfileAddressViewModel model = CreateModelFromAddress(address);
@@ -60,6 +62,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Address/EditAddress")]
         public IActionResult EditAddress(ProfileAddressViewModel model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             Address address = CreateAddressFromModel(model);
             Address oldEntity = addressService.GetByID(address.ID);
             addressService.Update(oldEntity, address);
@@ -70,6 +73,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Address/AddAddress")]
         public IActionResult AddAddress(int cityID)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             ProfileAddressViewModel model = new();
             model.CityID = cityID;
             model.Cities = CreateCityList();
@@ -81,6 +85,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Address/AddAddress")]
         public IActionResult AddAddress(ProfileAddressViewModel model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             Address address = CreateAddressFromModel(model);
             addressService.Insert(address);
             return RedirectToAction("GetAddresses");
@@ -90,6 +95,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [HttpGet]
         public IActionResult SelectCity(int ID = 0) //Address ID
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             ProfileAddressViewModel model = new();
             model.Cities = CreateCityList();
 
@@ -108,6 +114,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [HttpPost]
         public IActionResult SelectCity(ProfileAddressViewModel model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             City city = cityService.GetByID(model.CityID);
 
             model.SelectedCityID = model.SelectedCityID;

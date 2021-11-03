@@ -40,6 +40,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult Index()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             List<CartItem> cartContents = cartContents = HttpContext.Session.Get<List<CartItem>>("Cart");
             if (cartContents == null)
                 cartContents = new();
@@ -50,6 +51,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [HttpGet]
         public IActionResult AddToCart(int categoryID, int productID)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             Product p = productService.GetByID(productID);
 
             if (p != null)
@@ -101,17 +103,11 @@ namespace Galaxy.PL.CoreMVC.Controllers
             return RedirectToAction("Index", "Store", new { categoryID = categoryID });
         }
 
-        public IActionResult RemoveFromCart(int productID)
-        {
-            //TODO: İstenmemiş ama eklenebilir.
-
-            return RedirectToAction("Index");
-        }
-
         [HttpGet]
         [Route("Cart/SelectAddress")]
         public IActionResult SelectAddress()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             int userID = HttpContext.Session.Get<int>("UserID");
 
             CreditCard card = creditCardService.GetCardByOwner(userID);
@@ -133,6 +129,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [Route("Cart/Pay")]
         public IActionResult Pay(CardAddressViewModel model)
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             int userID = HttpContext.Session.Get<int>("UserID");
 
             CreditCard card = creditCardService.GetCardByOwner(userID);
@@ -174,6 +171,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         public IActionResult ListCartContents()
         {
+            if (!Auth()) return View("ErrorPage", "Err: No Permission");
             List<CartItem> cart = HttpContext.Session.Get<List<CartItem>>("Cart");
             return View("Index", cart);
         }
