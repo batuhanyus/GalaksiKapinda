@@ -109,7 +109,7 @@ namespace Galaxy.BusinessLogic.Concrete
                 return 0;
             }
         }
-                
+
         public bool Register(string name, string surname, string email, string password1, string password2)
         {
             if (name == null || surname == null)
@@ -133,7 +133,9 @@ namespace Galaxy.BusinessLogic.Concrete
                     Surname = surname,
                     Password = password1,
                     UserType = 1,
-                    IsActive = true
+                    IsActive = true,
+                    IsMailVerified = false,
+                    IsPasswordValid = true
                 });
 
             }

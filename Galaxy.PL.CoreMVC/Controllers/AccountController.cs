@@ -100,6 +100,9 @@ namespace Galaxy.PL.CoreMVC.Controllers
         public IActionResult VerifyMail(VerifyMailViewModel model)
         {
             MailVerification mailVerification = mailVerificationService.GetByCode(model.Code);
+            if(mailVerification == null)
+                TempData["Message"] = "Fail.";
+
 
             if (mailVerification.VerificatinCode == model.Code)
             {
@@ -113,7 +116,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
             }
             else
-                TempData["Message"] = "Success.";
+                TempData["Message"] = "Fail.";
 
             return View("VerifyMail", model);
         }

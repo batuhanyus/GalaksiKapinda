@@ -23,16 +23,15 @@
         {
             <tr>
                 <td>
-                    @if (prod.ImagePath == string.Empty || prod.ImagePath == null)
-                    {
-                        <img src="~/Media/Products/underconstruction.png" asp-append-version="true">
-                    }
-                    else
-                    {
-                        <img src=prod.ImagePath asp-append-version="true">
-                    }
-
-
+                    @*@if (prod.ImagePath == string.Empty || prod.ImagePath == null)
+        {
+            <img src="~/Media/Products/underconstruction.png">
+        }
+        else
+        {
+            <img src=prod.ImagePath>
+        }*@
+                    <img src="~/Media/Products/underconstruction.png">
                 </td>
                 <td>
                     @prod.Name
