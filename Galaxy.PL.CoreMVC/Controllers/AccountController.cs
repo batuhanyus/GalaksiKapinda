@@ -6,6 +6,7 @@ using Galaxy.BusinessLogic.Abstract;
 using Microsoft.AspNetCore.Mvc;
 using Galaxy.PL.CoreMVC.Helpers;
 using Galaxy.Entities;
+using Galaxy.PL.CoreMVC.Models.ViewModels.Account;
 
 namespace Galaxy.PL.CoreMVC.Controllers
 {
@@ -38,7 +39,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
                     return View("Index");
                 }
 
-                if(!user.IsPasswordValid)
+                if (!user.IsPasswordValid)
                 {
                     TempData["Message"] = "Change your password!";
                     return RedirectToAction("GetInfo", "Profile");
@@ -58,52 +59,63 @@ namespace Galaxy.PL.CoreMVC.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View("Register");
+            AccountRegisterViewModel model = new();
+
+            return View("Register", model);
         }
 
         [HttpPost]
-        public IActionResult Register(string name, string surname, string email, string password1, string password2)
+        [Route("Account/Register")]
+        public IActionResult Register(AccountRegisterViewModel model)
         {
-            if (!userService.Register(name, surname, email, password1, password2))
+            if (!userService.Register(model.Name, model.Surname, model.EMail, model.Password1, model.Password2))
                 TempData["Message"] = "Register failed.";
             else
             {
-                Random random = new();
                 string code = Guid.NewGuid().ToString();
 
                 mailVerificationService.Insert(new MailVerification()
                 {
-                    MemberID = userService.GetByEmail(email).ID,
+                    MemberID = userService.GetByEmail(model.EMail).ID,
                     VerificatinCode = code.ToString()
                 });
 
-                MailHelper.SendMail(email, $"Welcome to Galaksi Kapında. Here is your activation code: {code}");
+                MailHelper.SendMail(model.EMail, $"Welcome to Galaksi Kapında. Here is your activation code: {code}");
+
                 TempData["Message"] = "Success.";
             }
 
-            return View("Login", new { email = email, password = password1 });
+            return View("Index");
         }
 
         [HttpGet]
         public IActionResult VerifyMail()
         {
-            return View("VerifyMail");
+            VerifyMailViewModel model = new();
+
+            return View("VerifyMail", model);
         }
 
         [HttpPost]
-        public IActionResult VerifyMail(string mail, string code)
+        public IActionResult VerifyMail(VerifyMailViewModel model)
         {
-            MailVerification mailVerification = mailVerificationService.GetByCode(mail);
+            MailVerification mailVerification = mailVerificationService.GetByCode(model.Code);
 
-            if (mailVerification.VerificatinCode == code)
+            if (mailVerification.VerificatinCode == model.Code)
             {
                 TempData["Message"] = "Success.";
                 mailVerificationService.Delete(mailVerification);
+
+                User old = userService.GetByEmail(model.EMail);
+                User young = userService.GetByEmail(model.EMail);
+                young.IsMailVerified = true;
+                userService.Update(old, young);
+
             }
             else
                 TempData["Message"] = "Success.";
 
-            return View("VerifyMail");
+            return View("VerifyMail", model);
         }
 
         public IActionResult Logout()

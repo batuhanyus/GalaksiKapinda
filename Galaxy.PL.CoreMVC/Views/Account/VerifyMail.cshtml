@@ -1,7 +1,9 @@
-﻿@TempData["Message"]
+﻿@model VerifyMailViewModel
+
+@TempData["Message"]
 <br />
 <form asp-controller="Account" asp-action="VerifyMail" method="post">
-    Email: <input type="email" id="mail" class="form-control" /><br />
-    Verification Code: <input type="text" id="code" class="form-control" /><br />
+    EMail: <input name="EMail" value=@Model.EMail><br />
+    Verification Code:<input name="Code" value=@Model.Code><br />
     <button class="btn btn-info btn-sm">Verify</button>
 </form>

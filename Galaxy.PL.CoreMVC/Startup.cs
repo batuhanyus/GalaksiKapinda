@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -40,6 +40,13 @@ namespace Galaxy.PL.CoreMVC
             //Genesis
             Galaxy.Root.Genesis.Genesis g = new();
             //g.SeedTheGalaxy();
+
+            /*Migration ve Update sonrası oluşan GalaxyDB'yi 42. satırı aktive ederek doldurabilirsiniz.
+             * Mail işlemleri için ProtonMail: 
+             * oylesineyaratilmishesap@protonmail.com
+             * Sifre: OylesinePassword
+             * MailGun diye free birşey kullandım. Bazenleri biraz yavaşlayabiliyor. 10 dakikayı bulduğu oldu.
+             */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

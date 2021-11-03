@@ -30,7 +30,7 @@ namespace Galaxy.BusinessLogic.Concrete
         {
             try
             {
-                return userRepository.GetAll().Where(a => a.Mail == email && a.Password == password).Single();
+                return userRepository.GetAll().Where(a => a.Mail == email && a.Password == password && a.IsActive).Single();
             }
             catch (Exception)
             {
@@ -90,7 +90,7 @@ namespace Galaxy.BusinessLogic.Concrete
             //Seems like fine.
             try
             {
-                userRepository.Insert(new User()
+                return userRepository.Insert(new User()
                 {
                     Mail = entity.Mail,
                     Name = entity.Name,
@@ -108,10 +108,8 @@ namespace Galaxy.BusinessLogic.Concrete
             {
                 return 0;
             }
-
-            return 0;
         }
-
+                
         public bool Register(string name, string surname, string email, string password1, string password2)
         {
             if (name == null || surname == null)

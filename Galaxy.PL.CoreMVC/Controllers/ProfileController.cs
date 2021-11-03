@@ -57,6 +57,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
             User oldEntity = userService.GetByID(user.ID);
             if (userService.Update(oldEntity, user) > 0)
                 TempData["Message"] = "Success!";
+            else
+                TempData["Message"] = "Failed!";
 
             return RedirectToAction("GetInfo");
         }
@@ -77,7 +79,9 @@ namespace Galaxy.PL.CoreMVC.Controllers
                 Phone = realUser.Phone,
                 BirthDate = realUser.BirthDate,
                 Name = model.Name,
-                Surname = model.Surname
+                Surname = model.Surname,
+                IsActive = realUser.IsActive,
+                Password = realUser.Password
             };
 
             if (realUser.Password == model.OldPassword)

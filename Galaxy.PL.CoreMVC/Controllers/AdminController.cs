@@ -205,7 +205,10 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
 
             if (userService.Insert(user) > 0)
+            {
                 TempData["Message"] = "Success";
+                MailHelper.SendMail(user.Mail, $"Welcome to Galaksi Kapında. Here is your login: {user.Mail} and your password: {user.Password}. Don't forget to change that!");
+            }
             else
                 TempData["Message"] = "Fail.";
 

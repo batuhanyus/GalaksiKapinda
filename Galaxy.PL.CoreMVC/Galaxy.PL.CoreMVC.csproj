@@ -79,8 +79,4 @@
     </Content>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\ViewModels\Account\" />
-  </ItemGroup>
-
 </Project>

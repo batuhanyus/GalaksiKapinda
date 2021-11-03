@@ -61,7 +61,7 @@ namespace Galaxy.BusinessLogic.Concrete
             if (newEntity.Quantity == 0)
                 return 0;
 
-            throw new NotImplementedException();
+            return orderDetailsRepository.Update(oldEntity, newEntity);
         }
     }
 }
