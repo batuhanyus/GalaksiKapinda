@@ -15,7 +15,7 @@ namespace Galaxy.Entities
         public string Surname { get; set; }
 
         /// <summary>
-        /// 0=Member 1=Deliverer, 2=Packager, 3=Admin
+        /// 1=Member 2=Deliverer, 3=Packager, 4=Admin
         /// </summary>
         public int UserType { get; set; }
         public bool IsActive { get; set; }

@@ -23,7 +23,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         bool Auth()
         {
-            if (!AuthHelper.CanAccess(HttpContext.Session.Get<int>("UserRole"), new int[] { 3 }))
+            if (!AuthHelper.CanAccess(HttpContext.Session.Get<int>("UserRole"), new int[] { 4 }))
                 return false;
             else
                 return true;
@@ -202,6 +202,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             if (!Auth()) return View("ErrorPage", "Err: No Permission");
 
             User user = CreateUserFromModel(model);
+
 
             if (userService.Insert(user) > 0)
                 TempData["Message"] = "Success";

@@ -27,7 +27,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
         bool Auth()
         {
-            if (!AuthHelper.CanAccess(HttpContext.Session.Get<int>("UserRole"), new int[] { 3, 2, 1, 0 }))
+            if (!AuthHelper.CanAccess(HttpContext.Session.Get<int>("UserRole"), new int[] { 4, 3, 2, 1 }))
                 return false;
             else
                 return true;

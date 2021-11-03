@@ -134,7 +134,7 @@ namespace Galaxy.BusinessLogic.Concrete
                     Name = name,
                     Surname = surname,
                     Password = password1,
-                    UserType = 0,
+                    UserType = 1,
                     IsActive = true
                 });
 

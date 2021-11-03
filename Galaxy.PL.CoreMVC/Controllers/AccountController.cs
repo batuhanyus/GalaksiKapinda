@@ -110,7 +110,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
         {
             HttpContext.Session.Clear();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Account");
         }
     }
 }
