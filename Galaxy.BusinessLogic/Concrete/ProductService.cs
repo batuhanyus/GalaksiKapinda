@@ -20,7 +20,7 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public int Delete(Product entity)
         {
-            return productRepository.Delete(entity);
+            throw new NotImplementedException();
         }
 
         public ICollection<Product> GetAll()
@@ -30,7 +30,15 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public Product GetByID(int entityID)
         {
-            return productRepository.GetByID(entityID);
+            try
+            {
+                return productRepository.GetByID(entityID);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public IEnumerable<Product> GetProductsByCategory(int categoryID)
@@ -40,12 +48,43 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public int Insert(Product entity)
         {
-            return productRepository.Insert(entity);
+            //Validation
+            if (productRepository.GetAll().Where(a => a.Name == entity.Name && a.IsActive).ToList().Count > 0)
+                return 0;
+            if (entity.CategoryID == 0)
+                return 0;
+            if (entity.Name == null || entity.Name == string.Empty)
+                return 0;
+
+            try
+            {
+                return productRepository.Insert(entity);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public int Update(Product oldEntity, Product newEntity)
         {
-            return productRepository.Update(oldEntity, newEntity);
+            //Validation
+            if (productRepository.GetAll().Where(a => a.Name == newEntity.Name && a.IsActive).ToList().Count > 0)
+                return 0;
+            if (newEntity.CategoryID == 0)
+                return 0;
+
+
+            try
+            {
+                return productRepository.Update(oldEntity, newEntity);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

@@ -35,6 +35,10 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public int Insert(Category entity)
         {
+            if (categoryRepository.GetAll().Where(a => a.Name == entity.Name && a.IsActive).ToList().Count > 0)
+                return 0;
+            if (entity.Name == null || entity.Name == string.Empty)
+                return 0;
 
 
             return categoryRepository.Insert(entity);
@@ -42,6 +46,11 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public int Update(Category oldEntity, Category newEntity)
         {
+            if (categoryRepository.GetAll().Where(a => a.Name == newEntity.Name && a.IsActive).ToList().Count > 0)
+                return 0;
+            if (newEntity.Name == null || newEntity.Name == string.Empty)
+                return 0;
+
             return categoryRepository.Update(oldEntity, newEntity);
         }
     }

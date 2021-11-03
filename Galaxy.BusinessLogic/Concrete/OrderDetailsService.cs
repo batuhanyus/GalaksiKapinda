@@ -40,11 +40,27 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public int Insert(OrderDetails entity)
         {
+            //Validation
+            if (entity.OrderID == 0)
+                return 0;
+            if (entity.ProductID == 0)
+                return 0;
+            if (entity.Quantity == 0)
+                return 0;
+
             return orderDetailsRepository.Insert(entity);
         }
 
         public int Update(OrderDetails oldEntity, OrderDetails newEntity)
         {
+            //Validation
+            if (newEntity.OrderID == 0)
+                return 0;
+            if (newEntity.ProductID == 0)
+                return 0;
+            if (newEntity.Quantity == 0)
+                return 0;
+
             throw new NotImplementedException();
         }
     }

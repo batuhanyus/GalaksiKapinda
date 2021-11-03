@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Galaxy.BusinessLogic.Abstract;
 using Galaxy.DataAccess.Abstract;
 using Galaxy.DataAccess.Concrete;
@@ -13,16 +14,11 @@ namespace Galaxy.BusinessLogic.Concrete
 {
     public class UserService : IUserService
     {
-        IUserRepository userrepository;
+        IUserRepository userRepository;
 
         public UserService(IUserRepository repository)
         {
-            userrepository = repository;
-        }
-
-        public bool CheckPassword(string password)
-        {
-            throw new NotImplementedException();
+            userRepository = repository;
         }
 
         public int Delete(User entity)
@@ -32,33 +28,89 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public User DoLogin(string email, string password)
         {
-            //TODO: Encrypt password.
-            return userrepository.GetAll().Where(a => a.Mail == email && a.Password == password).SingleOrDefault();
+            try
+            {
+                return userRepository.GetAll().Where(a => a.Mail == email && a.Password == password).Single();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public ICollection<User> GetAll()
         {
-            return userrepository.GetAll().ToList();
+            return userRepository.GetAll().ToList();
         }
 
         public ICollection<User> GetAllDeliverers()
         {
-            return userrepository.GetAll().Where(a => a.UserType == 1).ToList();
+            return userRepository.GetAll().Where(a => a.UserType == 1).ToList();
         }
 
         public User GetByEmail(string email)
         {
-            return userrepository.GetAll().Where(a => a.Mail == email).SingleOrDefault();
+            try
+            {
+                return userRepository.GetAll().Where(a => a.Mail == email).Single();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public User GetByID(int entityID)
         {
-            return userrepository.GetAll().Where(a => a.ID == entityID).SingleOrDefault();
+            try
+            {
+                return userRepository.GetAll().Where(a => a.ID == entityID).Single();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public int Insert(User entity)
         {
-            throw new NotImplementedException();
+            if (entity.Name == null || entity.Surname == null)
+                return 0;
+            if (entity.Password == null)
+                return 0;
+            if (!ValidationHelper.CheckIfPassWordIsOkay(entity.Password))
+                return 0;
+            if (!Regex.IsMatch(entity.Mail, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"))
+                return 0;
+            if (userRepository.GetAll().Where(a => a.Mail == entity.Mail && a.IsActive == true).ToList().Count > 0)
+                return 0;
+
+            //Seems like fine.
+            try
+            {
+                userRepository.Insert(new User()
+                {
+                    Mail = entity.Mail,
+                    Name = entity.Name,
+                    Surname = entity.Surname,
+                    Password = entity.Password,
+                    UserType = entity.UserType,
+                    IsActive = true,
+                    BirthDate = entity.BirthDate,
+                    IsMailVerified = true,
+                    Phone = entity.Phone
+                });
+
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+
+            return 0;
         }
 
         public bool Register(string name, string surname, string email, string password1, string password2)
@@ -67,26 +119,26 @@ namespace Galaxy.BusinessLogic.Concrete
                 return false;
             if (password1 != password2)
                 return false;
-            if (!password1.Any(char.IsUpper))
-                return false;
-            if (!password1.Any(char.IsNumber))
+            if (!ValidationHelper.CheckIfPassWordIsOkay(password1))
                 return false;
             if (!Regex.IsMatch(email, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"))
                 return false;
-            if (userrepository.GetAll().Where(a => a.Mail == email).ToList().Count > 0)
+            if (userRepository.GetAll().Where(a => a.Mail == email && a.IsActive == true).ToList().Count > 0)
                 return false;
 
             //Seems like fine.
             try
             {
-                userrepository.Insert(new User()
+                userRepository.Insert(new User()
                 {
                     Mail = email,
                     Name = name,
                     Surname = surname,
-                    Password = password1.HashString(),
-                    UserType = 0
+                    Password = password1,
+                    UserType = 0,
+                    IsActive = true
                 });
+
             }
             catch (Exception e)
             {
@@ -98,7 +150,15 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public int Update(User oldEntity, User newEntity)
         {
-            return userrepository.Update(oldEntity, newEntity);
+            try
+            {
+                return userRepository.Update(oldEntity, newEntity);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

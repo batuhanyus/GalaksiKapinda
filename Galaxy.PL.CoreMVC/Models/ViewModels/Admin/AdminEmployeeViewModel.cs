@@ -17,6 +17,7 @@ namespace Galaxy.PL.CoreMVC.Models.ViewModels.Admin
         /// 0=Member 1=Deliverer, 2=Packager, 3=Admin
         /// </summary>
         public int UserType { get; set; }
+        public bool IsActive { get; set; }
         public bool IsMailVerified { get; set; }
         public DateTime BirthDate { get; set; }
         public long Phone { get; set; }

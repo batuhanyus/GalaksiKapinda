@@ -31,7 +31,7 @@
                         Name: <input asp-for=@Model[i].Name>
                     </td>
                     <td>
-                        IsActive: <input asp-for=@Model[i].IsActive>
+                        <a asp-controller="Admin" asp-action="DeleteCategory" asp-route-categoryID="@Model[i].CategoryID">Delete</a>
                     </td>
                 </tr>
             }

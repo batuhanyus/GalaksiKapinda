@@ -8,6 +8,7 @@ using Galaxy.Entities.Location;
 using Galaxy.PL.CoreMVC.Models.ViewModels.Admin;
 using Galaxy.PL.CoreMVC.Models.ViewModels.Profile;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
 
 namespace Galaxy.PL.CoreMVC.Controllers
 {
@@ -67,11 +68,24 @@ namespace Galaxy.PL.CoreMVC.Controllers
         }
 
         [HttpGet]
+        [Route("Admin/DeleteCategory")]
+        public IActionResult DeleteCategory(int categoryID)
+{
+            Category old = categoryService.GetByID(categoryID);
+            Category young = categoryService.GetByID(categoryID);
+            young.IsActive = false;
+
+            categoryService.Update(old, young);
+
+            return RedirectToAction("ListCategories");
+        }
+
+        [HttpGet]
         [Route("Admin/ListCategories")]
         public IActionResult ListCategories()
         {
             List<AdminCategoryViewModel> model = new();
-            List<Category> dbCategories = categoryService.GetAll().ToList();
+            List<Category> dbCategories = categoryService.GetAll().Where(a => a.IsActive).ToList();
 
             foreach (Category category in dbCategories)
             {
@@ -117,11 +131,24 @@ namespace Galaxy.PL.CoreMVC.Controllers
         }
 
         [HttpGet]
+        [Route("Admin/DeleteProduct")]
+        public IActionResult DeleteProduct(int productID)
+        {
+            Product old = productService.GetByID(productID);
+            Product young = productService.GetByID(productID);
+            young.IsActive = false;
+
+            productService.Update(old, young);
+
+            return RedirectToAction("ListProducts");
+        }
+
+        [HttpGet]
         [Route("Admin/ListProducts")]
         public IActionResult ListProducts()
         {
             List<AdminProductViewModel> model = new();
-            List<Product> dbproducts = productService.GetAll().ToList();
+            List<Product> dbproducts = productService.GetAll().Where(a => a.IsActive).ToList();
 
             foreach (Product product in dbproducts)
             {
@@ -148,6 +175,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
 
             if (userService.Insert(user) > 0)
                 TempData["Message"] = "Success";
+            else
+                TempData["Message"] = "Fail.";
 
             return View("AdminAddEmployee", model);
         }
@@ -167,11 +196,24 @@ namespace Galaxy.PL.CoreMVC.Controllers
         }
 
         [HttpGet]
+        [Route("Admin/DeleteEmployee")]
+        public IActionResult DeleteEmployee(int employeeID)
+        {
+            User old = userService.GetByID(employeeID);
+            User young = userService.GetByID(employeeID);
+            young.IsActive = false;
+
+            userService.Update(old, young);
+
+            return RedirectToAction("ListEmployees");
+        }
+
+        [HttpGet]
         [Route("Admin/ListEmployees")]
         public IActionResult ListEmployees()
         {
             List<AdminEmployeeViewModel> model = new();
-            List<User> dbUsers = userService.GetAll().ToList();
+            List<User> dbUsers = userService.GetAll().Where(a => a.IsActive && a.UserType != 0).ToList();
 
             foreach (User user in dbUsers)
             {
@@ -246,7 +288,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
                 Name = model.Name,
                 Password = model.Password,
                 Phone = model.Phone,
-                Surname = model.Surname
+                Surname = model.Surname,
+                IsActive = true
             };
         }
 
@@ -263,7 +306,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
                 BirthDate = user.BirthDate,
                 EmployeeID = user.ID,
                 IsMailVerified = user.IsMailVerified,
-                UserType = user.UserType
+                UserType = user.UserType,
+                IsActive = user.IsActive
             };
         }
     }

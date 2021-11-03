@@ -30,12 +30,28 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public Address GetByID(int entityID)
         {
-            return addressRepository.GetAll().Where(a => a.ID == entityID).SingleOrDefault();
+            try
+            {
+                return addressRepository.GetAll().Where(a => a.ID == entityID).Single();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public Address GetByIDByOwner(int userID, int ID)
         {
-            return addressRepository.GetAll().Where(a => a.MemberID == userID && a.ID == ID).SingleOrDefault();
+            try
+            {
+                return addressRepository.GetAll().Where(a => a.MemberID == userID && a.ID == ID).Single();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public ICollection<Address> GetByOwner(int userID)
@@ -45,11 +61,32 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public int Insert(Address entity)
         {
+            //Validation
+            if (entity.MemberID == 0)
+                return 0;
+            if (entity.CityID == 0)
+                return 0;
+            if (entity.CountyID == 0)
+                return 0;
+            if (entity.Name == null || entity.Name == string.Empty)
+                return 0;
+            
+
             return addressRepository.Insert(entity);
         }
 
         public int Update(Address oldEntity, Address newEntity)
         {
+            //Validation
+            if (newEntity.MemberID == 0)
+                return 0;
+            if (newEntity.CityID == 0)
+                return 0;
+            if (newEntity.CountyID == 0)
+                return 0;
+            if (newEntity.Name == null || newEntity.Name == string.Empty)
+                return 0;
+
             return addressRepository.Update(oldEntity, newEntity);
         }
     }

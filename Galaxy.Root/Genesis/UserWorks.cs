@@ -23,6 +23,7 @@ namespace Galaxy.Root.Genesis
             admin.Phone = 5399522131;
             admin.IsMailVerified = true;
             admin.IsPasswordValid = true;
+            admin.IsActive = true;
 
             User packager1 = new();
             packager1.UserType = 2;
@@ -34,6 +35,7 @@ namespace Galaxy.Root.Genesis
             packager1.Phone = 5399522131;
             packager1.IsMailVerified = true;
             packager1.IsPasswordValid = true;
+            packager1.IsActive = true;
 
             User deliverer1 = new();
             deliverer1.UserType = 1;
@@ -45,6 +47,7 @@ namespace Galaxy.Root.Genesis
             deliverer1.Phone = 5399522131;
             deliverer1.IsMailVerified = true;
             deliverer1.IsPasswordValid = true;
+            deliverer1.IsActive = true;
 
             User deliverer2 = new();
             deliverer2.UserType = 1;
@@ -56,6 +59,7 @@ namespace Galaxy.Root.Genesis
             deliverer2.Phone = 5399522131;
             deliverer2.IsMailVerified = true;
             deliverer2.IsPasswordValid = false;
+            deliverer2.IsActive = true;
 
             context.Users.Add(admin);
             context.SaveChanges();
@@ -74,6 +78,7 @@ namespace Galaxy.Root.Genesis
             member1.Name = "Member";
             member1.Surname = "1";
             member1.Password = "member1";
+            member1.IsActive = true;
 
             context.Users.Add(member1);
             context.SaveChanges();            

@@ -35,7 +35,15 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public City GetCityByName(string name)
         {
-            return cityRepository.GetAll().Where(a => a.Name == name).SingleOrDefault();
+            try
+            {
+                return cityRepository.GetAll().Where(a => a.Name == name).Single();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public int Insert(City entity)

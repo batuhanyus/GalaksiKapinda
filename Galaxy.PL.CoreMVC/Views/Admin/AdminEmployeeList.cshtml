@@ -38,6 +38,9 @@
                 <th>
                     Is Password Verified
                 </th>
+                <th>
+
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -49,31 +52,34 @@
                     <input asp-for=@Model[i].EmployeeID hidden>
                 </td>
                 <td>
-                    <input asp-for=@Model[i].Mail>
+                    @Model[i].Mail
                 </td>
                 <td>
-                    <input asp-for=@Model[i].Password>
+                    <input asp-for=@Model[i].Password hidden>
                 </td>
                 <td>
-                    <input asp-for=@Model[i].Name>
+                    @Model[i].Name
                 </td>
                 <td>
-                    <input asp-for=@Model[i].Surname>
+                    @Model[i].Surname
                 </td>
                 <td>
-                    <input asp-for=@Model[i].UserType>
+                    @Model[i].UserType
                 </td>
                 <td>
-                    <input asp-for=@Model[i].IsMailVerified>
+                    @Model[i].IsMailVerified
                 </td>
                 <td>
-                    <input asp-for=@Model[i].BirthDate>
+                    @Model[i].BirthDate
                 </td>
                 <td>
-                    <input asp-for=@Model[i].Phone>
+                    @Model[i].Phone
                 </td>
                 <td>
-                    <input asp-for=@Model[i].IsPasswordValid>
+                    @Model[i].IsPasswordValid
+                </td>
+                <td>
+                    <a asp-controller="Admin" asp-action="DeleteEmployee" asp-route-employeeID="@Model[i].EmployeeID">Delete</a>
                 </td>
             </tr>
             }

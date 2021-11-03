@@ -31,31 +31,74 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public CreditCard GetByID(int entityID)
         {
-            return creditCardRepository.GetAll().Where(a => a.ID == entityID).SingleOrDefault();
+            try
+            {
+                return creditCardRepository.GetAll().Where(a => a.ID == entityID).Single();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public CreditCard GetByIDByOwner(int userID, int iD)
         {
-            return creditCardRepository.GetAll().Where(a => a.MemberID == userID && a.ID == iD).SingleOrDefault();
+            try
+            {
+                return creditCardRepository.GetAll().Where(a => a.MemberID == userID && a.ID == iD).Single();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public CreditCard GetCardByOwner(int ownerID)
-{
-            return creditCardRepository.GetAll().Where(a => a.MemberID == ownerID).SingleOrDefault();
+        {
+            try
+            {
+                return creditCardRepository.GetAll().Where(a => a.MemberID == ownerID).Single();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public int Insert(CreditCard entity)
         {
-            throw new NotImplementedException();
-        }
+            if (creditCardRepository.GetAll().Where(a => a.CardHolderName == entity.CardHolderName && a.CardNumber == entity.CardNumber).ToList().Count > 0)
+                return 0;
+            if (entity.CardNumber < 1000000000000000)
+                return 0;
+            if (entity.CardHolderName == null || entity.CardHolderName == string.Empty)
+                return 0;
+            if (entity.CVC < 100)
+                return 0;
+            if (entity.ExpireDate.Year < DateTime.Now.Year)
+                return 0;
 
-        public int Update(CreditCard entity)
-        {
-            throw new NotImplementedException();
+            return creditCardRepository.Insert(entity);
+
+            
         }
 
         public int Update(CreditCard oldEntity, CreditCard newEntity)
         {
+            if (creditCardRepository.GetAll().Where(a => a.CardHolderName == newEntity.CardHolderName && a.CardNumber == newEntity.CardNumber).ToList().Count > 0)
+                return 0;
+            if (newEntity.CardNumber < 1000000000000000)
+                return 0;
+            if (newEntity.CardHolderName == null || newEntity.CardHolderName == string.Empty)
+                return 0;
+            if (newEntity.CVC < 100)
+                return 0;
+            if (newEntity.ExpireDate.Year < DateTime.Now.Year)
+                return 0;
+
             return creditCardRepository.Update(oldEntity, newEntity);
         }
     }

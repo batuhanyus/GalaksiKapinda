@@ -7,7 +7,8 @@ using Galaxy.Entities;
 using Galaxy.Entities.Location;
 namespace Galaxy.BusinessLogic.Abstract
 {
-    public interface IMailVerificationService : IService<MailVerification> 
+    public interface IMailVerificationService : IService<MailVerification>
     {
+        MailVerification GetByCode(string code);
     }
 }

@@ -20,22 +20,46 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public int Delete(MailVerification entity)
         {
-            throw new NotImplementedException();
+            return mailVerificationRepository.Delete(entity);
         }
 
         public ICollection<MailVerification> GetAll()
         {
-            throw new NotImplementedException();
+            return mailVerificationRepository.GetAll();
+        }
+
+        public MailVerification GetByCode(string code)
+        {
+            try //I dare you !!
+            {
+                return mailVerificationRepository.GetAll().Where(a => a.VerificatinCode == code).Single();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public MailVerification GetByID(int entityID)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return mailVerificationRepository.GetAll().Where(a => a.ID == entityID).Single();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public int Insert(MailVerification entity)
         {
-            throw new NotImplementedException();
+            if (entity.MemberID == 0)
+                return 0;
+
+            return mailVerificationRepository.Insert(entity);
         }
 
         public int Update(MailVerification oldEntity, MailVerification newEntity)

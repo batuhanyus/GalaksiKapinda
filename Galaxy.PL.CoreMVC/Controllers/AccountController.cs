@@ -12,10 +12,11 @@ namespace Galaxy.PL.CoreMVC.Controllers
     public class AccountController : Controller
     {
         IUserService userService;
-
-        public AccountController(IUserService usService)
+        IMailVerificationService mailVerificationService;
+        public AccountController(IUserService usService, IMailVerificationService verifService)
         {
             userService = usService;
+            mailVerificationService = verifService;
         }
 
         public IActionResult Index()
@@ -46,6 +47,8 @@ namespace Galaxy.PL.CoreMVC.Controllers
             }
         }
 
+
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -58,9 +61,43 @@ namespace Galaxy.PL.CoreMVC.Controllers
             if (!userService.Register(name, surname, email, password1, password2))
                 TempData["Message"] = "Register failed.";
             else
+            {
+                Random random = new();
+                int code = random.Next(10000, 10000000);
+
+                mailVerificationService.Insert(new MailVerification()
+                {
+                    MemberID = userService.GetByEmail(email).ID,
+                    VerificatinCode = code.ToString()
+                });
+
+                MailHelper.SendMail(email, $"Welcome to Galaksi Kapında. Here is your activation code: {code}");
                 TempData["Message"] = "Success.";
+            }
 
             return View("Login", new { email = email, password = password1 });
+        }
+
+        [HttpGet]
+        public IActionResult VerifyMail()
+        {
+            return View("VerifyMail");
+        }
+
+        [HttpPost]
+        public IActionResult VerifyMail(string mail, string code)
+        {
+            MailVerification mailVerification = mailVerificationService.GetByMail(mail);
+
+            if (mailVerification.VerificatinCode == code)
+            {
+                TempData["Message"] = "Success.";
+                mailVerificationService.Delete(mailVerification);
+            }
+            else
+                TempData["Message"] = "Success.";
+
+            return View("VerifyMail");
         }
 
         public IActionResult Logout()

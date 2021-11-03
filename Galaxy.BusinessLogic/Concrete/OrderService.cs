@@ -31,7 +31,15 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public Order GetByID(int entityID)
         {
-            return orderRepository.GetAll().Where(a => a.ID == entityID).SingleOrDefault();
+            try
+            {
+                return orderRepository.GetAll().Where(a => a.ID == entityID).Single();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public ICollection<Order> GetOrdersByUser(int userID)
@@ -41,11 +49,20 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public int Insert(Order entity)
         {
+            //Validation
+            if (entity.MemberID == 0)
+                return 0;
+
             return orderRepository.Insert(entity);
         }
 
         public int Update(Order oldEntity, Order newEntity)
-{
+        {
+            //Validation
+            if (newEntity.MemberID == 0)
+                return 0;
+
+
             return orderRepository.Update(oldEntity, newEntity);
         }
     }

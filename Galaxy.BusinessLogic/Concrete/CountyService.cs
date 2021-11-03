@@ -30,7 +30,7 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public County GetByID(int entityID)
         {
-            throw new NotImplementedException();
+            return countyRepository.GetByID(entityID);
         }
 
         public ICollection<County> GetCountiesByCityID(int ID)

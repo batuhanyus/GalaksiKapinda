@@ -246,6 +246,9 @@ namespace Galaxy.DataAccess.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsMailVerified")
                         .HasColumnType("bit");
 

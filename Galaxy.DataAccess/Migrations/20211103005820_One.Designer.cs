@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Galaxy.DataAccess.Migrations
 {
     [DbContext(typeof(GalaxyDbContext))]
-    [Migration("20211102161605_One")]
+    [Migration("20211103005820_One")]
     partial class One
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -197,8 +197,8 @@ namespace Galaxy.DataAccess.Migrations
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
 
-                    b.Property<short>("Quantity")
-                        .HasColumnType("smallint");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -247,6 +247,9 @@ namespace Galaxy.DataAccess.Migrations
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsMailVerified")
                         .HasColumnType("bit");
