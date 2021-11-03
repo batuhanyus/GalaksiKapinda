@@ -17,8 +17,8 @@ namespace Galaxy.Root.Genesis
             admin.UserType = 4;
             admin.BirthDate = DateTime.Now;
             admin.Mail = "admin@gk.com";
-            admin.Name = "Mr.";
-            admin.Surname = "Admin";
+            admin.Name = "Marty";
+            admin.Surname = "McFly";
             admin.Password = "admin";
             admin.Phone = 5399522131;
             admin.IsMailVerified = true;
@@ -29,8 +29,8 @@ namespace Galaxy.Root.Genesis
             packager1.UserType = 3;
             packager1.BirthDate = DateTime.Now;
             packager1.Mail = "packager1@gk.com";
-            packager1.Name = "Packager";
-            packager1.Surname = "1";
+            packager1.Name = "Darth";
+            packager1.Surname = "Vader";
             packager1.Password = "packager1";
             packager1.Phone = 5399522131;
             packager1.IsMailVerified = true;
@@ -41,8 +41,8 @@ namespace Galaxy.Root.Genesis
             deliverer1.UserType = 2;
             deliverer1.BirthDate = DateTime.Now;
             deliverer1.Mail = "deliverer1@gk.com";
-            deliverer1.Name = "Deliverer";
-            deliverer1.Surname = "1";
+            deliverer1.Name = "Chewbacca";
+            deliverer1.Surname = "Solo";
             deliverer1.Password = "deliverer1";
             deliverer1.Phone = 5399522131;
             deliverer1.IsMailVerified = true;
@@ -53,8 +53,8 @@ namespace Galaxy.Root.Genesis
             deliverer2.UserType = 2;
             deliverer2.BirthDate = DateTime.Now;
             deliverer2.Mail = "deliverer2@gk.com";
-            deliverer2.Name = "Deliverer";
-            deliverer2.Surname = "2";
+            deliverer2.Name = "Han";
+            deliverer2.Surname = "Solo";
             deliverer2.Password = "deliverer2";
             deliverer2.Phone = 5399522131;
             deliverer2.IsMailVerified = true;
@@ -75,8 +75,8 @@ namespace Galaxy.Root.Genesis
             member1.IsPasswordValid = true;
             member1.UserType = 1;
             member1.Mail = "member1@gk.com";
-            member1.Name = "Member";
-            member1.Surname = "1";
+            member1.Name = "Anakin";
+            member1.Surname = "Skywalker";
             member1.Password = "member1";
             member1.IsActive = true;
 

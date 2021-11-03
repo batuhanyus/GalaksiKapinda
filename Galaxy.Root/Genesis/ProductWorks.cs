@@ -15,47 +15,47 @@ namespace Galaxy.Root.Genesis
         {
             Category c1 = new Category()
             {
-                Name = "Category 1",
+                Name = "Lightsabers",
                 IsActive = true,
             };
 
             Category c2 = new Category()
             {
-                Name = "Category 2",
+                Name = "Ships",
                 IsActive = true
             };
 
             Product p1 = new Product()
             {
                 CategoryID = 1,
-                Name = "Product 1",
-                Description = "Product 1 Description",
+                Name = "Purple Lightsaber",
+                Description = "Feel the power of purpie purple then look like Mace Windu.",
                 Price = 5m,
                 DiscountedPrice = 4.99m,
                 IsActive = true,
-                ImagePath = "~/Media/Products/underconstruction.png"
+                ImagePath = "~/Media/Products/purplesaber.png"
             };
 
             Product p2 = new Product()
             {
-                CategoryID = 1,
-                Name = "Product 2",
-                Description = "Product 2 Description",
+                CategoryID = 2,
+                Name = "X-Wing",
+                Description = "It's better, stronger, danger-er!",
                 Price = 15m,
                 DiscountedPrice = 14.99m,
                 IsActive = true,
-                ImagePath = "~/Media/Products/underconstruction.png"
+                ImagePath = "~/Media/Products/xwing.png"
             };
 
             Product p3 = new Product()
             {
                 CategoryID = 2,
-                Name = "Product 3",
-                Description = "Product 3 Description",
+                Name = "TIE Fighter",
+                Description = "Valuable salvage -wroom-",
                 Price = 100m,
                 DiscountedPrice = 99.99m,
                 IsActive = true,
-                ImagePath = "~/Media/Products/underconstruction.png"
+                ImagePath = "~/Media/Products/tie.png"
             };
 
             context.Categories.Add(c1);
@@ -69,6 +69,7 @@ namespace Galaxy.Root.Genesis
             context.SaveChanges();
             context.Products.Add(p3);
             context.SaveChanges();
+
         }
     }
 }

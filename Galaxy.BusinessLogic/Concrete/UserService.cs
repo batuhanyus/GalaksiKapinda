@@ -45,7 +45,7 @@ namespace Galaxy.BusinessLogic.Concrete
 
         public ICollection<User> GetAllDeliverers()
         {
-            return userRepository.GetAll().Where(a => a.UserType == 1).ToList();
+            return userRepository.GetAll().Where(a => a.UserType == 2).ToList();
         }
 
         public User GetByEmail(string email)

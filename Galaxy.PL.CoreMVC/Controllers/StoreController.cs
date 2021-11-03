@@ -15,11 +15,13 @@ namespace Galaxy.PL.CoreMVC.Controllers
     {
         ICategoryService categoryService;
         IProductService productService;
+        IAddressService addressService;
 
-        public StoreController(ICategoryService catService, IProductService prodService)
+        public StoreController(ICategoryService catService, IProductService prodService, IAddressService addService)
         {
             categoryService = catService;
             productService = prodService;
+            addressService = addService;
         }
 
         bool Auth()
@@ -33,6 +35,13 @@ namespace Galaxy.PL.CoreMVC.Controllers
         public IActionResult Index(int? categoryID)
         {
             if (!Auth()) return View("ErrorPage", "Err: No Permission");
+
+            if (addressService.GetByOwner(HttpContext.Session.Get<int>("UserID")).ToList().Count < 1)
+            {
+                TempData["Message"] = "Add an address please.";
+                return RedirectToAction("GetAddresses", "Address");
+            }
+
             StoreMainViewModel model = PreparePage(categoryID);
 
             return View(model);
@@ -71,7 +80,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
                     Name = prod.Name,
                     Description = prod.Description,
                     ImagePath = prod.ImagePath,
-                    FinalPrice = prod.Price 
+                    FinalPrice = prod.Price
                 });
             }
 

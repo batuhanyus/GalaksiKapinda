@@ -108,7 +108,7 @@ namespace Galaxy.PL.CoreMVC.Controllers
             return new Order()
             {
                 ID = model.OrderID,
-                AddressID = model.Address.ID,
+                //AddressID=model.Address.ID
                 DelivererID = model.DelivererID,
                 MemberID = model.MemberID,
                 OrderStatus = model.OrderStatus,

@@ -75,8 +75,18 @@ namespace Galaxy.PL.CoreMVC.Controllers
             model.Details = ods.ToList();
             model.OrderID = order.ID;
             model.OrderStatus = order.OrderStatus;
-            User deliverer = userService.GetByID(order.DelivererID);
-            model.DelivererName = $"{deliverer.Name} {deliverer.Surname}";
+
+            try
+            {
+                User deliverer = userService.GetByID(order.DelivererID);
+                model.DelivererName = $"{deliverer.Name} {deliverer.Surname}";
+            }
+            catch (Exception)
+            {
+
+            }
+
+            
 
             return View("OrderDetails", model);
         }

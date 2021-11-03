@@ -19,6 +19,7 @@ namespace Galaxy.Root.Genesis
             o1.DelivererID = 3;
             o1.PackagerID = 2;
             o1.OrderStatus = "Preparing";
+            o1.AddressID = 1;
 
             OrderDetails od1 = new();
             od1.OrderID = 1;

@@ -23,15 +23,14 @@
         {
             <tr>
                 <td>
-                    @*@if (prod.ImagePath == string.Empty || prod.ImagePath == null)
-        {
-            <img src="~/Media/Products/underconstruction.png">
-        }
-        else
-        {
-            <img src=prod.ImagePath>
-        }*@
-                    <img src="~/Media/Products/underconstruction.png">
+                    @if (prod.ImagePath == string.Empty || prod.ImagePath == null)
+                    {
+                        <img src="~/Media/Products/underconstruction.png">
+                    }
+                    else
+                    {
+                        <img src="@Url.Content(prod.ImagePath)" alt="Image" />
+                    }
                 </td>
                 <td>
                     @prod.Name
